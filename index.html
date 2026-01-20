@@ -491,55 +491,44 @@
       }
 
       /* 📱 RESPONSIVE: Ajustes para teléfonos */
-     /* Reemplazo: forzar vista de escritorio en tablets y móviles */
+     /* Reemplazo: forzar vista de escritorio en tablets y móviles (ajustado más compacto) */
 
 /* Tablets / pantallas medianas: usar vista de escritorio */
 @media (max-width: 768px) {
   .galeria {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* misma vista de ordenador */
-    gap: 16px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;               /* reducido */
     align-items: start;
     overflow-x: visible;
-  }
-}
-
-/* Móviles: también forzar la vista de escritorio (2 columnas) */
-@media (max-width: 480px) {
-  .galeria {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* forzar 2 columnas como en escritorio */
-    gap: 12px;
-    align-items: start;
-    overflow-x: auto; /* permite desplazamiento horizontal si no cabe */
-    -webkit-overflow-scrolling: touch;
+    padding: 6px;            /* opcional: menos espacio externo */
   }
 
   .producto {
-    padding: 8px;
+    padding: 6px;
     box-sizing: border-box;
-    min-width: 200px; /* asegura anchura mínima por tarjeta (ajustable) */
+    min-width: 180px;        /* ligeramente menor */
   }
 
   .producto img {
     width: 100%;
-    height: 200px;      /* altura tipo escritorio */
+    height: 160px;           /* menor altura */
     object-fit: cover;
     display: block;
     border-radius: 4px;
   }
 
   .producto h3 {
-    font-size: 1.25rem; /* mayor tamaño como en escritorio */
-    line-height: 1.2;
-    margin: 8px 0 6px;
+    font-size: 1rem;         /* reducido */
+    line-height: 1.1;
+    margin: 6px 0 4px;
+    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
   }
 
   .producto p {
-    font-size: 1rem;
+    font-size: 0.95rem;
     margin: 0;
     color: #333;
     display: -webkit-box;
@@ -547,7 +536,71 @@
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  .producto .precio,
+  .producto .detalle {
+    font-size: 0.95rem;
+  }
+
+  .producto .btn-agregar {
+    padding: 8px 10px;       /* botón más compacto */
+    font-size: 0.95rem;
+    border-radius: 6px;
+  }
 }
+
+/* Móviles: forzar la vista de escritorio (2 columnas), aún más compacto */
+@media (max-width: 480px) {
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;                /* reducido al mínimo */
+    align-items: start;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding: 4px;
+  }
+
+  .producto {
+    padding: 6px;
+    box-sizing: border-box;
+    min-width: 160px;        /* más compacto */
+  }
+
+  .producto img {
+    width: 100%;
+    height: 140px;           /* altura reducida para que quepan más */
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+
+  .producto h3 {
+    font-size: 0.95rem;
+    line-height: 1.05;
+    margin: 6px 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .producto p {
+    font-size: 0.88rem;
+    margin: 0;
+    -webkit-line-clamp: 2;
+  }
+
+  .producto .precio,
+  .producto .detalle {
+    font-size: 0.88rem;
+  }
+
+  .producto .btn-agregar {
+    padding: 6px 8px;
+    font-size: 0.9rem;
+  }
+}
+
 
         
       .titulo-oro {
