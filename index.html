@@ -633,42 +633,47 @@
       }
    }
     /* 🟥 FRANJA AGOTADO EN DIAGONAL OBLICUA (versión más pequeña y responsiva) */
+/* ===== contenedor: imprescindible ===== */
 .producto {
-  position: relative;
-  overflow: hidden; /* opcional: evita que la franja sobresalga demasiado */
+  position: relative;    /* hace que ::after se limite a este elemento */
+  overflow: hidden;      /* evita que la cinta sobresalga fuera del producto */
+  -webkit-backface-visibility: hidden; /* ayuda con algunos problemas de render */
 }
 
+/* ===== franja "AGOTADO" cuando el producto tiene la clase .agotado ===== */
 .producto.agotado::after {
-  content: "AGOTADO";
+  content: "NO DISPONIBLE";           /* texto de la banda */
   position: absolute;
 
-  /* posicionamiento central + rotación */
-  top: 50%;
+  top: 10px;                          /* ajusta para subir/bajar la cinta */
   left: 50%;
-  transform: translate(-50%, -50%) rotate(-45deg); /* <- una sola transform */
+  transform: translateX(-50%) rotate(-12deg); /* centra horizontal y rota (una sola transform) */
+  transform-origin: center;
 
-  /* variables para ajustar rápidamente */
-  --ribbon-width-factor: 1.2;   /* multiplica el ancho del contenedor (1 = igual) */
-  --ribbon-height: clamp(22px, 3.2vw, 32px); /* altura responsiva */
-  --ribbon-font: clamp(.75rem, 2.2vw, 0.95rem); /* tamaño de fuente responsivo */
-
-  width: calc(var(--ribbon-width-factor) * 100%); /* ancho relativo al contenedor */
-  height: var(--ribbon-height);
-
-  background: rgba(255, 0, 0, 0.85);
-  color: white;
-  font-size: var(--ribbon-font);
-  font-weight: 700;
-  text-align: center;
+  width: 120%;                        /* ancho relativo al contenedor; reduce si sobresale */
+  height: 30px;                       /* altura de la franja */
+  line-height: 30px;                  /* centra verticalmente texto */
 
   display: flex;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 
-  letter-spacing: 2px;
-  z-index: 20;
-  pointer-events: none;
+  background: rgba(200, 0, 0, 0.95);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+
+  z-index: 9999;                       /* siempre encima */
+  pointer-events: none;                /* no interfiere con clicks */
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  white-space: nowrap;
+  border-radius: 2px;
 }
+
+/* Si necesitas la franja más corta o menos diagonal, ajusta: */
+/* .producto.agotado::after { width: 100%; top: 8px; transform: translateX(-50%) rotate(-8deg); } */
 
   </style>
 </head>
