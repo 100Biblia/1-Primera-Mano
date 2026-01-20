@@ -10,6 +10,9 @@
   <!-- Estilos externos (opcional) -->
   <link rel="stylesheet" href="styles.css" />
 
+  <!-- Google Fonts: Poppins -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
   <!-- Estilos internos corregidos y consolidados -->
   <style>
     /* --- Reset / Base --- */
@@ -27,7 +30,6 @@
     }
 
     body {
-      margin: 0;
       font-family: "Poppins", sans-serif;
       color: #fff;
       background:
@@ -54,8 +56,8 @@
       font-weight: bold;
     }
 
-   .boton-carrito {
-      background-color: gold;
+    .boton-carrito {
+      background-color: var(--oro);
       color: #000;
       font-weight: bold;
       border: none;
@@ -64,11 +66,13 @@
       border-radius: 8px;
       cursor: pointer;
       transition: 0.3s;
+      width: 100%;
     }
 
     .boton-carrito:hover {
-      background-color: #d4af37;
+      background-color: var(--oro-oscuro);
     }
+
     /* --- Header --- */
     header {
       text-align: center;
@@ -224,18 +228,57 @@
     }
     .producto button:hover { background-color: #fff3b0; transform: scale(1.03); }
 
-    /* --- Carrito pequeño (en el tema principal aún se puede sobreescribir) --- */
-    #carrito {
-       #carrito {
-      background-color: #fff;
-      margin: 30px auto;
+    /* ===== Estilos limpios para el carrito (overlay/modal) ===== */
+    #carrito-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.55);
+      z-index: 2999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
-      max-width: 500px;
-      border-radius: 10px;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
     }
+    #carrito-overlay.hidden { display: none; }
+
+    #carrito-modal {
+      width: 96%;
+      max-width: 720px;
+      background: rgba(255,255,255,0.95);
+      color: #000;
+      border-radius: 12px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+      padding: 18px;
+      max-height: 85vh;
+      overflow: auto;
     }
 
+    #carrito-header-top{
+      display:flex;
+      justify-content: space-between;
+      align-items:center;
+      gap:12px;
+      margin-bottom:10px;
+    }
+    #carrito-header-top h2{ color: #d4af37; margin:0; }
+    #cerrar-carrito{ background:none; border:none; font-size:18px; cursor:pointer; }
+
+    #lista-carrito{ list-style:none; margin:0; padding:0; display:block; gap:8px; }
+    #lista-carrito li{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap:8px;
+      padding: 10px;
+      border-radius:8px;
+      background: rgba(0,0,0,0.03);
+      margin-bottom:8px;
+    }
+
+    #carrito-footer { margin-top: 12px; display:block; }
+    #total { font-weight:800; font-size:1.1rem; text-align:right; }
+    #limpiar-carrito, #checkout-carrito { padding:10px 12px; border-radius:8px; border:none; cursor:pointer; background:#111; color:var(--oro,#d4af37); font-weight:700; }
+    #checkout-carrito{ background: var(--oro,#d4af37); color:#000; }
 
     /* --- Footer y boton flotante WhatsApp --- */
     footer { background-color:#000; color:var(--oro); text-align:center; padding:20px; margin-top:40px; }
@@ -326,23 +369,28 @@
 <body>
 
 
-  <header>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
-      <text x="10" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#d4af37">Primera</text>
-      <text x="170" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#ffffff">Mano</text>
-    </svg>
-    
-    <p>Estilo moderno, elegancia y comodidad en cada detalle (personalizable a su gusto)</p>
-  </header>
 
+  <header role="banner">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100" aria-labelledby="logoTitle logoDesc" role="img">
+    <title id="logoTitle">Primera Mano</title>
+    <desc id="logoDesc">Logotipo de Primera Mano, estilo dorado y blanco</desc>
+    <text x="10" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#d4af37">Primera</text>
+    <text x="170" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#ffffff">Mano</text>
+  </svg>
 
-  <nav>
-    <li><a href="#electrodomesticos">⚡ Electrodomésticos</a><li>
-    <li><a href="#camas">🛋️ Muebles del hogar</a><li>
-    <li><a href="#Combos">Combos</a><li>  
-  </nav>
+  <p>Estilo moderno, elegancia y comodidad en cada detalle (personalizable a su gusto)</p>
+</header>
 
-  <div class="separator"></div>
+<nav aria-label="Navegación principal">
+  <ul>
+    <li><a href="#electrodomesticos">⚡ Electrodomésticos</a></li>
+    <li><a href="#camas">🛋️ Muebles del hogar</a></li>
+    <li><a href="#combos">Combos</a></li>
+  </ul>
+</nav>
+
+<div class="separator" aria-hidden="true"></div>
+
   
   <!-- ⚡ Electrodomésticos -->
   <section id="electrodomesticos" class="seccion-productos">
@@ -1107,169 +1155,91 @@
  </section>
 
  <!-- 🛒 SECCIÓN DEL CARRITO (REEMPLAZAR BLOQUE COMPLETO) -->
+<style>
 /* --- OPCIONES INTERNAS DEL SELECT --- */
-    .producto select option {
-      background-color: #000;
-      color: #d4af37;
-      padding: 10px;
-      font-size: 1em;
-      border-bottom: 1px solid #d4af37;
-    }
+.producto select option {
+  background-color: #000;
+  color: var(--oro);
+  padding: 10px;
+  font-size: 1em;
+  border-bottom: 1px solid var(--oro);
+}
 
-    /* --- BOTÓN DE CARRITO --- */
-    .producto button {
-      width: 95%;
-      font-size: 1.1em;
-      padding: 10px 12px;
-      border-radius: 8px;
-      background-color: #d4af37;
-      color: #000;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      margin-top: 10px;
-      transition: all 0.3s ease;
-    }
+/* --- BOTÓN DE PRODUCTO (unificado) --- */
+.producto button {
+  width: 95%;
+  font-size: 1.1em;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background-color: var(--oro);
+  color: #000;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: transform 0.15s ease, background-color 0.15s;
+}
+.producto button:hover {
+  background-color: #fff3b0;
+  transform: scale(1.05);
+}
 
-    .producto button:hover {
-      background-color: #fff3b0;
-      transform: scale(1.05);
-    }
-    /* 💰 Estilos del carrito */
-    #carrito {
-      background-color: rgba(255, 255, 255, 0.70); /* Fondo claro para que se lea bien */
-      color: #000; /* Texto negro */
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      width: 90%;
-      max-width: 600px;
-      margin: 40px auto;
-    }
+/* ===== Estilos del carrito clásico (compatibilidad) ===== */
+#carrito {
+  background-color: rgba(255, 255, 255, 0.90);
+  color: #000;
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  width: 90%;
+  max-width: 600px;
+  margin: 40px auto;
+  box-sizing: border-box;
+}
 
-    #carrito h2 {
-      color: #d4af37; /* Dorado elegante */
-      text-align: center;
-      margin-bottom: 20px;
-    }
+#carrito h2 { color: var(--oro); text-align:center; margin-bottom:20px; }
 
-    #lista-carrito li {
-      list-style: none;
-      padding: 8px 0;
-      border-bottom: 1px solid #ccc;
-      font-weight: bold;
-    }
+#lista-carrito { margin:0; padding:0; list-style:none; }
+#lista-carrito li {
+  padding: 8px 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-weight:700;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:10px;
+}
 
-    #total {
-      text-align: right;
-      font-size: 18px;
-      color: #000;
-      font-weight: bold;
-    }
+#total { text-align:right; font-size:18px; color:#000; font-weight:bold; margin-top:12px; }
 
-    #carrito button {
-      background-color: #d4af37;
-      color: #000;
-      border: none;
-      padding: 12px;
-      border-radius: 8px;
-      font-weight: bold;
-      cursor: pointer;
-      transition: 0.3s;
-      width: 100%;
-    }
+#carrito button {
+  background-color: var(--oro);
+  color: #000;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+#carrito button:hover { background-color: var(--oro-oscuro); }
 
-    #carrito button:hover {
-      background-color: #b68a2d;
-    }
-    /* 🛏️ Estilo general de los productos */
-    .seccion-productos {
-      margin: 50px auto;
-      text-align: center;
-      color: gold;
-      background: rgba(0, 0, 0, 0.6);
-      border-radius: 20px;
-      padding: 30px;
-      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
-      width: 95%;
-    }
+/* Resto de estilos (galería, botones, responsive) */
+.seccion-productos{ margin:50px auto; text-align:center; color:gold; background:rgba(0,0,0,0.6); border-radius:20px; padding:30px; box-shadow:0 0 25px rgba(255,215,0,0.15); width:95%; box-sizing:border-box; }
+.seccion-productos h2{ color:gold; font-size:2rem; margin-bottom:25px; text-shadow:0 0 10px gold; }
 
-    .seccion-productos h2 {
-      color: gold;
-      font-size: 2rem;
-      margin-bottom: 25px;
-      text-shadow: 0 0 10px gold;
-    }
+.galeria{ display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:25px; justify-content:center; padding:20px; box-sizing:border-box; }
 
-     /* 📸 Galería de productos */
-      .galeria {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Se adapta automáticamente */
-        gap: 25px;
-        justify-content: center;
-        padding: 20px;
-      }
+.boton-carrito{ background-color:var(--oro); color:#000; font-weight:bold; border:none; padding:10px 16px; border-radius:8px; cursor:pointer; transition: transform 0.15s ease, background-color 0.15s; width:100%; box-sizing:border-box; }
+.boton-carrito:hover{ background-color:var(--oro-oscuro); transform:scale(1.05); }
 
-/* 🛒 Botón agregar al carrito */
-      .boton-carrito {
-        background-color: gold;
-        color: #000;
-        font-weight: bold;
-        border: none;
-        padding: 10px 16px;
-       border-radius: 8px;
-        cursor: pointer;
-        transition: 0.3s;
-        width: 100%;
-      }
+::-webkit-scrollbar{ width:8px; }
+::-webkit-scrollbar-thumb{ background:var(--oro); border-radius:4px; }
+::-webkit-scrollbar-track{ background:#000; }
 
-      .boton-carrito:hover {
-        background-color: #d4af37;
-        transform: scale(1.05);
-      }
+@media (max-width:768px){ .galeria{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:480px){ .galeria{ grid-template-columns:1fr; } .producto img{ height:200px; } .producto h3{ font-size:1.1rem; } .producto p{ font-size:0.85rem; } }
+</style>
 
-      /* ✨ Scroll bonito */
-      ::-webkit-scrollbar {
-        width: 8px;
-      }
-      ::-webkit-scrollbar-thumb {
-        background: gold;
-        border-radius: 4px;
-      }
-      ::-webkit-scrollbar-track {
-        background: #000;
-      }
-
-      /* 📱 RESPONSIVE: Ajustes para teléfonos */
-      @media (max-width: 768px) {
-        .galeria {
-          grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
-        }
-      }
-
-      @media (max-width: 480px) {
-        .galeria {
-          grid-template-columns: 1fr; /* 1 producto por fila en celulares */
-        }
-
-        .producto img {
-          height: 200px; /* imágenes más pequeñas para móvil */
-        }
-
-        .producto h3 {
-          font-size: 1.1rem;
-        }
-
-        .producto p {
-          font-size: 0.85rem;
-        }
-        
-      .titulo-oro {
-        grid-column: 1 / -1;
-        text-align: center;
-        font-size: 2rem;
-        margin: 40px 0 20px;
-        font-weight: bold;
-
-</body> 
-</html>
