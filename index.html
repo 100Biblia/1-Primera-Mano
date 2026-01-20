@@ -141,33 +141,33 @@
       /* Estilos y animación del submenu */
 #muebles-submenu {
   position: absolute;
-  top: calc(100% + 6px);
+  top: 100%;
   left: 0;
-  min-width: 200px;
-  padding: 8px;
-  border-radius: 8px;
-  background: linear-gradient(to bottom,#0b0b0b,#111);
-  border: 1px solid rgba(212,175,55,0.6);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(-6px);
-  transition: opacity .18s ease, transform .18s ease, visibility .18s;
-  z-index: 3000;
-  pointer-events: none;
-}
-#muebles-submenu.open {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  background: linear-gradient(to bottom, #000, #111);
+  border: 2px solid gold;
+  border-radius: 12px;
+  padding: 16px;
+  min-width: 260px;
+  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  display: none;
+  z-index: 5000;
 }
 
-/* Cambio visual del botón cuando está abierto */
-#main-nav button[aria-expanded="true"] {
-  background: linear-gradient(to right,#d4af37,#b8921b);
-  color: #000;
+#muebles-submenu a {
+  display: block;
+  padding: 12px 16px;
+  font-size: 1.15rem;
+  font-weight: bold;
+  color: gold;
+  text-decoration: none;
+  border-radius: 8px;
 }
+
+#muebles-submenu a:hover {
+  background: gold;
+  color: black;
+}
+
 
 
 
