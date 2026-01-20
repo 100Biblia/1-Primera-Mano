@@ -54,7 +54,7 @@
       font-weight: bold;
     }
 
-    .boton-carrito {
+   .boton-carrito {
       background-color: gold;
       color: #000;
       font-weight: bold;
@@ -63,10 +63,12 @@
       margin-top: 10px;
       border-radius: 8px;
       cursor: pointer;
-      transition: transform 0.2s ease, background-color 0.2s ease;
+      transition: 0.3s;
     }
-    .boton-carrito:hover { background-color: var(--oro); transform: scale(1.02); }
 
+    .boton-carrito:hover {
+      background-color: #d4af37;
+    }
     /* --- Header --- */
     header {
       text-align: center;
@@ -224,22 +226,16 @@
 
     /* --- Carrito pequeño (en el tema principal aún se puede sobreescribir) --- */
     #carrito {
-      background-color: rgba(255,255,255,0.9);
-      color: #000;
+       #carrito {
+      background-color: #fff;
+      margin: 30px auto;
       padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-      width: 90%;
-      max-width: 600px;
-      margin: 40px auto;
+      max-width: 500px;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+    }
     }
 
-    #lista-carrito li { list-style:none; padding:8px 0; border-bottom:1px solid #ccc; font-weight:bold; display:flex; justify-content:space-between; align-items:center; }
-
-    #total { text-align:right; font-size:18px; color:#000; font-weight:bold; }
-
-    #carrito button { background-color: var(--oro); color:#000; border:none; padding:12px; border-radius:8px; font-weight:bold; width:100%; cursor:pointer; }
-    #carrito button:hover { background-color: var(--oro-oscuro); }
 
     /* --- Footer y boton flotante WhatsApp --- */
     footer { background-color:#000; color:var(--oro); text-align:center; padding:20px; margin-top:40px; }
@@ -1111,189 +1107,169 @@
  </section>
 
  <!-- 🛒 SECCIÓN DEL CARRITO (REEMPLAZAR BLOQUE COMPLETO) -->
-<div id="carrito-contenedor" aria-live="polite">
-  <div id="carrito-header" role="button" aria-expanded="false" onclick="toggleCarrito()">
-    <span>🛒 Carrito de Compras</span>
-    <span id="toggle-icon">🔽</span>
-  </div>
+/* --- OPCIONES INTERNAS DEL SELECT --- */
+    .producto select option {
+      background-color: #000;
+      color: #d4af37;
+      padding: 10px;
+      font-size: 1em;
+      border-bottom: 1px solid #d4af37;
+    }
 
-  <div id="carrito" class="">
-    <ul id="lista-carrito" aria-label="Lista de productos en el carrito"></ul>
-    <p id="total">Total: $0</p>
-    <div class="botones-carrito">
-      <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
-      <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
-    </div>
-  </div>
-</div>
+    /* --- BOTÓN DE CARRITO --- */
+    .producto button {
+      width: 95%;
+      font-size: 1.1em;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background-color: #d4af37;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: all 0.3s ease;
+    }
 
-<style>
-/* Estilos del carrito (sin conflictos con el CSS anterior) */
-#carrito-contenedor {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background: rgba(0,0,0,0.95);
-  border-top: 3px solid var(--oro, #d4af37);
-  box-shadow: 0 -4px 20px rgba(255,215,0,0.4);
-  font-family: "Poppins", sans-serif;
-  z-index: 1000;
-  color: var(--oro, gold);
-  max-height: 70px;
-  overflow: hidden;
-  transition: max-height 0.45s ease;
-}
+    .producto button:hover {
+      background-color: #fff3b0;
+      transform: scale(1.05);
+    }
+    /* 💰 Estilos del carrito */
+    #carrito {
+      background-color: rgba(255, 255, 255, 0.70); /* Fondo claro para que se lea bien */
+      color: #000; /* Texto negro */
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      width: 90%;
+      max-width: 600px;
+      margin: 40px auto;
+    }
 
-#carrito-header {
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  padding:12px 20px;
-  cursor:pointer;
-  font-weight:bold;
-  background: rgba(0,0,0,0.9);
-  color: var(--oro, gold);
-  font-size:1.15rem;
-  border-bottom:1px solid rgba(212,175,55,0.25);
-}
-#carrito-header:hover { background-color: rgba(212,175,55,0.08); }
+    #carrito h2 {
+      color: #d4af37; /* Dorado elegante */
+      text-align: center;
+      margin-bottom: 20px;
+    }
 
-#carrito {
-  max-height: 0;
-  padding: 0 20px;
-  overflow: hidden;
-  transition: max-height 0.35s ease, padding 0.25s ease;
-}
-#carrito.abierto {
-  max-height: 420px;
-  padding: 15px 20px;
-}
+    #lista-carrito li {
+      list-style: none;
+      padding: 8px 0;
+      border-bottom: 1px solid #ccc;
+      font-weight: bold;
+    }
 
-#lista-carrito {
-  list-style: none;
-  padding: 0;
-  margin: 10px 0;
-  text-align: left;
-  max-height: 200px;
-  overflow-y: auto;
-}
-#lista-carrito li {
-  background: rgba(255,215,0,0.06);
-  border: 1px solid rgba(212,175,55,0.25);
-  border-radius: 8px;
-  padding: 8px;
-  margin-bottom: 6px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  color: #fff;
-}
-#lista-carrito li button {
-  background:none;
-  border:none;
-  color:#ff6b6b;
-  font-size:1.1rem;
-  cursor:pointer;
-}
+    #total {
+      text-align: right;
+      font-size: 18px;
+      color: #000;
+      font-weight: bold;
+    }
 
-/* total y botones */
-#total { margin:10px 0; font-size:1.05rem; color: var(--oro, gold); font-weight:bold; text-align:right; }
-.botones-carrito { display:flex; justify-content:center; gap:15px; flex-wrap:wrap; }
-.boton-carrito { padding:8px 16px; border-radius:8px; border:none; font-weight:bold; cursor:pointer; font-size:1rem; transition:0.2s; }
-.boton-carrito.vaciar { background:#222; color:var(--oro, gold); border:1px solid rgba(212,175,55,0.25); }
-.boton-carrito.vaciar:hover { background: var(--oro, gold); color:#000; }
-.boton-carrito.enviar { background: var(--oro, gold); color:#000; }
-.boton-carrito.enviar:hover { background: #d4af37; transform:scale(1.03); }
-</style>
+    #carrito button {
+      background-color: #d4af37;
+      color: #000;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+      width: 100%;
+    }
 
-<script>
-/* ---------- FIX toggleCarrito y init (pegar en lugar de las funciones antiguas) ---------- */
+    #carrito button:hover {
+      background-color: #b68a2d;
+    }
+    /* 🛏️ Estilo general de los productos */
+    .seccion-productos {
+      margin: 50px auto;
+      text-align: center;
+      color: gold;
+      background: rgba(0, 0, 0, 0.6);
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.3);
+      width: 95%;
+    }
 
-function toggleCarrito() {
-  const carritoElemento = document.getElementById("carrito");
-  const icon = document.getElementById("toggle-icon");
-  if (!carritoElemento || !icon) {
-    console.error("toggleCarrito: no se encuentra #carrito o #toggle-icon");
-    return;
-  }
+    .seccion-productos h2 {
+      color: gold;
+      font-size: 2rem;
+      margin-bottom: 25px;
+      text-shadow: 0 0 10px gold;
+    }
 
-  const abierto = carritoElemento.classList.toggle("abierto");
+     /* 📸 Galería de productos */
+      .galeria {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Se adapta automáticamente */
+        gap: 25px;
+        justify-content: center;
+        padding: 20px;
+      }
 
-  // Aseguramos que el estilo inline refleje el estado (evita overrides CSS externos)
-  if (abierto) {
-    carritoElemento.style.maxHeight = "420px";
-    carritoElemento.style.padding = "15px 20px";
-    icon.textContent = "🔼"; // abierto
-  } else {
-    carritoElemento.style.maxHeight = "0px";
-    carritoElemento.style.padding = "0 20px";
-    icon.textContent = "🔽"; // cerrado
-  }
+/* 🛒 Botón agregar al carrito */
+      .boton-carrito {
+        background-color: gold;
+        color: #000;
+        font-weight: bold;
+        border: none;
+        padding: 10px 16px;
+       border-radius: 8px;
+        cursor: pointer;
+        transition: 0.3s;
+        width: 100%;
+      }
 
-  // Accesibilidad
-  const header = document.getElementById("carrito-header");
-  if (header) header.setAttribute("aria-expanded", abierto ? "true" : "false");
+      .boton-carrito:hover {
+        background-color: #d4af37;
+        transform: scale(1.05);
+      }
 
-  console.log("toggleCarrito -> abierto:", abierto);
-}
+      /* ✨ Scroll bonito */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: gold;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #000;
+      }
 
-/* abre el carrito brevemente (se usa al agregar producto) */
-function abrirCarritoTemporal() {
-  const carritoElemento = document.getElementById("carrito");
-  const icon = document.getElementById("toggle-icon");
-  if (!carritoElemento || !icon) return;
+      /* 📱 RESPONSIVE: Ajustes para teléfonos */
+      @media (max-width: 768px) {
+        .galeria {
+          grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
+        }
+      }
 
-  carritoElemento.classList.add("abierto");
-  carritoElemento.style.maxHeight = "420px";
-  carritoElemento.style.padding = "15px 20px";
-  icon.textContent = "🔼";
-  document.getElementById("carrito-header")?.setAttribute("aria-expanded", "true");
+      @media (max-width: 480px) {
+        .galeria {
+          grid-template-columns: 1fr; /* 1 producto por fila en celulares */
+        }
 
-  // Cerrar automáticamente solo si el usuario no lo ha abierto manualmente
-  // (No forzamos cierre si el usuario interactúa)
-  setTimeout(() => {
-    // si el usuario abrió/cerró manualmente, no tocamos
-    // dejamos abierto si hay items para que sea cómodo
-    if (!carritoElemento.classList.contains("abierto")) return;
-    // opcional: no cerrar automáticamente
-    // carritoElemento.classList.remove("abierto");
-    // carritoElemento.style.maxHeight = "0px";
-    // icon.textContent = "🔽";
-  }, 2000);
-}
+        .producto img {
+          height: 200px; /* imágenes más pequeñas para móvil */
+        }
 
-/* Aseguramos listener si onclick no está en el HTML */
-document.addEventListener("DOMContentLoaded", () => {
-  // Inicializa estado del carrito desde localStorage (si existe)
-  carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-  if (typeof actualizarCarrito === "function") actualizarCarrito();
+        .producto h3 {
+          font-size: 1.1rem;
+        }
 
-  // Forzamos icono cerrado si no hay abierto
-  const carritoElemento = document.getElementById("carrito");
-  const icon = document.getElementById("toggle-icon");
-  const header = document.getElementById("carrito-header");
-
-  if (carritoElemento && icon) {
-    // Inicial: cerramos
-    carritoElemento.classList.remove("abierto");
-    carritoElemento.style.maxHeight = "0px";
-    carritoElemento.style.padding = "0 20px";
-    icon.textContent = "🔽";
-    if (header) header.setAttribute("aria-expanded", "false");
-  }
-
-  // Si el header no tiene onclick (por edición), le añadimos listener
-  if (header && !header.onclick) {
-    header.addEventListener("click", toggleCarrito);
-  }
-
-  console.log("Carrito inicializado. Items en carrito:", carrito.length);
-});
-
-/* Debug: permite abrir/cerrar desde consola rápidamente */
-window.debugToggleCarrito = toggleCarrito;
-</script>
+        .producto p {
+          font-size: 0.85rem;
+        }
+        
+      .titulo-oro {
+        grid-column: 1 / -1;
+        text-align: center;
+        font-size: 2rem;
+        margin: 40px 0 20px;
+        font-weight: bold;
 
 </body> 
 </html>
