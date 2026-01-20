@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -490,87 +491,29 @@
         background: #000;
       }
 
-      /* 📱 RESPONSIVE: Forzar 3 productos por fila en TODOS los tamaños */
-.galeria {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) !important; /* 3 por fila siempre */
-  gap: 16px;
-  align-items: start;
-  width: 100%;
-  box-sizing: border-box;
-}
+      /* 📱 RESPONSIVE: Ajustes para teléfonos */
+      @media (max-width: 768px) {
+        .galeria {
+          grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
+        }
+      }
 
-/* Asegurar que las cards no rompan el layout */
-.producto {
-  box-sizing: border-box;
-  padding: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  min-height: 1px; /* evita colapsos en grid */
-}
+      @media (max-width: 480px) {
+        .galeria {
+          grid-template-columns: 1fr; /* 1 producto por fila en celulares */
+        }
 
-/* Imágenes responsivas pero recortadas para mantener la cuadrícula */
-.producto img {
-  width: 100%;
-  height: 160px;        /* altura fija para mantener filas alineadas */
-  object-fit: cover;    /* recorta en lugar de deformar */
-  display: block;
-  border-radius: 6px;
-}
+        .producto img {
+          height: 200px; /* imágenes más pequeñas para móvil */
+        }
 
-/* Tipografía ajustada para espacios pequeños */
-.producto h3 {
-  font-size: 1rem;
-  margin: 8px 0 6px;
-  line-height: 1.1;
-  word-break: break-word;
-}
+        .producto h3 {
+          font-size: 1.1rem;
+        }
 
-.producto p {
-  font-size: 0.85rem;
-  margin: 0 0 8px;
-  line-height: 1.2;
-}
-
-/* Mantener título en ancho completo de la galería */
-.titulo-oro {
-  grid-column: 1 / -1;
-  text-align: center;
-  font-size: 2rem;
-  margin: 40px 0 20px;
-  font-weight: bold;
-}
-
-/* Reglas específicas para pantallas muy pequeñas para evitar overflow */
-@media (max-width: 420px) {
-  .producto img {
-    height: 120px;      /* reduce la altura en móviles muy estrechos */
-  }
-  .producto h3 { font-size: 0.95rem; }
-  .producto p  { font-size: 0.8rem; }
-  .galeria { gap: 12px; }
-}
-
-/* Forzar también en cualquier media query que pudiera sobrescribirlo */
-@media (max-width: 768px) {
-  .galeria { grid-template-columns: repeat(3, 1fr) !important; }
-}
-
-@media (max-width: 480px) {
-  .galeria { grid-template-columns: repeat(3, 1fr) !important; }
-}
-
-
-  .titulo-oro {
-    grid-column: 1 / -1;
-    text-align: center;
-    font-size: 2rem;
-    margin: 40px 0 20px;
-    font-weight: bold;
-  }
-}
-
+        .producto p {
+          font-size: 0.85rem;
+        }
         
       .titulo-oro {
         grid-column: 1 / -1;
@@ -657,97 +600,6 @@
   </nav>
 
   <div class="separator"></div>
-   <!-- ⚡ Electrodomésticos -->
-  <section id="electrodomesticos" class="seccion-productos">
-    <h2 class="titulo-oro">⚡ Electrodomésticos</h2>
-  
-    <div class="galeria">
-
-      <!-- AIR FRYER -->
-      <div class="producto">
-        <img src="electrodomesticos/electro1.jpg" alt="Air Fryer Royal 4L" loading="lazy">
-        <h3>Air Fryer Royal 4L</h3>
-        <p class="precio">💵 $55</p>
-        <p>USD</p>       
-        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer Royal 4L', 55 )">Agregar 🛒</button>
-       </div>
-
-      <!-- TV ROYAL 32 SMART -->
-      <div class="producto">
-        <img src="electrodomesticos/electro2.jpg" alt="Televisor Royal 32 Smart TV" loading="lazy">
-        <h3>Televisor ROYAL 32” Smart</h3>
-        <p class="precio">💵 $155</p>
-        <p>USD</p>        
-        <button class="boton-carrito" onclick="agregarAlCarrito('TV Royal 32 Smart', 155 )">Agregar 🛒</button>
-       </div>
-
-      <!-- COCINA DE KEROSENO -->
-      <div class="producto">
-        <img src="electrodomesticos/electro3.jpg" alt="Cocina de Keroseno BigWheel" loading="lazy">
-        <h3>Cocina de Keroseno BigWheel</h3>
-        <p class="precio">💵 $36</p>
-        <p>USD</p>
-        <button class="boton-carrito" onclick="agregarAlCarrito('Cocina Keroseno BigWheel', 36 )">Agregar 🛒</button>
-       </div>
-
-      <!-- BOMBA DE AGUA -->
-      <div class="producto">
-        <img src="electrodomesticos/electro4.jpg" alt="Bomba de agua SP-QB60" loading="lazy">
-        <h3>Bomba de Agua 1/2 HP</h3>
-        <p class="precio">💵 $36</p>
-        <p>USD</p>       
-        <button class="boton-carrito" onclick="agregarAlCarrito('Bomba de Agua 1/2 HP', 36 )">Agregar 🛒</button>
-       </div>
-
-      <!-- LÁMPARA LED USB -->
-      <div class="producto">
-        <img src="electrodomesticos/electro5.jpg" alt="Lámpara LED USB" loading="lazy">
-        <h3>Lámpara LED USB</h3>
-        <p class="precio">💵 $6</p>
-        <p>USD</p>        
-        <button class="boton-carrito" onclick="agregarAlCarrito('Lámpara LED USB', 6 )">Agregar 🛒</button>
-       </div>
-
-      <!-- ARROCERA SACO 1.8L -->
-      <div class="producto">
-        <img src="electrodomesticos/electro6.jpg" alt="Arrocera SACO 1.8L" loading="lazy">
-        </h3>Arrocera SACO 1.8L (700W)</h3>
-        <p class="precio">💵 $32</p>
-        <p>USD</p>
-        <button class="boton-carrito" onclick="agregarAlCarrito('Arrocera SACO 1.8L', 32 )">Agregar 🛒</button>
-       </div>
-
-      <!-- OLLA DE PRESIÓN SACO 7L -->
-      <div class="producto">
-        <img src="electrodomesticos/electro7.jpg" alt="Olla de Presión Eléctrica SACO 7L" loading="lazy">
-        </h3>Olla de Presión SACO 7L</h3>
-        <p class="precio">💵 $55</p>
-        <p>USD</p>
-        <button class="boton-carrito" onclick="agregarAlCarrito('Olla Presión SACO 7L', 55 )">Agregar 🛒</button>
-       </div>
-
-      <!-- LAVADORA ROYAL -->
-      <div class="producto agotado">
-        <img src="electrodomesticos/electro8.jpg" alt="Lavadora Automática ROYAL" loading="lazy">
-        </h3>Lavadora Automática ROYAL</h3>
-        <p class="precio">💵 $210</p>
-        <p>USD</p>
-        <button disabled class="boton-carrito" style="opacity:0.4; cursor:not-allowed;">No disponible</button>
-       </div>
-
-    <!-- AIR FRYER MILEXUS -->
-      <div class="producto">
-        <img src="electrodomesticos/electro9.jpg" alt="Air Fryer MILEXUS ML-AF-900" loading="lazy">
-        </h3>Freidora de Aire MILEXUS ML-AF-900</h3>
-        <p class="precio">💵 $58</p>
-        <p>USD</p>
-        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer MILEXUS ML-AF-900', 58 )">Agregar 🛒</button>
-       </div>
-
-
-
-   </div>
- </section>
 
   <!-- 🛏️ Sección de Camas -->
   <section id="camas" class="seccion-productos">
@@ -1882,7 +1734,97 @@
    </div>
  </section>
   
- 
+  <!-- ⚡ Electrodomésticos -->
+  <section id="electrodomesticos" class="seccion-productos">
+    <h2 class="titulo-oro">⚡ Electrodomésticos</h2>
+  
+    <div class="galeria">
+
+      <!-- AIR FRYER -->
+      <div class="producto">
+        <img src="electrodomesticos/electro1.jpg" alt="Air Fryer Royal 4L" loading="lazy">
+        <h3>Air Fryer Royal 4L</h3>
+        <p class="precio">💵 $55</p>
+        <p>USD</p>       
+        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer Royal 4L', 55 )">Agregar 🛒</button>
+       </div>
+
+      <!-- TV ROYAL 32 SMART -->
+      <div class="producto">
+        <img src="electrodomesticos/electro2.jpg" alt="Televisor Royal 32 Smart TV" loading="lazy">
+        <h3>Televisor ROYAL 32” Smart</h3>
+        <p class="precio">💵 $155</p>
+        <p>USD</p>        
+        <button class="boton-carrito" onclick="agregarAlCarrito('TV Royal 32 Smart', 155 )">Agregar 🛒</button>
+       </div>
+
+      <!-- COCINA DE KEROSENO -->
+      <div class="producto">
+        <img src="electrodomesticos/electro3.jpg" alt="Cocina de Keroseno BigWheel" loading="lazy">
+        <h3>Cocina de Keroseno BigWheel</h3>
+        <p class="precio">💵 $36</p>
+        <p>USD</p>
+        <button class="boton-carrito" onclick="agregarAlCarrito('Cocina Keroseno BigWheel', 36 )">Agregar 🛒</button>
+       </div>
+
+      <!-- BOMBA DE AGUA -->
+      <div class="producto">
+        <img src="electrodomesticos/electro4.jpg" alt="Bomba de agua SP-QB60" loading="lazy">
+        <h3>Bomba de Agua 1/2 HP</h3>
+        <p class="precio">💵 $36</p>
+        <p>USD</p>       
+        <button class="boton-carrito" onclick="agregarAlCarrito('Bomba de Agua 1/2 HP', 36 )">Agregar 🛒</button>
+       </div>
+
+      <!-- LÁMPARA LED USB -->
+      <div class="producto">
+        <img src="electrodomesticos/electro5.jpg" alt="Lámpara LED USB" loading="lazy">
+        <h3>Lámpara LED USB</h3>
+        <p class="precio">💵 $6</p>
+        <p>USD</p>        
+        <button class="boton-carrito" onclick="agregarAlCarrito('Lámpara LED USB', 6 )">Agregar 🛒</button>
+       </div>
+
+      <!-- ARROCERA SACO 1.8L -->
+      <div class="producto">
+        <img src="electrodomesticos/electro6.jpg" alt="Arrocera SACO 1.8L" loading="lazy">
+        </h3>Arrocera SACO 1.8L (700W)</h3>
+        <p class="precio">💵 $32</p>
+        <p>USD</p>
+        <button class="boton-carrito" onclick="agregarAlCarrito('Arrocera SACO 1.8L', 32 )">Agregar 🛒</button>
+       </div>
+
+      <!-- OLLA DE PRESIÓN SACO 7L -->
+      <div class="producto">
+        <img src="electrodomesticos/electro7.jpg" alt="Olla de Presión Eléctrica SACO 7L" loading="lazy">
+        </h3>Olla de Presión SACO 7L</h3>
+        <p class="precio">💵 $55</p>
+        <p>USD</p>
+        <button class="boton-carrito" onclick="agregarAlCarrito('Olla Presión SACO 7L', 55 )">Agregar 🛒</button>
+       </div>
+
+      <!-- LAVADORA ROYAL -->
+      <div class="producto agotado">
+        <img src="electrodomesticos/electro8.jpg" alt="Lavadora Automática ROYAL" loading="lazy">
+        </h3>Lavadora Automática ROYAL</h3>
+        <p class="precio">💵 $210</p>
+        <p>USD</p>
+        <button disabled class="boton-carrito" style="opacity:0.4; cursor:not-allowed;">No disponible</button>
+       </div>
+
+    <!-- AIR FRYER MILEXUS -->
+      <div class="producto">
+        <img src="electrodomesticos/electro9.jpg" alt="Air Fryer MILEXUS ML-AF-900" loading="lazy">
+        </h3>Freidora de Aire MILEXUS ML-AF-900</h3>
+        <p class="precio">💵 $58</p>
+        <p>USD</p>
+        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer MILEXUS ML-AF-900', 58 )">Agregar 🛒</button>
+       </div>
+
+
+
+   </div>
+ </section>
 
   <!-- 🛒 SECCIÓN DEL CARRITO -->
  <div id="carrito-contenedor">
