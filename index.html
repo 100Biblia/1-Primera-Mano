@@ -491,29 +491,43 @@
         background: #000;
       }
 
-      /* 📱 RESPONSIVE: Ajustes para teléfonos */
-      @media (max-width: 768px) {
-        .galeria {
-          grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
-        }
-      }
+      /* 📱 RESPONSIVE: Forzar 3 productos por fila en todos los tamaños */
+@media (max-width: 768px) {
+  .galeria {
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en tablets */
+  }
+}
 
-      @media (max-width: 480px) {
-        .galeria {
-          grid-template-columns: 1fr; /* 1 producto por fila en celulares */
-        }
+@media (max-width: 480px) {
+  .galeria {
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en móviles (compacto) */
+  }
 
-        .producto img {
-          height: 200px; /* imágenes más pequeñas para móvil */
-        }
+  .producto img {
+    height: 120px;       /* imágenes más pequeñas para móvil */
+    width: 100%;
+    object-fit: cover;   /* evita deformación */
+  }
 
-        .producto h3 {
-          font-size: 1.1rem;
-        }
+  .producto h3 {
+    font-size: 1rem;
+    line-height: 1.1;
+  }
 
-        .producto p {
-          font-size: 0.85rem;
-        }
+  .producto p {
+    font-size: 0.8rem;
+    line-height: 1.2;
+  }
+
+  .titulo-oro {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 2rem;
+    margin: 40px 0 20px;
+    font-weight: bold;
+  }
+}
+
         
       .titulo-oro {
         grid-column: 1 / -1;
