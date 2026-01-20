@@ -491,28 +491,58 @@
       }
 
       /* 📱 RESPONSIVE: Ajustes para teléfonos */
-      @media (max-width: 768px) {
-        .galeria {
-          grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
-        }
-      }
+     /* Reemplazo exacto para tus media queries (3 columnas en móviles - Redmi 9) */
 
-      @media (max-width: 480px) {
-        .galeria {
-          grid-template-columns:repeat(3, 1fr); /* 3 producto por fila en celulares */
-        }
+@media (max-width: 768px) {
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
+    gap: 12px; /* ajustable según tu diseño */
+    align-items: start;
+  }
+}
 
-        .producto img {
-          height: 100px; /* imágenes más pequeñas para móvil */
-        }
+@media (max-width: 380px) {
+  .galeria {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en celulares */
+    gap: 8px;
+    align-items: start;
+  }
 
-        .producto h3 {
-          font-size: 1.1rem;
-        }
+  .producto {
+    padding: 6px;
+    box-sizing: border-box;
+  }
 
-        .producto p {
-          font-size: 0.85rem;
-        }
+  .producto img {
+    width: 100%;
+    height: 90px;       /* altura optimizada para 3 columnas en ~360px */
+    object-fit: cover;  /* evita distorsión recortando si hace falta */
+    display: block;
+    border-radius: 4px; /* opcional */
+  }
+
+  .producto h3 {
+    font-size: 1rem;    /* equivalente a ~16px si 1rem = 16px */
+    line-height: 1.15;
+    margin: 6px 0 4px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .producto p {
+    font-size: 0.8rem;  /* ≈ 12.8px */
+    margin: 0;
+    color: #555;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
         
       .titulo-oro {
         grid-column: 1 / -1;
