@@ -138,6 +138,39 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
+      /* Estilos y animación del submenu */
+#muebles-submenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(to bottom,#0b0b0b,#111);
+  border: 1px solid rgba(212,175,55,0.6);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 3000;
+  pointer-events: none;
+}
+#muebles-submenu.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* Cambio visual del botón cuando está abierto */
+#main-nav button[aria-expanded="true"] {
+  background: linear-gradient(to right,#d4af37,#b8921b);
+  color: #000;
+}
+
+
+
 
     /* ✨ Botones del menú */
     nav a {
@@ -1897,6 +1930,65 @@
    </div>
  </section>
   
+  <script>
+(function(){
+  const toggleBtn = document.getElementById('muebles-toggle');
+  const submenu = document.getElementById('muebles-submenu');
+
+  if (!toggleBtn || !submenu) return; // seguridad
+
+  // Abrir / cerrar con clase 'open'
+  toggleBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const willOpen = !submenu.classList.contains('open');
+    submenu.classList.toggle('open', willOpen);
+    toggleBtn.setAttribute('aria-expanded', String(willOpen));
+    submenu.setAttribute('aria-hidden', String(!willOpen));
+    if (willOpen) submenu.querySelector('.submenu-link')?.focus();
+  });
+
+  // Cerrar si se hace click fuera
+  document.addEventListener('click', (e) => {
+    if (!submenu.contains(e.target) && !toggleBtn.contains(e.target)) {
+      submenu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      submenu.setAttribute('aria-hidden', 'true');
+    }
+  });
+
+  // Cerrar con Escape y soporte para navegación con teclado básica
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      submenu.classList.remove('open');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      submenu.setAttribute('aria-hidden', 'true');
+      toggleBtn.focus();
+    }
+    // Abrir con tecla Enter/Space cuando el botón está enfocado
+    if ((e.key === 'Enter' || e.key === ' ') && document.activeElement === toggleBtn) {
+      e.preventDefault();
+      toggleBtn.click();
+    }
+  });
+
+  // Si eliges una opción del submenu: cerrar y hacer scroll suave (si es ancla)
+  submenu.querySelectorAll('.submenu-link').forEach(link => {
+    link.addEventListener('click', (e) => {
+      const href = link.getAttribute('href') || '';
+      if (href.startsWith('#')) {
+        e.preventDefault();
+        const target = document.querySelector(href);
+        submenu.classList.remove('open');
+        toggleBtn.setAttribute('aria-expanded', 'false');
+        submenu.setAttribute('aria-hidden', 'true');
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    });
+  });
+
+})();
+</script>
+
 
   <!-- 🛒 SECCIÓN DEL CARRITO -->
  <div id="carrito-contenedor">
