@@ -491,33 +491,77 @@
         background: #000;
       }
 
-      /* 📱 RESPONSIVE: Forzar 3 productos por fila en todos los tamaños */
-@media (max-width: 768px) {
-  .galeria {
-    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en tablets */
+      /* 📱 RESPONSIVE: Forzar 3 productos por fila en TODOS los tamaños */
+.galeria {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) !important; /* 3 por fila siempre */
+  gap: 16px;
+  align-items: start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Asegurar que las cards no rompan el layout */
+.producto {
+  box-sizing: border-box;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  min-height: 1px; /* evita colapsos en grid */
+}
+
+/* Imágenes responsivas pero recortadas para mantener la cuadrícula */
+.producto img {
+  width: 100%;
+  height: 160px;        /* altura fija para mantener filas alineadas */
+  object-fit: cover;    /* recorta en lugar de deformar */
+  display: block;
+  border-radius: 6px;
+}
+
+/* Tipografía ajustada para espacios pequeños */
+.producto h3 {
+  font-size: 1rem;
+  margin: 8px 0 6px;
+  line-height: 1.1;
+  word-break: break-word;
+}
+
+.producto p {
+  font-size: 0.85rem;
+  margin: 0 0 8px;
+  line-height: 1.2;
+}
+
+/* Mantener título en ancho completo de la galería */
+.titulo-oro {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 2rem;
+  margin: 40px 0 20px;
+  font-weight: bold;
+}
+
+/* Reglas específicas para pantallas muy pequeñas para evitar overflow */
+@media (max-width: 420px) {
+  .producto img {
+    height: 120px;      /* reduce la altura en móviles muy estrechos */
   }
+  .producto h3 { font-size: 0.95rem; }
+  .producto p  { font-size: 0.8rem; }
+  .galeria { gap: 12px; }
+}
+
+/* Forzar también en cualquier media query que pudiera sobrescribirlo */
+@media (max-width: 768px) {
+  .galeria { grid-template-columns: repeat(3, 1fr) !important; }
 }
 
 @media (max-width: 480px) {
-  .galeria {
-    grid-template-columns: repeat(3, 1fr); /* 3 productos por fila en móviles (compacto) */
-  }
+  .galeria { grid-template-columns: repeat(3, 1fr) !important; }
+}
 
-  .producto img {
-    height: 120px;       /* imágenes más pequeñas para móvil */
-    width: 100%;
-    object-fit: cover;   /* evita deformación */
-  }
-
-  .producto h3 {
-    font-size: 1rem;
-    line-height: 1.1;
-  }
-
-  .producto p {
-    font-size: 0.8rem;
-    line-height: 1.2;
-  }
 
   .titulo-oro {
     grid-column: 1 / -1;
