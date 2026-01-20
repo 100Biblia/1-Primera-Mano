@@ -632,39 +632,43 @@
         100% { background-position: 300% }
       }
    }
-    /* 🟥 FRANJA AGOTADO EN DIAGONAL OBLICUA */
-    .producto {
-      position: relative;
-    }
+    /* 🟥 FRANJA AGOTADO EN DIAGONAL OBLICUA (versión más pequeña y responsiva) */
+.producto {
+  position: relative;
+  overflow: hidden; /* opcional: evita que la franja sobresalga demasiado */
+}
 
-    .producto.agotado::after {
-      content: "AGOTADO";
-      position: absolute;
+.producto.agotado::after {
+  content: "AGOTADO";
+  position: absolute;
 
-      /* Cruza toda la tarjeta en diagonal */
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 180%;
-      height: 45px;
+  /* posicionamiento central + rotación */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-45deg); /* <- una sola transform */
 
-      background: rgba(255, 0, 0, 0.85);
-      color: white;
-      font-size: 1.6rem;
-      font-weight: bold;
-      text-align: center;
+  /* variables para ajustar rápidamente */
+  --ribbon-width-factor: 1.2;   /* multiplica el ancho del contenedor (1 = igual) */
+  --ribbon-height: clamp(22px, 3.2vw, 32px); /* altura responsiva */
+  --ribbon-font: clamp(.75rem, 2.2vw, 0.95rem); /* tamaño de fuente responsivo */
 
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  width: calc(var(--ribbon-width-factor) * 100%); /* ancho relativo al contenedor */
+  height: var(--ribbon-height);
 
-      /* Inclinación invertida: sube de izquierda abajo a derecha arriba */
-      transform: translate(-50%, -50%) rotate(45deg);
+  background: rgba(255, 0, 0, 0.85);
+  color: white;
+  font-size: var(--ribbon-font);
+  font-weight: 700;
+  text-align: center;
 
-      letter-spacing: 4px;
-      z-index: 20;
-      pointer-events: none; /* no afecta clics */
-    }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  letter-spacing: 2px;
+  z-index: 20;
+  pointer-events: none;
+}
 
   </style>
 </head>
