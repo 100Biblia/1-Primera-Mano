@@ -497,18 +497,18 @@
 @media (max-width: 768px) {
   .galeria {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* misma vista de ordenador */
+    grid-template-columns: repeat(2, 1fr); /* misma vista de ordenador */
     gap: 16px;
     align-items: start;
     overflow-x: visible;
   }
 }
 
-/* Móviles: también forzar la vista de escritorio (4 columnas) */
+/* Móviles: también forzar la vista de escritorio (2 columnas) */
 @media (max-width: 480px) {
   .galeria {
     display: grid;
-    grid-template-columns: repeat(4, 1fr); /* forzar 4 columnas como en escritorio */
+    grid-template-columns: repeat(2, 1fr); /* forzar 2 columnas como en escritorio */
     gap: 12px;
     align-items: start;
     overflow-x: auto; /* permite desplazamiento horizontal si no cabe */
