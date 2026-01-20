@@ -141,39 +141,33 @@
       /* Estilos y animación del submenu */
 #muebles-submenu {
   position: absolute;
-  top: 100%;
+  top: calc(100% + 6px);
   left: 0;
-  background: linear-gradient(to bottom, #000, #111);
-  border: 2px solid gold;
-  border-radius: 14px;
-  padding: 14px;
-  min-width: 280px;
-  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.45);
-  display: none;
-  flex-direction: column;
-  gap: 10px;
-  z-index: 5000;
+  min-width: 200px;
+  padding: 8px;
+  border-radius: 8px;
+  background: linear-gradient(to bottom,#0b0b0b,#111);
+  border: 1px solid rgba(212,175,55,0.6);
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 3000;
+  pointer-events: none;
+}
+#muebles-submenu.open {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
-#muebles-submenu a {
-  display: block;
-  width: 100%;
-  padding: 14px 18px;
-  font-size: 1.15rem;
-  font-weight: bold;
-  color: gold;
-  text-decoration: none;
-  border-radius: 10px;
-  transition: 0.25s;
+/* Cambio visual del botón cuando está abierto */
+#main-nav button[aria-expanded="true"] {
+  background: linear-gradient(to right,#d4af37,#b8921b);
+  color: #000;
 }
-
-#muebles-submenu a:hover {
-  background: gold;
-  color: black;
-  transform: scale(1.03);
-}
-
-
 
 
 
