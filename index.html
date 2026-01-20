@@ -139,16 +139,26 @@
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
       /* Estilos y animación del submenu */
+/* --- Reemplazar por completo este bloque --- */
 #muebles-submenu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
   min-width: 200px;
+  max-width: 360px;            /* ajusta si quieres más/menos ancho */
   padding: 8px;
   border-radius: 8px;
   background: linear-gradient(to bottom,#0b0b0b,#111);
   border: 1px solid rgba(212,175,55,0.6);
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  box-sizing: border-box;
+
+  /* fuerza apilado vertical de los elementos internos */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 6px;
+
   visibility: hidden;
   opacity: 0;
   transform: translateY(-6px);
@@ -156,6 +166,8 @@
   z-index: 3000;
   pointer-events: none;
 }
+
+/* estado visible */
 #muebles-submenu.open {
   visibility: visible;
   opacity: 1;
@@ -163,11 +175,57 @@
   pointer-events: auto;
 }
 
+/* asegurar que los hijos ocupen fila completa */
+#muebles-submenu > * {
+  display: block !important;   /* por si venían inline o inline-block */
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 6px 8px;
+  text-align: left;
+}
+
+/* si usas lista dentro */
+#muebles-submenu ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+#muebles-submenu li {
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+/* enlaces / botones dentro del submenu */
+#muebles-submenu a,
+#muebles-submenu button {
+  display: block !important;
+  width: 100%;
+  text-align: left;
+  text-decoration: none;
+  color: inherit;
+  background: transparent;
+  border: none;
+  padding: 8px;
+  border-radius: 6px;
+  box-sizing: border-box;
+}
+
+/* pequeño hover para mejorar visibilidad */
+#muebles-submenu a:hover,
+#muebles-submenu button:hover {
+  background: rgba(212,175,55,0.06);
+}
+
 /* Cambio visual del botón cuando está abierto */
 #main-nav button[aria-expanded="true"] {
   background: linear-gradient(to right,#d4af37,#b8921b);
   color: #000;
 }
+
 
 
 
