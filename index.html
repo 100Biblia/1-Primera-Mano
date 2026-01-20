@@ -491,13 +491,13 @@
       }
 
       /* 📱 RESPONSIVE: Ajustes para teléfonos */
-     /* Reemplazo exacto para tus media queries (3 columnas en móviles - Redmi 9) */
+    /* Reemplazo: 3 columnas en móviles (altura de imagen reducida a la mitad) */
 
 @media (max-width: 768px) {
   .galeria {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 2 productos por fila en tablets */
-    gap: 12px; /* ajustable según tu diseño */
+    gap: 12px;
     align-items: start;
   }
 }
@@ -517,14 +517,14 @@
 
   .producto img {
     width: 100%;
-    height: 90px;       /* altura optimizada para 3 columnas en ~360px */
-    object-fit: cover;  /* evita distorsión recortando si hace falta */
+    height: 45px;       /* altura reducida a la MITAD (antes 90px) */
+    object-fit: cover;
     display: block;
-    border-radius: 4px; /* opcional */
+    border-radius: 4px;
   }
 
   .producto h3 {
-    font-size: 1rem;    /* equivalente a ~16px si 1rem = 16px */
+    font-size: 1rem;
     line-height: 1.15;
     margin: 6px 0 4px;
     overflow: hidden;
@@ -533,7 +533,7 @@
   }
 
   .producto p {
-    font-size: 0.8rem;  /* ≈ 12.8px */
+    font-size: 0.8rem;
     margin: 0;
     color: #555;
     display: -webkit-box;
@@ -542,6 +542,14 @@
     overflow: hidden;
   }
 }
+
+/* Fallback para pantallas muy pequeñas: también con la mitad de altura */
+@media (max-width: 320px) {
+  .producto img { height: 40px; } /* antes 80px */
+  .producto h3 { font-size: 0.9rem; }
+  .producto p  { font-size: 0.75rem; -webkit-line-clamp: 1; }
+}
+
 
         
       .titulo-oro {
