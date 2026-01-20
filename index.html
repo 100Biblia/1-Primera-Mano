@@ -145,28 +145,34 @@
   left: 0;
   background: linear-gradient(to bottom, #000, #111);
   border: 2px solid gold;
-  border-radius: 12px;
-  padding: 16px;
-  min-width: 260px;
-  box-shadow: 0 8px 25px rgba(255, 215, 0, 0.4);
+  border-radius: 14px;
+  padding: 14px;
+  min-width: 280px;
+  box-shadow: 0 10px 30px rgba(255, 215, 0, 0.45);
   display: none;
+  flex-direction: column;
+  gap: 10px;
   z-index: 5000;
 }
 
 #muebles-submenu a {
   display: block;
-  padding: 12px 16px;
+  width: 100%;
+  padding: 14px 18px;
   font-size: 1.15rem;
   font-weight: bold;
   color: gold;
   text-decoration: none;
-  border-radius: 8px;
+  border-radius: 10px;
+  transition: 0.25s;
 }
 
 #muebles-submenu a:hover {
   background: gold;
   color: black;
+  transform: scale(1.03);
 }
+
 
 
 
