@@ -647,13 +647,26 @@
     <p>Productos de primera mano, ya sean importados o fabricados de forma artesanal</p>
   </header>
 
-  <nav>
-   
-    <li><a href="#electrodomesticos">⚡ Electrodomésticos</a><li>
-    <li><a href="#camas">🛏️ Camas</a><li>  
-    <li><a href="#muebles-l">🛋️ Muebles-L</a><li>
-    <li><a href="#muebles-capitoneados">💎 Muebles Capitoneados</a><li></li>
+ <nav id="main-nav" aria-label="Navegación principal">
+  <ul style="list-style:none; margin:0; padding:0; display:flex; gap:20px; align-items:center;">
+    <li>
+      <a href="#electrodomesticos" class="nav-link">⚡ Electrodomésticos</a>
+    </li>
+
+    <li style="position:relative;">
+      <button id="muebles-toggle" aria-expanded="false" style="background:transparent;border:none;color:gold;font-weight:bold;padding:8px 14px;border-radius:6px;cursor:pointer;">
+        🛋️ Muebles del hogar ▾
+      </button>
+
+      <div id="muebles-submenu" role="menu" aria-hidden="true" style="position:absolute;top:calc(100% + 6px);left:0;padding:8px;border-radius:8px;display:none;min-width:200px;z-index:3000;">
+        <a href="#camas" class="submenu-link" role="menuitem" style="display:block;padding:8px 10px;text-decoration:none;">🛏️ Camas</a>
+        <a href="#muebles-l" class="submenu-link" role="menuitem" style="display:block;padding:8px 10px;text-decoration:none;">🛋️ Muebles en L</a>
+        <a href="#muebles-capitoneados" class="submenu-link" role="menuitem" style="display:block;padding:8px 10px;text-decoration:none;">💎 Muebles Capitoneados</a>
+      </div>
+    </li>
+  </ul>
 </nav>
+
 
 
   <div class="separator"></div>
