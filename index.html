@@ -138,88 +138,22 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
-    <style>
-/* ----------------------------
-   Estilos: Combos, Muebles y Nav
-   ---------------------------- */
-
-/* --- Estilo del botón Combos --- */
-#combos-toggle{
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  padding: 8px 12px;
-  font: inherit;
-}
-
-/* --- Reglas base para submenus (puede usar .submenu o ids específicos) --- */
-.submenu {
-  position: absolute;
-  top: calc(100% + 6px);
-  left: 0;
-  min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  padding: 6px 0;
-  background: #fff;
-  border: 1px solid rgba(0,0,0,.08);
-  box-shadow: 0 6px 18px rgba(0,0,0,.08);
-  border-radius: 6px;
-  z-index: 999;
-  opacity: 0;
-  visibility: hidden;
-  transform-origin: top left;
-  transform: translateY(-6px);
-  transition: opacity .18s ease, transform .18s ease, visibility .18s;
-  pointer-events: none;
-}
-
-/* Mostrar cuando el <li> padre tenga clase .open (patrón usado por el JS) */
-li.open .submenu {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-/* Enlaces dentro del submenu (genérico) */
-.submenu a {
-  display: block;
-  padding: 8px 14px;
-  text-decoration: none;
-  white-space: nowrap;
-  font-size: 14px;
-  color: inherit;
-}
-.submenu a:hover,
-.submenu a:focus {
-  background: rgba(0,0,0,.03);
-  outline: none;
-}
-
-/* foco visual del botón */
-#combos-toggle:focus {
-  outline: 2px solid rgba(0,123,255,.25);
-  border-radius: 4px;
-}
-
-/* -----------------------
-   Estilos específicos MUEBLES
-   ----------------------- */
+      /* Estilos y animación del submenu */
+/* --- Reemplazar por completo este bloque --- */
 #muebles-submenu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
   min-width: 200px;
-  max-width: 360px;
+  max-width: 360px;            /* ajusta si quieres más/menos ancho */
   padding: 8px;
   border-radius: 8px;
-  background: linear-gradient(to bottom, #0b0b0b, #111);
+  background: linear-gradient(to bottom,#0b0b0b,#111);
   border: 1px solid rgba(212,175,55,0.6);
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   box-sizing: border-box;
 
+  /* fuerza apilado vertical de los elementos internos */
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -233,17 +167,17 @@ li.open .submenu {
   pointer-events: none;
 }
 
-/* Visible cuando el <li> padre tiene .open (consistente con el JS) */
-li.open #muebles-submenu {
+/* estado visible */
+#muebles-submenu.open {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-/* Asegurar que hijos ocupen todo el ancho */
+/* asegurar que los hijos ocupen fila completa */
 #muebles-submenu > * {
-  display: block !important;
+  display: block !important;   /* por si venían inline o inline-block */
   width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -251,7 +185,7 @@ li.open #muebles-submenu {
   text-align: left;
 }
 
-/* si dentro usas una lista */
+/* si usas lista dentro */
 #muebles-submenu ul {
   list-style: none;
   margin: 0;
@@ -265,7 +199,7 @@ li.open #muebles-submenu {
   padding: 0;
 }
 
-/* enlaces / botones dentro del submenu muebles */
+/* enlaces / botones dentro del submenu */
 #muebles-submenu a,
 #muebles-submenu button {
   display: block !important;
@@ -279,28 +213,33 @@ li.open #muebles-submenu {
   border-radius: 6px;
   box-sizing: border-box;
 }
+
+/* pequeño hover para mejorar visibilidad */
 #muebles-submenu a:hover,
 #muebles-submenu button:hover {
   background: rgba(212,175,55,0.06);
 }
 
-/* Cambio visual del botón cuando está abierto (aplica a todos los botones dentro de #main-nav) */
+/* Cambio visual del botón cuando está abierto */
 #main-nav button[aria-expanded="true"] {
-  background: linear-gradient(to right, #d4af37, #b8921b);
+  background: linear-gradient(to right,#d4af37,#b8921b);
   color: #000;
 }
 
-/* ✨ Botones del menú (enlaces del nav) */
-nav a {
-  color: gold;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.05rem;
-  padding: 8px 14px;
-  border-radius: 6px;
-  transition: 0.3s;
-}
 
+
+
+
+    /* ✨ Botones del menú */
+    nav a {
+      color: gold;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 1.05rem;
+      padding: 8px 14px;
+      border-radius: 6px;
+      transition: 0.3s;
+     }
 
     /* ⭐ Hover dorado */
     nav a:hover {
@@ -798,7 +737,7 @@ nav a {
     
     <p>Productos de primera mano, ya sean importados o fabricados en Cuba</p>
   </header>
-Botones menu
+
  <nav id="main-nav">
   <ul style="list-style:none; margin:0; padding:0; display:flex; gap:20px;">
     <li><a href="#electrodomésticos">⚡ Electrodomésticos</a></li>
@@ -813,24 +752,23 @@ Botones menu
       </div>
     </li>
 
-    <li style="position:relative; list-style:none;">
-      <button id="combos-toggle" aria-expanded="false" aria-haspopup="true" type="button">
-        🧺 Combos ▾
-      </button>
+   <li style="position:relative;">
+      <button id="combos-toggle">🧺 Combos ▾</button>
 
       <div id="combos-submenu" class="submenu" role="menu" aria-label="Combos">
-        <a role="menuitem" href="#carnicos">🥩 Cárnicos</a>
-        <a role="menuitem" href="#agromercado">🌽 Agro mercado</a>
-        <a role="menuitem" href="#confituras">🍯 Confituras</a>
-        <a role="menuitem" href="#bebidas">🥤 Bebidas</a>
-        <a role="menuitem" href="#aseo">🧴 Aseo y Limpieza</a>
-        <a role="menuitem" href="#farmacia">💊 Farmacia</a>
-        <a role="menuitem" href="#otros">📦 Otros</a>
-        <a role="menuitem" href="#premium">🏆 Combos Premium</a>
+        <a href="#carnicos">🥩 Cárnicos</a>
+        <a href="#agromercado">🌽 Agro mercado</a>
+        <a href="#confituras">🍯 Confituras</a>
+        <a href="#bebidas">🥤 Bebidas</a>
+        <a href="#aseo">🧴 Aseo y Limpieza</a>
+        <a href="#farmacia">💊 Farmacia</a>
+        <a href="#otros">📦 Otros</a>
+        <a href="#premium">🏆 Combos Premium</a>
       </div>
     </li>
   </ul>
 </nav>
+  
 
 
 
@@ -2162,18 +2100,6 @@ Botones menu
 
 })();
 </script>
-  
-
-    // Opcional: cerrar al seleccionar una opción del submenu
-    submenu.addEventListener('click', (e) => {
-      const tgt = e.target;
-      if (tgt.tagName.toLowerCase() === 'a') {
-        closeMenu();
-      }
-    });
-  })();
-</script>
-
 </script>
 const toggleBtn = document.getElementById('muebles-toggle');
 const submenu = document.getElementById('muebles-submenu');
@@ -2184,57 +2110,6 @@ toggleBtn.onclick = () => {
   submenu.style.display = submenu.style.display === "block" ? "none" : "block";
 };
 </script>
-Funcionamiento del boton combos
-<script>
-  (function(){
-    const toggle = document.getElementById('combos-toggle');
-    const li = toggle.closest('li');
-    const submenu = document.getElementById('combos-submenu');
-
-    function openMenu() {
-      li.classList.add('open');
-      toggle.setAttribute('aria-expanded', 'true');
-    }
-    function closeMenu() {
-      li.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    }
-    function toggleMenu() {
-      li.classList.contains('open') ? closeMenu() : openMenu();
-    }
-
-    // click en el botón
-    toggle.addEventListener('click', (e) => {
-      e.stopPropagation();
-      toggleMenu();
-    });
-
-    // teclado: Enter / Space abren, Escape cierra
-    toggle.addEventListener('keydown', (e) => {
-      if (e.key === 'Enter' || e.key === ' ') {
-        e.preventDefault();
-        toggleMenu();
-      } else if (e.key === 'Escape') {
-        closeMenu();
-        toggle.focus();
-      }
-    });
-
-    // cerrar al hacer click fuera
-    document.addEventListener('click', (e) => {
-      if (!li.contains(e.target)) closeMenu();
-    });
-
-    // cerrar con Escape si foco en submenu
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        if (li.classList.contains('open')) {
-          closeMenu();
-          toggle.focus();
-        }
-      }
-    });
-
 
 
 
