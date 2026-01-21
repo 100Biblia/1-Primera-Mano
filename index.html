@@ -138,6 +138,68 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
+  /* Estilos mínimos para el submenu de Combos (ajusta según tu tema global) */
+  #combos-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    font: inherit;
+  }
+
+  .submenu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 0;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    border-radius: 6px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: top left;
+    transform: translateY(-6px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+
+  /* Mostrar cuando el <li> padre tenga clase .open */
+  li.open .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .submenu a {
+    display: block;
+    padding: 8px 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .submenu a:hover,
+  .submenu a:focus {
+    background: rgba(0,0,0,.03);
+    outline: none;
+  }
+
+  #combos-toggle:focus {
+    outline: 2px solid rgba(0,123,255,.25);
+    border-radius: 4px;
+  }
+
+     
+     
+     
+     
+     
+     
+     
       /* Estilos y animación del submenu */
 /* --- Reemplazar por completo este bloque --- */
 #muebles-submenu {
@@ -2043,6 +2105,65 @@
     <div class="galeria"></div>
   
   <script>
+(function(){
+    const toggle = document.getElementById('combos-toggle');
+    if (!toggle) return;
+    const li = toggle.closest('li');
+    const submenu = document.getElementById('combos-submenu');
+
+    function openMenu() {
+      li.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      li.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function toggleMenu() {
+      li.classList.contains('open') ? closeMenu() : openMenu();
+    }
+
+    // click en el botón
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // teclado: Enter / Space abren, Escape cierra
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      } else if (e.key === 'Escape') {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    // cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!li.contains(e.target)) closeMenu();
+    });
+
+    // cerrar con Escape si foco en submenu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (li.classList.contains('open')) {
+          closeMenu();
+          toggle.focus();
+        }
+      }
+    });
+
+    // cerrar al seleccionar una opción del submenu
+    submenu.addEventListener('click', (e) => {
+      const tgt = e.target;
+      if (tgt.tagName.toLowerCase() === 'a') {
+        closeMenu();
+      }
+    });
+  })();
+
 (function(){
   const toggleBtn = document.getElementById('muebles-toggle');
   const submenu = document.getElementById('muebles-submenu');
