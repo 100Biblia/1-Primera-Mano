@@ -138,80 +138,88 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
-/*Estilo del boton Combos */
-<style>
-  /* Estilos básicos - ajusta colores/tamaños según tu tema */
-  #combos-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px 12px;
-    font: inherit;
-  }
+    <style>
+/* ----------------------------
+   Estilos: Combos, Muebles y Nav
+   ---------------------------- */
 
-  .submenu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 6px 0;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-    box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    border-radius: 6px;
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transform-origin: top left;
-    transform: translateY(-6px);
-    transition: opacity .18s ease, transform .18s ease, visibility .18s;
-  }
+/* --- Estilo del botón Combos --- */
+#combos-toggle{
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 8px 12px;
+  font: inherit;
+}
 
-  /* Cuando el padre <li> tiene la clase .open mostramos el submenu */
-  li.open .submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
+/* --- Reglas base para submenus (puede usar .submenu o ids específicos) --- */
+.submenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 6px 0;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  box-shadow: 0 6px 18px rgba(0,0,0,.08);
+  border-radius: 6px;
+  z-index: 999;
+  opacity: 0;
+  visibility: hidden;
+  transform-origin: top left;
+  transform: translateY(-6px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  pointer-events: none;
+}
 
-  .submenu a {
-    display: block;
-    padding: 8px 14px;
-    text-decoration: none;
-    white-space: nowrap;
-    font-size: 14px;
-  }
-  .submenu a:hover,
-  .submenu a:focus {
-    background: rgba(0,0,0,.03);
-    outline: none;
-  }
+/* Mostrar cuando el <li> padre tenga clase .open (patrón usado por el JS) */
+li.open .submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  pointer-events: auto;
+}
 
-  /* pequeño ajuste para eliminar foco de botón por defecto si deseas */
-  #combos-toggle:focus { outline: 2px solid rgba(0,123,255,.25); border-radius: 4px; }
-</style>
+/* Enlaces dentro del submenu (genérico) */
+.submenu a {
+  display: block;
+  padding: 8px 14px;
+  text-decoration: none;
+  white-space: nowrap;
+  font-size: 14px;
+  color: inherit;
+}
+.submenu a:hover,
+.submenu a:focus {
+  background: rgba(0,0,0,.03);
+  outline: none;
+}
 
-/* Estilos del boton Muebles */
+/* foco visual del botón */
+#combos-toggle:focus {
+  outline: 2px solid rgba(0,123,255,.25);
+  border-radius: 4px;
+}
 
-      /* Estilos y animación del submenu */
-/* --- Reemplazar por completo este bloque --- */
+/* -----------------------
+   Estilos específicos MUEBLES
+   ----------------------- */
 #muebles-submenu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
   min-width: 200px;
-  max-width: 360px;            /* ajusta si quieres más/menos ancho */
+  max-width: 360px;
   padding: 8px;
   border-radius: 8px;
-  background: linear-gradient(to bottom,#0b0b0b,#111);
+  background: linear-gradient(to bottom, #0b0b0b, #111);
   border: 1px solid rgba(212,175,55,0.6);
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   box-sizing: border-box;
 
-  /* fuerza apilado vertical de los elementos internos */
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -225,17 +233,17 @@
   pointer-events: none;
 }
 
-/* estado visible */
-#muebles-submenu.open {
+/* Visible cuando el <li> padre tiene .open (consistente con el JS) */
+li.open #muebles-submenu {
   visibility: visible;
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-/* asegurar que los hijos ocupen fila completa */
+/* Asegurar que hijos ocupen todo el ancho */
 #muebles-submenu > * {
-  display: block !important;   /* por si venían inline o inline-block */
+  display: block !important;
   width: 100%;
   box-sizing: border-box;
   margin: 0;
@@ -243,7 +251,7 @@
   text-align: left;
 }
 
-/* si usas lista dentro */
+/* si dentro usas una lista */
 #muebles-submenu ul {
   list-style: none;
   margin: 0;
@@ -257,7 +265,7 @@
   padding: 0;
 }
 
-/* enlaces / botones dentro del submenu */
+/* enlaces / botones dentro del submenu muebles */
 #muebles-submenu a,
 #muebles-submenu button {
   display: block !important;
@@ -271,33 +279,28 @@
   border-radius: 6px;
   box-sizing: border-box;
 }
-
-/* pequeño hover para mejorar visibilidad */
 #muebles-submenu a:hover,
 #muebles-submenu button:hover {
   background: rgba(212,175,55,0.06);
 }
 
-/* Cambio visual del botón cuando está abierto */
+/* Cambio visual del botón cuando está abierto (aplica a todos los botones dentro de #main-nav) */
 #main-nav button[aria-expanded="true"] {
-  background: linear-gradient(to right,#d4af37,#b8921b);
+  background: linear-gradient(to right, #d4af37, #b8921b);
   color: #000;
 }
 
+/* ✨ Botones del menú (enlaces del nav) */
+nav a {
+  color: gold;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: 0.3s;
+}
 
-
-
-
-    /* ✨ Botones del menú */
-    nav a {
-      color: gold;
-      text-decoration: none;
-      font-weight: bold;
-      font-size: 1.05rem;
-      padding: 8px 14px;
-      border-radius: 6px;
-      transition: 0.3s;
-     }
 
     /* ⭐ Hover dorado */
     nav a:hover {
