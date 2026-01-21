@@ -138,37 +138,6 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
-
-     /* --------- FIX: estilo del botón "Muebles" --------- */
-#muebles-toggle,
-#main-nav button {
-  -webkit-appearance: none; /* evita estilo nativo del SO */
-  appearance: none;
-  background: #000;                     /* negro base */
-  color: gold;                          /* texto dorado */
-  border: 1px solid rgba(212,175,55,0.6);
-  padding: 8px 14px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background .18s ease, color .18s ease, transform .12s ease;
-}
-
-/* Hover */
-#muebles-toggle:hover,
-#main-nav button:hover {
-  background: linear-gradient(to right,#d4af37,#b8921b);
-  color: #000;
-  transform: scale(1.03);
-}
-
-/* Estado abierto (coincide con tu regla existente pero específico para el botón) */
-#muebles-toggle[aria-expanded="true"],
-#main-nav button[aria-expanded="true"] {
-  background: linear-gradient(to right,#d4af37,#b8921b);
-  color: #000;
-}
-
       /* Estilos y animación del submenu */
 /* --- Reemplazar por completo este bloque --- */
 #muebles-submenu {
@@ -766,7 +735,7 @@
       <text x="170" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#ffffff"> Mano</text>
     </svg>
     
-    <p>Productos de primera mano, ya sean importados o fabricados de forma artesanal</p>
+    <p>Productos de primera mano, ya sean importados o fabricados en Cuba</p>
   </header>
 
  <nav id="main-nav">
@@ -774,7 +743,7 @@
     <li><a href="#electrodomesticos">⚡ Electrodomésticos</a></li>
 
     <li style="position:relative;">
-      <button id="es-toggle">🛋️ Muebles▾</button>
+      <button id="muebles-toggle">🛋️ Muebles▾</button>
 
       <div id="muebles-submenu">
         <a href="#camas">🛏️ Camas</a>
@@ -782,8 +751,11 @@
         <a href="#muebles-capitoneados">💎 Muebles Capitoneados</a>
       </div>
     </li>
+
+    <li><a href="#combos">🔀 Combos</a></li>
   </ul>
 </nav>
+
 
 
 
