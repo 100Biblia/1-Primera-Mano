@@ -1987,6 +1987,46 @@
        </div>
    </div>
  </section>
+
+ <!-- 🛏️ Sección de combos -->
+<section id="combos" class="seccion-productos">
+  <h2 class="titulo-oro">🛏️ Combos / Camas modernas</h2>
+
+  <div class="galeria">
+
+    <!-- combo 1 -->
+    <div class="producto">
+      <img src="camas/cama1.jpg" alt="Cama moderna 1">
+      <h3>Cama Moderna 1</h3>
+      <p>Disponible en tamaño 3/4, Camera, Queen, King y en todos los colores.</p>
+
+      <!-- SELECT: fijarse en el id único -->
+      <select id="combo1-tamano" class="selector-combo">
+        <option value="165000">3/4 (1.90 x 1.20) - $165,000</option>
+        <option value="170000">Cama (1.90 x 1.35) - $170,000</option>
+        <option value="180000">Queen (1.90/2 x 1.60) - $180,000</option>
+        <option value="190000">King (2 x 2) - $190,000</option>
+      </select>
+
+      <!-- Usa la clase .boton-carrito para heredar estilos -->
+      <button class="boton-carrito" onclick="agregarAlCarrito('Cama Moderna 1', 'combo1-tamano')">🛒 Agregar al carrito</button>
+    </div>
+
+    <!-- duplicar el bloque .producto para más combos, cambiando ids -->
+  </div>
+</section>
+
+
+
+    </div>
+ </section>
+
+  <!-- 🛋️ Muebles en L -->
+  <section id="muebles-l" class="seccion-productos">
+   <h2 class="titulo-oro">
+  🛋️ Muebles en L 
+  </h2>
+    <div class="galeria"></div>
   
   <script>
 (function(){
