@@ -774,7 +774,7 @@
         <h3>Air Fryer Royal 4L</h3>
         <p class="precio">💵 $55</p>
         <p>USD</p>       
-        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer Royal 4L', 55 USD )">Agregar 🛒</button>
+        <button class="boton-carrito" onclick="agregarAlCarrito('Air Fryer Royal 4L', 55 )">Agregar 🛒</button>
        </div>
 
       <!-- 🍃 Ventilador recargable F6 -->
@@ -783,7 +783,7 @@
         <h3>🍃 Ventilador recargable F6” Smart</h3>
         <p class="precio">💵 $40</p>
         <p>USD</p>        
-        <button class="boton-carrito" onclick="agregarAlCarrito('🍃 Ventilador recargable F6', 40 USD )">Agregar 🛒</button>
+        <button class="boton-carrito" onclick="agregarAlCarrito('🍃 Ventilador recargable F6', 40 )">Agregar 🛒</button>
        </div>
 
       <!-- COCINA DE KEROSENO -->
@@ -2245,126 +2245,53 @@ toggleBtn.onclick = () => {
 
  <script>
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
-// normalizar items antiguos (si no tienen moneda los marcamos LOCAL)
-carrito = carrito.map(it => ({
-  nombre: it.nombre || '',
-  tamano: it.tamano || '',
-  precio: Number(it.precio) || 0,
-  moneda: it.moneda ? String(it.moneda).toUpperCase() : 'LOCAL'
-}));
 
-function guardarCarrito() {
-  localStorage.setItem("carrito", JSON.stringify(carrito));
-}
-
-// parse simple: acepta "100|USD", "100 USD", "100USD", value numérico, o <option data-moneda="CUP" value="100">
-function parsePrecioMoneda(rawValue, optionElem) {
-  if (typeof rawValue === 'string' && rawValue.includes('|')) {
-    const [p, m] = rawValue.split('|').map(s => s.trim());
-    return { precio: parseFloat(p) || 0, moneda: (m || 'LOCAL').toUpperCase() };
+  function guardarCarrito() {
+    localStorage.setItem("carrito", JSON.stringify(carrito));
   }
 
-  const precio = parseFloat(String(rawValue).replace(/[^0-9\.\-]/g, '')) || 0;
+  function agregarAlCarrito(nombre, idSelect) {
+    const select = document.getElementById(idSelect);
+    let precio = 0;
+    let tamano = "";
 
-  if (optionElem && optionElem.dataset && optionElem.dataset.moneda) {
-    return { precio, moneda: optionElem.dataset.moneda.toUpperCase() };
+    if (select) {
+      precio = parseFloat(select.value);
+      tamano = select.options[select.selectedIndex].text;
+    } else {
+      precio = parseFloat(idSelect);
+      tamano = "Único modelo";
+    }
+
+    carrito.push({ nombre, tamano, precio });
+    guardarCarrito();
+    actualizarCarrito();
   }
 
-  const match = String(rawValue).match(/([A-Za-z]{2,4})/);
-  const moneda = match ? match[1].toUpperCase() : 'LOCAL';
+  function actualizarCarrito() {
+    const lista = document.getElementById("lista-carrito");
+    const totalSpan = document.getElementById("total");
+    lista.innerHTML = "";
+    let total = 0;
 
-  return { precio, moneda };
-}
+    carrito.forEach((item, index) => {
+      const li = document.createElement("li");
+      li.textContent = `${item.nombre} - ${item.tamano}`;
+      const precioSpan = document.createElement("span");
+      precioSpan.textContent = ` $${item.precio.toLocaleString()}`;
+      li.appendChild(precioSpan);
 
-function agregarAlCarrito(nombre, idSelect) {
-  const select = document.getElementById(idSelect);
-  let precio = 0;
-  let tamano = "";
-  let moneda = "LOCAL";
+      const btnEliminar = document.createElement("button");
+      btnEliminar.textContent = "❌";
+      btnEliminar.onclick = () => eliminarDelCarrito(index);
+      li.appendChild(btnEliminar);
 
-  if (select) {
-    const raw = select.value;
-    const option = select.options[select.selectedIndex];
-    const parsed = parsePrecioMoneda(raw, option);
-    precio = parsed.precio;
-    moneda = parsed.moneda;
-    tamano = option ? option.text : "Tamaño";
-  } else {
-    const parsed = parsePrecioMoneda(idSelect, null);
-    precio = parsed.precio;
-    moneda = parsed.moneda;
-    tamano = "Único modelo";
-  }
-
-  carrito.push({ nombre, tamano, precio, moneda });
-  guardarCarrito();
-  actualizarCarrito();
-}
-
-function actualizarCarrito() {
-  const lista = document.getElementById("lista-carrito");
-  const totalSpan = document.getElementById("total");
-  lista.innerHTML = "";
-
-  // Totales por moneda
-  const totales = {}; // e.g. { USD: 120, CUP: 2500, LOCAL: 55 }
-
-  carrito.forEach((item, index) => {
-    const li = document.createElement("li");
-    // texto izq (nombre + tamaño)
-    const left = document.createElement("div");
-    left.textContent = `${item.nombre} - ${item.tamano}`;
-
-    // contenedor derecho (precio + botón)
-    const right = document.createElement("div");
-
-    const precioSpan = document.createElement("span");
-    precioSpan.style.marginRight = "8px";
-    precioSpan.textContent = `${item.precio.toLocaleString()} ${item.moneda}`;
-
-    const btnEliminar = document.createElement("button");
-    btnEliminar.textContent = "❌";
-    btnEliminar.onclick = () => {
-      carrito.splice(index, 1);
-      guardarCarrito();
-      actualizarCarrito();
-    };
-
-    right.appendChild(precioSpan);
-    right.appendChild(btnEliminar);
-
-    li.appendChild(left);
-    li.appendChild(right);
-
-    lista.appendChild(li);
-
-    totales[item.moneda] = (totales[item.moneda] || 0) + Number(item.precio || 0);
+      lista.appendChild(li);
+      total += item.precio;
   });
 
-  // Exponer totales globales para uso externo
-  window.totales = totales;
-  // valores directos (por si quieres window.USD, window.CUP...)
-  for (const key in totales) {
-    try { window[key] = totales[key]; } catch (e) {}
+    totalSpan.textContent = `Total: $${total.toLocaleString()}`;
   }
-  window.USD = window.USD || 0;
-  window.CUP = window.CUP || 0;
-  window.LOCAL = window.LOCAL || 0;
-
-  // Construir texto de totales (cada moneda en su línea)
-  if (Object.keys(totales).length === 0) {
-    totalSpan.innerHTML = "Total: 0";
-  } else {
-    let totalHtml = "";
-    const simbolos = { USD: '$', CUP: 'CUP ', LOCAL: '' }; // ajusta si quieres otros símbolos
-    for (const moneda in totales) {
-      const sym = simbolos[moneda] || '';
-      totalHtml += `${sym}${totales[moneda].toLocaleString()} ${moneda} <br>`;
-    }
-    totalSpan.innerHTML = totalHtml;
-  }
-}
-
 
   function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
