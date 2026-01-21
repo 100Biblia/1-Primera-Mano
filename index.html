@@ -2162,6 +2162,28 @@ Botones menu
 
 })();
 </script>
+  
+
+    // Opcional: cerrar al seleccionar una opción del submenu
+    submenu.addEventListener('click', (e) => {
+      const tgt = e.target;
+      if (tgt.tagName.toLowerCase() === 'a') {
+        closeMenu();
+      }
+    });
+  })();
+</script>
+
+</script>
+const toggleBtn = document.getElementById('muebles-toggle');
+const submenu = document.getElementById('muebles-submenu');
+
+submenu.style.display = "none";
+
+toggleBtn.onclick = () => {
+  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
+};
+</script>
 Funcionamiento del boton combos
 <script>
   (function(){
@@ -2213,26 +2235,6 @@ Funcionamiento del boton combos
       }
     });
 
-    // Opcional: cerrar al seleccionar una opción del submenu
-    submenu.addEventListener('click', (e) => {
-      const tgt = e.target;
-      if (tgt.tagName.toLowerCase() === 'a') {
-        closeMenu();
-      }
-    });
-  })();
-</script>
-
-</script>
-const toggleBtn = document.getElementById('muebles-toggle');
-const submenu = document.getElementById('muebles-submenu');
-
-submenu.style.display = "none";
-
-toggleBtn.onclick = () => {
-  submenu.style.display = submenu.style.display === "block" ? "none" : "block";
-};
-</script>
 
 
 
