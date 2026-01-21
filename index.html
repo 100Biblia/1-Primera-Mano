@@ -2108,7 +2108,9 @@ toggleBtn.onclick = () => {
 
    <div id="carrito" class="cerrado">
     <ul id="lista-carrito"></ul>
-    <p id="total">Total: $0</p>
+    <p id="total-muebles">Total muebles: $0</p>
+    <p id="total-electro">Total electrodomésticos: $0</p>
+    <p id="total-general">Total: $0</p>
     <div class="botones-carrito">
       <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
       <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
@@ -2195,10 +2197,10 @@ toggleBtn.onclick = () => {
     cursor: pointer;
   }
 
-  /* 💰 Total */
-  #total {
-    margin: 10px 0;
-    font-size: 1.1rem;
+  /* 💰 Totales (mismos estilos) */
+  #total-muebles, #total-electro, #total-general {
+    margin: 6px 0;
+    font-size: 1.05rem;
     color: gold;
     font-weight: bold;
   }
@@ -2244,54 +2246,160 @@ toggleBtn.onclick = () => {
   </style>
 
  <script>
+ // inicializar carrito desde localStorage
  let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 
-  function guardarCarrito() {
-    localStorage.setItem("carrito", JSON.stringify(carrito));
-  }
+ function guardarCarrito() {
+   localStorage.setItem("carrito", JSON.stringify(carrito));
+ }
 
-  function agregarAlCarrito(nombre, idSelect) {
-    const select = document.getElementById(idSelect);
-    let precio = 0;
-    let tamano = "";
+ /**
+  * agregarAlCarrito(nombre, idSelect, categoria)
+  * - nombre: texto del producto
+  * - idSelect: id del <select> cuyo value es el precio, o pasar el precio directamente
+  * - categoria: 'mueble' | 'electrodomestico' | 'otros' (opcional)
+  */
+ function agregarAlCarrito(nombre, idSelect, categoria = "otros") {
+   const select = document.getElementById(idSelect);
+   let precio = 0;
+   let tamano = "";
 
-    if (select) {
-      precio = parseFloat(select.value);
-      tamano = select.options[select.selectedIndex].text;
-    } else {
-      precio = parseFloat(idSelect);
-      tamano = "Único modelo";
-    }
+   if (select) {
+     precio = parseFloat(select.value) || 0;
+     tamano = select.options[select.selectedIndex].text;
+   } else {
+     // Si idSelect no es un select, puede ser el precio directo (número o string)
+     precio = parseFloat(idSelect) || 0;
+     tamano = "Único modelo";
+   }
 
-    carrito.push({ nombre, tamano, precio });
-    guardarCarrito();
-    actualizarCarrito();
-  }
+   // normalizar categoría
+   const cat = (categoria || "otros").toString().toLowerCase();
 
-  function actualizarCarrito() {
-    const lista = document.getElementById("lista-carrito");
-    const totalSpan = document.getElementById("total");
-    lista.innerHTML = "";
-    let total = 0;
+   carrito.push({ nombre, tamano, precio, categoria: cat });
+   guardarCarrito();
+   actualizarCarrito();
+ }
 
-    carrito.forEach((item, index) => {
-      const li = document.createElement("li");
-      li.textContent = `${item.nombre} - ${item.tamano}`;
-      const precioSpan = document.createElement("span");
-      precioSpan.textContent = ` $${item.precio.toLocaleString()}`;
-      li.appendChild(precioSpan);
+ function eliminarDelCarrito(index) {
+   carrito.splice(index, 1);
+   guardarCarrito();
+   actualizarCarrito();
+ }
 
-      const btnEliminar = document.createElement("button");
-      btnEliminar.textContent = "❌";
-      btnEliminar.onclick = () => eliminarDelCarrito(index);
-      li.appendChild(btnEliminar);
+ function vaciarCarrito() {
+   carrito = [];
+   guardarCarrito();
+   actualizarCarrito();
+ }
 
-      lista.appendChild(li);
-      total += item.precio;
-  });
+ function actualizarCarrito() {
+   const lista = document.getElementById("lista-carrito");
+   const totalMueblesSpan = document.getElementById("total-muebles");
+   const totalElectroSpan = document.getElementById("total-electro");
+   const totalGeneralSpan = document.getElementById("total-general");
+   lista.innerHTML = "";
 
-    totalSpan.textContent = `Total: $${total.toLocaleString()}`;
-  }
+   let totalMuebles = 0;
+   let totalElectro = 0;
+   let totalOtros = 0;
+
+   carrito.forEach((item, index) => {
+     const li = document.createElement("li");
+
+     // badge para categoría
+     const badge = document.createElement("small");
+     badge.style.marginRight = "8px";
+     badge.style.fontSize = "0.85rem";
+     badge.style.opacity = "0.9";
+     if (item.categoria === "mueble") badge.textContent = "🪑 Mueble";
+     else if (item.categoria === "electrodomestico" || item.categoria === "electro") badge.textContent = "🔌 Electro";
+     else badge.textContent = "🔸 Otro";
+
+     const texto = document.createElement("span");
+     texto.textContent = ` ${item.nombre} - ${item.tamano}`;
+
+     const derecha = document.createElement("div");
+     derecha.style.display = "flex";
+     derecha.style.gap = "10px";
+     derecha.style.alignItems = "center";
+
+     const precioSpan = document.createElement("span");
+     precioSpan.textContent = ` $${Number(item.precio).toLocaleString()}`;
+
+     const btnEliminar = document.createElement("button");
+     btnEliminar.textContent = "❌";
+     btnEliminar.onclick = () => eliminarDelCarrito(index);
+
+     derecha.appendChild(precioSpan);
+     derecha.appendChild(btnEliminar);
+
+     const izquierda = document.createElement("div");
+     izquierda.style.display = "flex";
+     izquierda.style.alignItems = "center";
+     izquierda.appendChild(badge);
+     izquierda.appendChild(texto);
+
+     li.appendChild(izquierda);
+     li.appendChild(derecha);
+
+     lista.appendChild(li);
+
+     // sumar por categoría
+     if (item.categoria === "mueble") totalMuebles += Number(item.precio);
+     else if (item.categoria === "electrodomestico" || item.categoria === "electro") totalElectro += Number(item.precio);
+     else totalOtros += Number(item.precio);
+   });
+
+   const total = totalMuebles + totalElectro + totalOtros;
+
+   totalMueblesSpan.textContent = `Total muebles: $${totalMuebles.toLocaleString()}`;
+   totalElectroSpan.textContent = `Total electrodomésticos: $${totalElectro.toLocaleString()}`;
+   totalGeneralSpan.textContent = `Total: $${total.toLocaleString()}`;
+ }
+
+ // ejemplo: enviar por WhatsApp con desglose
+ function enviarWhatsApp() {
+   if (!carrito.length) {
+     alert("El carrito está vacío.");
+     return;
+   }
+
+   let mensaje = "Pedido:%0A";
+   carrito.forEach((it, i) => {
+     mensaje += `${i+1}) ${it.nombre} - ${it.tamano} - $${Number(it.precio).toLocaleString()} (${it.categoria})%0A`;
+   });
+
+   // añadir subtotales
+   let totalMuebles = carrito.filter(i=>i.categoria==="mueble").reduce((s,i)=>s+Number(i.precio),0);
+   let totalElectro = carrito.filter(i=>["electrodomestico","electro"].includes(i.categoria)).reduce((s,i)=>s+Number(i.precio),0);
+   let totalOtros = carrito.filter(i=>!["mueble","electrodomestico","electro"].includes(i.categoria)).reduce((s,i)=>s+Number(i.precio),0);
+   let total = totalMuebles + totalElectro + totalOtros;
+
+   mensaje += `%0ASubtotal muebles: $${totalMuebles.toLocaleString()}%0A`;
+   mensaje += `Subtotal electrodomésticos: $${totalElectro.toLocaleString()}%0A`;
+   if (totalOtros>0) mensaje += `Subtotal otros: $${totalOtros.toLocaleString()}%0A`;
+   mensaje += `%0ATotal: $${total.toLocaleString()}%0A`;
+
+   // reemplaza el número por el que uses
+   const telefono = "YOUR_PHONE_NUMBER"; // p. ej. "569xxxxxxxx"
+   const url = `https://wa.me/${telefono}?text=${mensaje}`;
+   window.open(url, "_blank");
+ }
+
+ // si quieres, abre el carrito automáticamente en carga si hay items
+ document.addEventListener("DOMContentLoaded", actualizarCarrito);
+
+ // función toggle si la tienes en otra parte, si no:
+ function toggleCarrito() {
+   const c = document.getElementById("carrito");
+   c.classList.toggle("abierto");
+   // ajustar icono
+   const icon = document.getElementById("toggle-icon");
+   icon.textContent = c.classList.contains("abierto") ? "🔼" : "🔽";
+ }
+ </script>
+
 
   function eliminarDelCarrito(index) {
     carrito.splice(index, 1);
