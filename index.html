@@ -138,6 +138,64 @@
       border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
       backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
      } 
+/*Estilo del boton Combos */
+<style>
+  /* Estilos básicos - ajusta colores/tamaños según tu tema */
+  #combos-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    font: inherit;
+  }
+
+  .submenu {
+    position: absolute;
+    top: calc(100% + 6px);
+    left: 0;
+    min-width: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 6px 0;
+    background: #fff;
+    border: 1px solid rgba(0,0,0,.08);
+    box-shadow: 0 6px 18px rgba(0,0,0,.08);
+    border-radius: 6px;
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    transform-origin: top left;
+    transform: translateY(-6px);
+    transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  }
+
+  /* Cuando el padre <li> tiene la clase .open mostramos el submenu */
+  li.open .submenu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .submenu a {
+    display: block;
+    padding: 8px 14px;
+    text-decoration: none;
+    white-space: nowrap;
+    font-size: 14px;
+  }
+  .submenu a:hover,
+  .submenu a:focus {
+    background: rgba(0,0,0,.03);
+    outline: none;
+  }
+
+  /* pequeño ajuste para eliminar foco de botón por defecto si deseas */
+  #combos-toggle:focus { outline: 2px solid rgba(0,123,255,.25); border-radius: 4px; }
+</style>
+
+/* Estilos del boton Muebles */
+
       /* Estilos y animación del submenu */
 /* --- Reemplazar por completo este bloque --- */
 #muebles-submenu {
@@ -737,7 +795,7 @@
     
     <p>Productos de primera mano, ya sean importados o fabricados en Cuba</p>
   </header>
-
+Botones menu
  <nav id="main-nav">
   <ul style="list-style:none; margin:0; padding:0; display:flex; gap:20px;">
     <li><a href="#electrodomésticos">⚡ Electrodomésticos</a></li>
@@ -752,7 +810,22 @@
       </div>
     </li>
 
-    <li><a href="#combos">🔀 Combos</a></li>
+    <li style="position:relative; list-style:none;">
+      <button id="combos-toggle" aria-expanded="false" aria-haspopup="true" type="button">
+        🧺 Combos ▾
+      </button>
+
+      <div id="combos-submenu" class="submenu" role="menu" aria-label="Combos">
+        <a role="menuitem" href="#carnicos">🥩 Cárnicos</a>
+        <a role="menuitem" href="#agromercado">🌽 Agro mercado</a>
+        <a role="menuitem" href="#confituras">🍯 Confituras</a>
+        <a role="menuitem" href="#bebidas">🥤 Bebidas</a>
+        <a role="menuitem" href="#aseo">🧴 Aseo y Limpieza</a>
+        <a role="menuitem" href="#farmacia">💊 Farmacia</a>
+        <a role="menuitem" href="#otros">📦 Otros</a>
+        <a role="menuitem" href="#premium">🏆 Combos Premium</a>
+      </div>
+    </li>
   </ul>
 </nav>
 
@@ -2086,6 +2159,67 @@
 
 })();
 </script>
+Funcionamiento del boton combos
+<script>
+  (function(){
+    const toggle = document.getElementById('combos-toggle');
+    const li = toggle.closest('li');
+    const submenu = document.getElementById('combos-submenu');
+
+    function openMenu() {
+      li.classList.add('open');
+      toggle.setAttribute('aria-expanded', 'true');
+    }
+    function closeMenu() {
+      li.classList.remove('open');
+      toggle.setAttribute('aria-expanded', 'false');
+    }
+    function toggleMenu() {
+      li.classList.contains('open') ? closeMenu() : openMenu();
+    }
+
+    // click en el botón
+    toggle.addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleMenu();
+    });
+
+    // teclado: Enter / Space abren, Escape cierra
+    toggle.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleMenu();
+      } else if (e.key === 'Escape') {
+        closeMenu();
+        toggle.focus();
+      }
+    });
+
+    // cerrar al hacer click fuera
+    document.addEventListener('click', (e) => {
+      if (!li.contains(e.target)) closeMenu();
+    });
+
+    // cerrar con Escape si foco en submenu
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        if (li.classList.contains('open')) {
+          closeMenu();
+          toggle.focus();
+        }
+      }
+    });
+
+    // Opcional: cerrar al seleccionar una opción del submenu
+    submenu.addEventListener('click', (e) => {
+      const tgt = e.target;
+      if (tgt.tagName.toLowerCase() === 'a') {
+        closeMenu();
+      }
+    });
+  })();
+</script>
+
 </script>
 const toggleBtn = document.getElementById('muebles-toggle');
 const submenu = document.getElementById('muebles-submenu');
