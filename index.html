@@ -123,21 +123,53 @@
      font-size: 0.9rem; 
       }
     }
-    /* 🔥 NAV estilo lujo negro + dorado */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(to right, #000000, #1a1a1a, #000000); /* Degradado suave negro */
-      padding: 6px 0;
-      display: flex;
-      justify-content: center;
-      gap: 25px;       /* Separación entre botones */
-      z-index: 2000;
-      border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
-      backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
-     } 
+    /* 🔥 NAV estilo lujo negro + dorado (REEMPLAZA) */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to right, #000000, #1a1a1a, #000000); /* Degradado suave negro */
+  padding: 6px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;        /* <-- CAMBIO: centra verticalmente los botones */
+  gap: 25px;                  /* Separación entre botones */
+  z-index: 2000;
+  border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
+  backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
+  box-sizing: border-box;
+}
+
+/* Asegura que los botones del nav luzcan igual que los enlaces */
+nav button,
+nav [role="button"],
+#combos-toggle {
+  background: transparent !important;
+  color: gold !important;
+  border: none;
+  font-weight: bold;
+  font-size: 1.05rem;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: transform .18s ease, background .18s ease;
+}
+
+/* Evita que el hover cambie el tamaño del box y provoque saltos */
+nav a, nav button {
+  transform-origin: center;
+}
+nav a:hover, nav button:hover {
+  background: linear-gradient(to right, #070707, #030303);
+  color: #000;
+  transform: translateY(-2px);
+}
+
   /* Estilos mínimos para el submenu de Combos (ajusta según tu tema global) */
   #combos-toggle {
     background: transparent;
@@ -211,7 +243,7 @@
   padding: 8px;
   border-radius: 8px;
   background: linear-gradient(to bottom,#0b0b0b,#111);
-  border: 1px solid rgba(212,175,55,0.6);
+  border: 1px solid rgba(10, 10, 10, 0.6);
   box-shadow: 0 6px 20px rgba(0,0,0,0.5);
   box-sizing: border-box;
 
@@ -327,7 +359,7 @@
     }
 
     .seccion-productos h2 {
-      color: #c49a6c;
+      color: #0a0a0a;
       margin-bottom: 20px;
     }
 
@@ -343,7 +375,7 @@
       border: 1px solid gold;
       border-radius: 20px;
       padding: 20px;
-      box-shadow: 0 0 15px rgba(255, 215, 0, 0.2);
+      box-shadow: 0 0 15px rgba(3, 3, 3, 0.2);
       min-height: 420px; /* asegura que todos los cuadros tengan la misma altura */
       overflow: hidden; /* evita que algo se salga del cuadro */
       transition: 0.3s ease
