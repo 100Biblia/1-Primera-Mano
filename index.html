@@ -123,99 +123,23 @@
      font-size: 0.9rem; 
       }
     }
-    /* 🔥 NAV estilo lujo negro + dorado */
-    nav {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      background: linear-gradient(to right, #000000, #1a1a1a, #000000); /* Degradado suave negro */
-      padding: 6px 0;
-      display: flex;
-      justify-content: center;
-      gap: 25px;       /* Separación entre botones */
-      z-index: 2000;
-      border-bottom: 2px solid rgba(212, 175, 55, 0.7); /* Línea dorada */
-      backdrop-filter: blur(8px);  /* Efecto vidrio elegante */
-     } 
-  /* Estilos mínimos para el submenu de Combos (ajusta según tu tema global) */
-  #combos-toggle {
-    background: transparent;
-    border: none;
-    cursor: pointer;
-    padding: 8px 12px;
-    font: inherit;
-  }
-
-  .submenu {
-    position: absolute;
-    top: calc(100% + 6px);
-    left: 0;
-    min-width: 200px;
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-    padding: 6px 0;
-    background: #fff;
-    border: 1px solid rgba(0,0,0,.08);
-    box-shadow: 0 6px 18px rgba(0,0,0,.08);
-    border-radius: 6px;
-    z-index: 999;
-    opacity: 0;
-    visibility: hidden;
-    transform-origin: top left;
-    transform: translateY(-6px);
-    transition: opacity .18s ease, transform .18s ease, visibility .18s;
-  }
-
-  /* Mostrar cuando el <li> padre tenga clase .open */
-  li.open .submenu {
-    opacity: 1;
-    visibility: visible;
-    transform: translateY(0);
-  }
-
-  .submenu a {
-    display: block;
-    padding: 8px 14px;
-    text-decoration: none;
-    white-space: nowrap;
-    font-size: 14px;
-  }
-  .submenu a:hover,
-  .submenu a:focus {
-    background: rgba(0,0,0,.03);
-    outline: none;
-  }
-
-  #combos-toggle:focus {
-    outline: 2px solid rgba(0,123,255,.25);
-    border-radius: 4px;
-  }
-
-     
-     
-     
-     
-     
-     
-     
-      /* Estilos y animación del submenu */
-/* --- Reemplazar por completo este bloque --- */
+    /* --- BLOQUE DE REEMPLAZO: estilo negro + dorado para #muebles-submenu --- */
 #muebles-submenu {
   position: absolute;
   top: calc(100% + 6px);
   left: 0;
-  min-width: 200px;
-  max-width: 360px;            /* ajusta si quieres más/menos ancho */
-  padding: 8px;
-  border-radius: 8px;
-  background: linear-gradient(to bottom,#0b0b0b,#111);
-  border: 1px solid rgba(212,175,55,0.6);
-  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  min-width: 220px;
+  max-width: 360px;
+  padding: 6px;
+  border-radius: 10px;
+  background: linear-gradient(180deg, #000000 0%, #0a0a0a 100%);
+  border: 1px solid rgba(212,175,55,0.12); /* borde dorado sutil */
+  box-shadow:
+    0 10px 30px rgba(0,0,0,0.65),
+    0 2px 0 rgba(212,175,55,0.04) inset; /* brillo interno muy sutil */
   box-sizing: border-box;
 
-  /* fuerza apilado vertical de los elementos internos */
+  /* apilado vertical de elementos */
   display: flex;
   flex-direction: column;
   align-items: stretch;
@@ -223,19 +147,84 @@
 
   visibility: hidden;
   opacity: 0;
-  transform: translateY(-6px);
+  transform: translateY(-8px) scale(.995);
   transition: opacity .18s ease, transform .18s ease, visibility .18s;
   z-index: 3000;
   pointer-events: none;
+  -webkit-font-smoothing: antialiased;
 }
 
 /* estado visible */
 #muebles-submenu.open {
   visibility: visible;
   opacity: 1;
-  transform: translateY(0);
+  transform: translateY(0) scale(1);
   pointer-events: auto;
 }
+
+/* Links / botones dentro del submenu (asegura que sean foco-navegables) */
+#muebles-submenu a,
+#muebles-submenu button {
+  display: block;
+  width: 100%;
+  padding: 10px 14px;
+  text-decoration: none;
+  color: #f6f5f3;              /* texto claro sobre negro */
+  background: transparent;
+  border: none;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+/* detalle visual dorado a la izquierda (acento) */
+#muebles-submenu a::before,
+#muebles-submenu button::before {
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  width: 6px;
+  height: 100%;
+  margin-right: 10px;
+  border-radius: 4px;
+  background: linear-gradient(180deg, #D4AF37 0%, #C89A2D 100%);
+  box-shadow: 0 0 8px rgba(212,175,55,0.06);
+}
+
+/* hover / focus (accesible) */
+#muebles-submenu a:hover,
+#muebles-submenu a:focus,
+#muebles-submenu button:hover,
+#muebles-submenu button:focus {
+  background: linear-gradient(90deg, rgba(212,175,55,0.06), rgba(255,255,255,0.02));
+  color: #ffffff;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(212,175,55,0.07);
+}
+
+/* separador fino dorado (opcional usar <div class="divider">) */
+#muebles-submenu .divider {
+  height: 1px;
+  margin: 6px 0;
+  background: linear-gradient(90deg, rgba(212,175,55,0.06), rgba(212,175,55,0));
+  border-radius: 1px;
+  opacity: 0.7;
+}
+
+/* pequeño ajuste responsive: en pantallas chicas mover a la derecha y ocultar acento */
+@media (max-width: 640px) {
+  #muebles-submenu {
+    left: auto;
+    right: 6px;
+    min-width: 180px;
+    max-width: 260px;
+  }
+  #muebles-submenu a::before,
+  #muebles-submenu button::before { display: none; }
+}
+
 
 /* asegurar que los hijos ocupen fila completa */
 #muebles-submenu > * {
@@ -944,7 +933,7 @@
         <img src="camas/cama1.webp" alt="Cama moderna 1">
         <h3>Cama Moderna 1</h3>
         <p>Disponible en tamaño 3/4, Camera, Queen, King y de todos los colores.</p>
-        <select id="cama1-tamano">
+        <select id="muebles y descanso/cama1-tamano">
          <option value="165000">3/4(1.90cm x 1.20cm) - $165,000</option>
          <option value="170000">Camera(1.90cm x 135cm) - $170,000</option>
          <option value="180000">Queen(1.90 o 2m x 1.60cm) - $180,000</option>
@@ -955,7 +944,7 @@
 
       <!-- Cama 2 -->
       <div class="producto">
-        <img src="camas/cama2.webp" alt="Cama moderna 2" loading="lazy">
+        <img src="muebles y descanso/camas/cama2.webp" alt="Cama moderna 2" loading="lazy">
         <h3>Cama Moderna 2</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama2-tamano">
@@ -969,7 +958,7 @@
 
       <!-- Cama 3 -->
       <div class="producto">
-        <img src="camas/cama3.webp" alt="Cama moderna 3" loading="lazy">
+        <img src="muebles y descanso/camas/cama3.webp" alt="Cama moderna 3" loading="lazy">
         <h3>Cama Moderna 3</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama3-tamano">
@@ -983,7 +972,7 @@
 
       <!-- Cama 4 -->
       <div class="producto">
-        <img src="camas/cama4.webp" alt="Cama moderna 4" loading="lazy">
+        <img src="muebles y descanso/camas/cama4.webp" alt="Cama moderna 4" loading="lazy">
         <h3>Cama Moderna 4</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama4-tamano">
@@ -997,7 +986,7 @@
 
       <!-- Cama 5 -->
       <div class="producto">
-        <img src="camas/cama5.webp" alt="Cama moderna 5" loading="lazy">
+        <img src="muebles y descanso/camas/cama5.webp" alt="Cama moderna 5" loading="lazy">
         <h3>Cama Moderna 5</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama5-tamano">
@@ -1011,7 +1000,7 @@
       
       <!-- Cama 6 -->
       <div class="producto">
-        <img src="camas/cama6.webp" alt="Cama moderna 6" loading="lazy">
+        <img src="muebles y descanso/camas/cama6.webp" alt="Cama moderna 6" loading="lazy">
         <h3>Cama Moderna 6</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama6-tamano">
@@ -1025,7 +1014,7 @@
       
       <!-- Cama 7 -->
       <div class="producto">
-        <img src="camas/cama7.webp" alt="Cama Moderna 7" loading="lazy">
+        <img src="muebles y descanso/camas/cama7.webp" alt="Cama Moderna 7" loading="lazy">
         <h3>Cama Moderna 7</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño de listas de muy buen confort</p>
         <select id="cama7-tamano">
@@ -1039,7 +1028,7 @@
 
       <!-- Cama 8 -->
       <div class="producto">
-        <img src="camas/cama8.webp" alt="Cama Moderna 8" loading="lazy">
+        <img src="muebles y descanso/camas/cama8.webp" alt="Cama Moderna 8" loading="lazy">
         <h3>Cama Moderna 8</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño cabecera plateada de Charol</p>
         <select id="cama8-tamano">
@@ -1053,7 +1042,7 @@
 
       <!-- Cama 9 -->
       <div class="producto">
-        <img src="camas/cama9.webp" alt="Cama Moderna 9" loading="lazy">
+        <img src="muebles y descanso/camas/cama9.webp" alt="Cama Moderna 9" loading="lazy">
         <h3>Cama Moderna 9</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. </p>
         <select id="cama9-tamano">
@@ -1067,7 +1056,7 @@
 
       <!-- Cama 10 -->
       <div class="producto">
-        <img src="camas/cama10.webp" alt="Cama Moderna 10" loading="lazy">
+        <img src="muebles y descanso/camas/cama10.webp" alt="Cama Moderna 10" loading="lazy">
         <h3>Cama Moderna 10</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama10-tamano">
@@ -1081,7 +1070,7 @@
       
       <!-- Cama 11 -->
       <div class="producto">
-        <img src="camas/cama11.webp" alt="Cama Moderna 11" loading="lazy">
+        <img src="muebles y descanso/camas/cama11.webp" alt="Cama Moderna 11" loading="lazy">
         <h3>Cama Moderna 11</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama11-tamano">
@@ -1095,7 +1084,7 @@
       
       <!-- Cama 12 -->
       <div class="producto">
-        <img src="camas/cama12.webp" alt="Cama Moderna 12" loading="lazy">
+        <img src="muebles y descanso/camas/cama12.webp" alt="Cama Moderna 12" loading="lazy">
         <h3>Cama Moderna 12</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama12-tamano">
@@ -1109,7 +1098,7 @@
       
       <!-- Cama 13 -->
       <div class="producto">
-        <img src="camas/cama13.webp" alt="Cama Moderna 13" loading="lazy">
+        <img src="muebles y descanso/camas/cama13.webp" alt="Cama Moderna 13" loading="lazy">
         <h3>Cama Moderna 13</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama13-tamano">
@@ -1123,7 +1112,7 @@
       
       <!-- Cama 14 -->
       <div class="producto">
-        <img src="camas/cama14.webp" alt="Cama Moderna 14" loading="lazy">
+        <img src="muebles y descanso/camas/cama14.webp" alt="Cama Moderna 14" loading="lazy">
         <h3>Cama Moderna 14</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama14-tamano">
@@ -1137,7 +1126,7 @@
       
       <!-- Cama 15 -->
       <div class="producto">
-        <img src="camas/cama15.webp" alt="Cama Moderna 15" loading="lazy">
+        <img src="muebles y descanso/camas/cama15.webp" alt="Cama Moderna 15" loading="lazy">
         <h3>Cama Moderna 15</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama15-tamano">
@@ -1151,7 +1140,7 @@
       
             <!-- Cama 16 -->
       <div class="producto">
-        <img src="camas/cama16.webp" alt="Cama Moderna 16" loading="lazy">
+        <img src="muebles y descanso/camas/cama16.webp" alt="Cama Moderna 16" loading="lazy">
         <h3>Cama Moderna 16</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama16-tamano">
@@ -1165,7 +1154,7 @@
 
                   <!-- Cama 17 -->
       <div class="producto">
-        <img src="camas/cama17.webp" alt="Cama Moderna 17" loading="lazy">
+        <img src="muebles y descanso/camas/cama17.webp" alt="Cama Moderna 17" loading="lazy">
         <h3>Cama Moderna 17</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama17-tamano">
@@ -1179,7 +1168,7 @@
 
                   <!-- Cama 18 -->
       <div class="producto">
-        <img src="camas/cama18.webp" alt="Cama Moderna 18" loading="lazy">
+        <img src="muebles y descanso/camas/cama18.webp" alt="Cama Moderna 18" loading="lazy">
         <h3>Cama Moderna 18</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama18-tamano">
@@ -1193,7 +1182,7 @@
 
                   <!-- Cama 19 -->
       <div class="producto">
-        <img src="camas/cama19.webp" alt="Cama Moderna 19" loading="lazy">
+        <img src="muebles y descanso/camas/cama19.webp" alt="Cama Moderna 19" loading="lazy">
         <h3>Cama Moderna 19</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama19-tamano">
@@ -1207,7 +1196,7 @@
 
                   <!-- Cama 20 -->
       <div class="producto">
-        <img src="camas/cama20.webp" alt="Cama Moderna 20" loading="lazy">
+        <img src="muebles y descanso/camas/cama20.webp" alt="Cama Moderna 20" loading="lazy">
         <h3>Cama Moderna 20</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama20-tamano">
@@ -1221,7 +1210,7 @@
       
       <!-- Cama 21 -->
       <div class="producto">
-        <img src="camas/cama21.webp" alt="Cama Moderna 21" loading="lazy">
+        <img src="muebles y descanso/camas/cama21.webp" alt="Cama Moderna 21" loading="lazy">
         <h3>Cama Moderna 21</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <p>Diseño de cabecera Capitoneada y con Charol Plateado. </p>
@@ -1236,7 +1225,7 @@
 
       <!-- Cama 22 -->
       <div class="producto">
-        <img src="camas/cama22.webp" alt="Cama Moderna 22" loading="lazy">
+        <img src="muebles y descanso/camas/cama22.webp" alt="Cama Moderna 22" loading="lazy">
         <h3>Cama Moderna 22</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <p>Diseño de cabecera Capitoneada y con Charol Plateado. </p>
@@ -1251,7 +1240,7 @@
 
       <!-- Cama 23 -->
       <div class="producto">
-        <img src="camas/cama23.webp" alt="Cama Moderna 23" loading="lazy">
+        <img src="muebles y descanso/camas/cama23.webp" alt="Cama Moderna 23" loading="lazy">
         <h3>Cama Moderna 23</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama23-tamano">
@@ -1265,7 +1254,7 @@
 
       <!-- Cama 24 -->
       <div class="producto">
-        <img src="camas/cama24.webp" alt="Cama Moderna 24" loading="lazy">
+        <img src="muebles y descanso/camas/cama24.webp" alt="Cama Moderna 24" loading="lazy">
         <h3>Cama Moderna 24</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama24-tamano">
@@ -1279,7 +1268,7 @@
 
       <!-- Cama 25 -->
       <div class="producto">
-        <img src="camas/cama25.webp" alt="Cama Moderna 25" loading="lazy">
+        <img src="muebles y descanso/camas/cama25.webp" alt="Cama Moderna 25" loading="lazy">
         <h3>Cama Moderna 25</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama25">
@@ -1293,7 +1282,7 @@
 
       <!-- Cama 26 -->
       <div class="producto">
-        <img src="camas/cama26.webp" alt="Cama Moderna 26" loading="lazy">
+        <img src="muebles y descanso/camas/cama26.webp" alt="Cama Moderna 26" loading="lazy">
         <h3>Cama Moderna 26</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama26-tamano">
@@ -1307,7 +1296,7 @@
 
       <!-- Cama 27 -->
       <div class="producto">
-        <img src="camas/cama27.webp" alt="Cama Moderna 27" loading="lazy">
+        <img src="muebles y descanso/camas/cama27.webp" alt="Cama Moderna 27" loading="lazy">
         <h3>Cama Moderna 27</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama27-tamano">
@@ -1321,7 +1310,7 @@
 
       <!-- Cama 28 -->
       <div class="producto">
-        <img src="camas/cama28.webp" alt="Cama Moderna 28" loading="lazy">
+        <img src="muebles y descanso/camas/cama28.webp" alt="Cama Moderna 28" loading="lazy">
         <h3>Cama Moderna 28</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama28-tamano">
@@ -1335,7 +1324,7 @@
 
       <!-- Cama 29 -->
       <div class="producto">
-        <img src="camas/cama29.webp" alt="Cama Moderna 29" loading="lazy">
+        <img src="muebles y descanso/camas/cama29.webp" alt="Cama Moderna 29" loading="lazy">
         <h3>Cama Moderna 29</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama29-tamano">
@@ -1349,7 +1338,7 @@
 
       <!-- Cama 30 -->
       <div class="producto">
-        <img src="camas/cama30.webp" alt="Cama Moderna 30" loading="lazy">
+        <img src="muebles y descanso/camas/cama30.webp" alt="Cama Moderna 30" loading="lazy">
         <h3>Cama Moderna 30</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama30-tamano">
@@ -1363,7 +1352,7 @@
 
       <!-- Cama 31 -->
       <div class="producto">
-        <img src="camas/cama31.webp" alt="Cama Moderna 31" loading="lazy">
+        <img src="muebles y descanso/camas/cama31.webp" alt="Cama Moderna 31" loading="lazy">
         <h3>Cama Moderna 31</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama31-tamano">
@@ -1377,7 +1366,7 @@
 
       <!-- Cama 32 -->
       <div class="producto">
-        <img src="camas/cama32.webp" alt="Cama Moderna 32" loading="lazy">
+        <img src="muebles y descanso/camas/cama32.webp" alt="Cama Moderna 32" loading="lazy">
         <h3>Cama Moderna 32</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño de la cabecera es de lista</p>
         <select id="cama32-tamano">
@@ -1391,7 +1380,7 @@
 
       <!-- Cama 33 -->
       <div class="producto">
-        <img src="camas/cama33.webp" alt="Cama Moderna 33" loading="lazy">
+        <img src="muebles y descanso/camas/cama33.webp" alt="Cama Moderna 33" loading="lazy">
         <h3>Cama Moderna 33</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama33-tamano">
@@ -1405,7 +1394,7 @@
 
       <!-- Cama 34 -->
       <div class="producto">
-        <img src="camas/cama34.webp" alt="Cama Moderna 34" loading="lazy">
+        <img src="muebles y descanso/camas/cama34.webp" alt="Cama Moderna 34" loading="lazy">
         <h3>Cama Moderna 34</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama34-tamano">
@@ -1419,7 +1408,7 @@
 
       <!-- Cama 35 -->
       <div class="producto">
-        <img src="camas/cama35.webp" alt="Cama Moderna 35" loading="lazy">
+        <img src="muebles y descanso/camas/cama35.webp" alt="Cama Moderna 35" loading="lazy">
         <h3>Cama Moderna 35</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama35-tamano">
@@ -1433,7 +1422,7 @@
 
       <!-- Cama 36 -->
       <div class="producto">
-        <img src="camas/cama36.webp" alt="Cama Moderna 36" loading="lazy">
+        <img src="muebles y descanso/camas/cama36.webp" alt="Cama Moderna 36" loading="lazy">
         <h3>Cama Moderna 36</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama36-tamano">
@@ -1447,7 +1436,7 @@
 
       <!-- Cama 37 -->
       <div class="producto">
-        <img src="camas/cama37.webp" alt="Cama Moderna 37" loading="lazy">
+        <img src="muebles y descanso/camas/cama37.webp" alt="Cama Moderna 37" loading="lazy">
         <h3>Cama Moderna 37</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama37-tamano">
@@ -1461,7 +1450,7 @@
 
       <!-- Cama 38 -->
       <div class="producto">
-        <img src="camas/cama38.webp" alt="Cama Moderna 38" loading="lazy">
+        <img src="muebles y descanso/camas/cama38.webp" alt="Cama Moderna 38" loading="lazy">
         <h3>Cama Moderna 38</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama38-tamano">
@@ -1475,7 +1464,7 @@
 
       <!-- Cama 39 -->
       <div class="producto">
-        <img src="camas/cama39.webp" alt="Cama Moderna 39" loading="lazy">
+        <img src="muebles y descanso/camas/cama39.webp" alt="Cama Moderna 39" loading="lazy">
         <h3>Cama Moderna 39</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama39-tamano">
@@ -1489,7 +1478,7 @@
 
       <!-- Cama 40 -->
       <div class="producto">
-        <img src="camas/cama40.webp" alt="Cama Moderna 40" loading="lazy">
+        <img src="muebles y descanso/camas/cama40.webp" alt="Cama Moderna 40" loading="lazy">
         <h3>Cama Moderna 40</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama40-tamano">
@@ -1514,7 +1503,7 @@
        
       <!-- 🛋️ Mueble 1 -->
       <div class="producto">
-        <img src="muebles-l/mueble1.webp" alt="Mueble L1" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble1.webp" alt="Mueble L1" loading="lazy">
         <h3>Mueble en L de Lujo</h3>
         <p>✨ Confort y elegancia que transforman tu sala.</p>
         <p class="precio">💰 $195,000</p>
@@ -1523,7 +1512,7 @@
 
       <!-- 🛋️ Mueble 2 -->
       <div class="producto">
-        <img src="muebles-l/mueble2.webp" alt="Mueble L2" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble2.webp" alt="Mueble L2" loading="lazy">
        <h3>Mueble en L de Lujo </h3>
        <p>🌟 Diseño fino y moderno para un hogar con estilo.</p>
        <p class="precio">💰 $210,000</p>
@@ -1532,7 +1521,7 @@
 
       <!-- 🛋️ Mueble 3 -->
       <div class="producto">
-        <img src="muebles-l/mueble3.webp" alt="Mueble L3" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble3.webp" alt="Mueble L3" loading="lazy">
         <h3>Mueble en L </h3>
         <p>🛋️ Elegancia y comodidad en perfecta armonía.</p>
         <p class="precio">💰 $170,000</p>
@@ -1541,7 +1530,7 @@
 
       <!-- 🛋️ Mueble 4 -->
       <div class="producto">
-        <img src="muebles-l/mueble4.webp" alt="Mueble L4" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble4.webp" alt="Mueble L4" loading="lazy">
         <h3>Mueble en L de Lujo</h3>
         <p>✨Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1550,7 +1539,7 @@
 
       <!-- 🛋️ Mueble 5 -->
       <div class="producto">
-        <img src="muebles-l/mueble5.webp" alt="Mueble L5" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble5.webp" alt="Mueble L5" loading="lazy">
         <h3>Mueble en L de Lujo</h3>
         <p>🏛️Diseño moderno con acabados premium. Ideal para espacios amplios.</p>
         <p class="precio">💰 $480,000</p>
@@ -1559,7 +1548,7 @@
 
       <!-- 🛋️ Mueble 6 -->
       <div class="producto">
-        <img src="muebles-l/mueble6.webp" alt="Mueble L6" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble6.webp" alt="Mueble L6" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>🏡 Ideal para crear un espacio acogedor y sofisticado.</p>
         <p class="precio">💰 $165,000</p>
@@ -1568,7 +1557,7 @@
 
       <!-- 🛋️ Mueble 7 -->
       <div class="producto">
-        <img src="muebles-l/mueble7.webp" alt="Mueble L7" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble7.webp" alt="Mueble L7" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>🛋️Elegancia y confort en cada rincón: seccional gris, Butaca Curva y detalles que inspiran.</p>
         <p class="precio">💰 $210,000</p>
@@ -1577,7 +1566,7 @@
       
       <!-- 🛋️ Mueble 8 -->
       <div class="producto">
-        <img src="muebles-l/mueble8.webp" alt="Mueble L8" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble8.webp" alt="Mueble L8" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>🖤Estilo minimalista con impacto visual: líneas modernas en blanco y negro para espacios únicos.</p>
         <p class="precio">💰 $145,000</p>
@@ -1586,7 +1575,7 @@
       
       <!-- 🛋️ Mueble 9 -->
       <div class="producto">
-        <img src="muebles-l/mueble9.webp" alt="Mueble L9" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble9.webp" alt="Mueble L9" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $190,000</p>
@@ -1595,7 +1584,7 @@
       
       <!-- 🛋️ Mueble 10 -->
       <div class="producto">
-        <img src="muebles-l/mueble10.webp" alt="Mueble L10" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble10.webp" alt="Mueble L10" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Diseño contemporáneo en blanco y negro: elegancia que transforma tu espacio.</p>
         <p class="precio">💰 $165,000</p>
@@ -1604,7 +1593,7 @@
 
       <!-- 🛋️ Mueble 11 -->
       <div class="producto">
-        <img src="muebles-l/mueble11.webp" alt="Mueble L11" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble11.webp" alt="Mueble L11" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $162,000</p>
@@ -1613,7 +1602,7 @@
 
       <!-- 🛋️ Mueble 12 -->
       <div class="producto">
-        <img src="muebles-l/mueble12.webp" alt="Mueble L12" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble12.webp" alt="Mueble L12" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $214,000</p>
@@ -1622,7 +1611,7 @@
 
       <!-- 🛋️ Mueble 13 -->
       <div class="producto">
-        <img src="muebles-l/mueble13.webp" alt="Mueble L13" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble13.webp" alt="Mueble L13" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1631,7 +1620,7 @@
 
       <!-- 🛋️ Mueble 14 -->
       <div class="producto">
-        <img src="muebles-l/mueble14.webp" alt="Mueble L14" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble14.webp" alt="Mueble L14" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $290,000</p>
@@ -1640,7 +1629,7 @@
       
       <!-- 🛋️ Mueble 15 -->
       <div class="producto">
-        <img src="muebles-l/mueble15.webp" alt="Mueble L15" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble15.webp" alt="Mueble L15" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $155,000</p>
@@ -1649,7 +1638,7 @@
 
       <!-- 🛋️ Mueble 16 -->
       <div class="producto">
-        <img src="muebles-l/mueble16.webp" alt="Mueble L16" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble16.webp" alt="Mueble L16" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>sofá blanco en L de 7 plaza con mesa de diseño para ambientes sofisticados.</p>
         <p class="precio">💰 $215,000</p>
@@ -1658,7 +1647,7 @@
 
       <!-- 🛋️ Mueble 17 -->
       <div class="producto">
-        <img src="muebles-l/mueble17.webp" alt="Mueble L17" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble17.webp" alt="Mueble L17" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $230,000</p>
@@ -1667,7 +1656,7 @@
 
       <!-- 🛋️ Mueble 18 -->
       <div class="producto">
-        <img src="muebles-l/mueble18.webp" alt="Mueble L10" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble18.webp" alt="Mueble L10" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1676,7 +1665,7 @@
 
       <!-- 🛋️ Mueble 19 -->
       <div class="producto">
-        <img src="muebles-l/mueble19.webp" alt="Mueble L19" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble19.webp" alt="Mueble L19" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $140,000</p>
@@ -1685,7 +1674,7 @@
 
       <!-- 🛋️ Mueble 20 -->
       <div class="producto">
-        <img src="muebles-l/mueble20.webp" alt="Mueble L20" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble20.webp" alt="Mueble L20" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $210,000</p>
@@ -1694,7 +1683,7 @@
 
       <!-- 🛋️ Mueble 21 -->
       <div class="producto">
-        <img src="muebles-l/mueble21.webp" alt="Mueble L21" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble21.webp" alt="Mueble L21" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $400,000</p>
@@ -1703,7 +1692,7 @@
 
       <!-- 🛋️ Mueble 22 -->
       <div class="producto">
-        <img src="muebles-l/mueble22.webp" alt="Mueble L22" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble22.webp" alt="Mueble L22" loading="lazy">
         <h3>Mueble en L Lujoso</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $600,000</p>
@@ -1712,7 +1701,7 @@
 
       <!-- 🛋️ Mueble 23 -->
       <div class="producto">
-        <img src="muebles-l/mueble23.webp" alt="Mueble L23" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble23.webp" alt="Mueble L23" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $285,000</p>
@@ -1721,7 +1710,7 @@
       
       <!-- 🛋️ Mueble 24 -->
       <div class="producto">
-        <img src="muebles-l/mueble24.webp" alt="Mueble L24" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble24.webp" alt="Mueble L24" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $120,000</p>
@@ -1730,7 +1719,7 @@
 
       <!-- 🛋️ Mueble 25 -->
       <div class="producto">
-        <img src="muebles-l/mueble25.webp" alt="Mueble L25" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble25.webp" alt="Mueble L25" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $135,000</p>
@@ -1739,7 +1728,7 @@
 
       <!-- 🛋️ Mueble 26 -->
       <div class="producto">
-        <img src="muebles-l/mueble26.webp" alt="Mueble L26" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble26.webp" alt="Mueble L26" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $165,000</p>
@@ -1748,7 +1737,7 @@
 
       <!-- 🛋️ Mueble 27 -->
       <div class="producto">
-        <img src="muebles-l/mueble27.webp" alt="Mueble L27" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble27.webp" alt="Mueble L27" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $180,000</p>
@@ -1757,7 +1746,7 @@
 
       <!-- 🛋️ Mueble 28 -->
       <div class="producto">
-        <img src="muebles-l/mueble28.webp" alt="Mueble L28" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble28.webp" alt="Mueble L28" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $275,000</p>
@@ -1766,7 +1755,7 @@
 
       <!-- 🛋️ Mueble 29 -->
       <div class="producto">
-        <img src="muebles-l/mueble29.webp" alt="Mueble L29" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble29.webp" alt="Mueble L29" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $185,000</p>
@@ -1775,7 +1764,7 @@
 
       <!-- 🛋️ Mueble 30 -->
       <div class="producto">
-        <img src="muebles-l/mueble30.webp" alt="Mueble L30" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble30.webp" alt="Mueble L30" loading="lazy">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $270,000</p>
@@ -1803,7 +1792,7 @@
 
       <!-- 🪶 Capitoneado 2 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala2.webp" alt="Capitoneado 2" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala2.webp" alt="Capitoneado 2" loading="lazy">
         <h3>Mueble Capitoneado Real</h3>
         <p>Estilo elegante con tapizado premium.</p>
         <p class="precio">💰 $270,000</p>
@@ -1812,7 +1801,7 @@
 
       <!-- 🪶 Capitoneado 3 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala3.webp" alt="Capitoneado 3" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala3.webp" alt="Capitoneado 3" loading="lazy">
         <h3>Mueble Capitoneado Lujoso</h3>
         <p>🌟 Detalles de lujo pensados para quienes aman lo exclusivo.</p>
         <p class="precio">💰 $560,000</p>
@@ -1821,7 +1810,7 @@
 
       <!-- 🪶 Capitoneado 4 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala4.webp" alt="Capitoneado 4" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala4.webp" alt="Capitoneado 4" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -1830,7 +1819,7 @@
 
       <!-- 🪶 Capitoneado 5 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala5.webp" alt="Capitoneado 5" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala5.webp" alt="Capitoneado 5" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $460,000</p>
@@ -1839,7 +1828,7 @@
 
       <!-- 🪶 Capitoneado 6 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala6.webp" alt="Capitoneado 6" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala6.webp" alt="Capitoneado 6" loading="lazy">
         <h3>Confort y diseño elegante en un solo mueble.</h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $260,000</p>
@@ -1848,7 +1837,7 @@
 
       <!-- 🪶 Capitoneado 7 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala7.webp" alt="Capitoneado 7" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala7.webp" alt="Capitoneado 7" loading="lazy">
         <h3>Mueble Capitoneado en L Lujoso </h3>
         <p>🌟 Diseño de lujo que refleja distinción y buena calidad.</p>
         <p class="precio">💰 $650,000</p>
@@ -1857,7 +1846,7 @@
 
       <!-- 🪶 Capitoneado 8 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala8.webp" alt="Capitoneado 8" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala8.webp" alt="Capitoneado 8" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $480,000</p>
@@ -1866,7 +1855,7 @@
 
       <!-- 🪶 Capitoneado 9 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala9.webp" alt="Capitoneado 9" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala9.webp" alt="Capitoneado 9" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $220,000</p>
@@ -1875,7 +1864,7 @@
 
       <!-- 🪶 Capitoneado 10 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala10.webp" alt="Capitoneado 10" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala10.webp" alt="Capitoneado 10" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -1884,7 +1873,7 @@
 
       <!-- 🪶 Capitoneado 11 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala11.webp" alt="Capitoneado 11" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala11.webp" alt="Capitoneado 11" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $470,000</p>
@@ -1893,7 +1882,7 @@
 
       <!-- 🪶 Capitoneado 12 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala12.webp" alt="Capitoneado 12" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala12.webp" alt="Capitoneado 12" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $560,000</p>
@@ -1902,7 +1891,7 @@
 
       <!-- 🪶 Capitoneado 13 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala13.webp" alt="Capitoneado 13" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala13.webp" alt="Capitoneado 13" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -1911,7 +1900,7 @@
 
       <!-- 🪶 Capitoneado 14 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala14.webp" alt="Capitoneado 14" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala14.webp" alt="Capitoneado 14" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $225,000</p>
@@ -1920,7 +1909,7 @@
 
       <!-- 🪶 Capitoneado 15 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala15.webp" alt="Capitoneado 15" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala15.webp" alt="Capitoneado 15" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $330,000</p>
@@ -1929,7 +1918,7 @@
 
       <!-- 🪶 Capitoneado 16 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala16.webp" alt="Capitoneado 16" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala16.webp" alt="Capitoneado 16" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $470,000</p>
@@ -1938,7 +1927,7 @@
 
       <!-- 🪶 Capitoneado 17 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala17.webp" alt="Capitoneado 17" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala17.webp" alt="Capitoneado 17" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $350,000</p>
@@ -1947,7 +1936,7 @@
 
       <!-- 🪶 Capitoneado 18 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala18.webp" alt="Capitoneado 18" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala18.webp" alt="Capitoneado 18" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $240,000</p>
@@ -1956,7 +1945,7 @@
 
       <!-- 🪶 Capitoneado 19 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala19.webp" alt="Capitoneado 19" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala19.webp" alt="Capitoneado 19" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -1965,7 +1954,7 @@
 
       <!-- 🪶 Capitoneado 20 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala20.webp" alt="Capitoneado 20" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala20.webp" alt="Capitoneado 20" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -1974,7 +1963,7 @@
 
       <!-- 🪶 Capitoneado 21 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala21.webp" alt="Capitoneado 21" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala21.webp" alt="Capitoneado 21" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $300,000</p>
@@ -1983,7 +1972,7 @@
 
       <!-- 🪶 Capitoneado 22 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala22.webp" alt="Capitoneado 22" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala22.webp" alt="Capitoneado 22" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $530,000</p>
@@ -1992,7 +1981,7 @@
 
       <!-- 🪶 Capitoneado 23 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala23.webp" alt="Capitoneado 23" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala23.webp" alt="Capitoneado 23" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -2001,7 +1990,7 @@
 
       <!-- 🪶 Capitoneado 24 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala24.webp" alt="Capitoneado 24" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala24.webp" alt="Capitoneado 24" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $255,000</p>
@@ -2010,7 +1999,7 @@
 
       <!-- 🪶 Capitoneado 25 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala25.webp" alt="Capitoneado 25" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala25.webp" alt="Capitoneado 25" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $350,000</p>
@@ -2019,7 +2008,7 @@
 
       <!-- 🪶 Capitoneado 26 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala26.webp" alt="Capitoneado 26" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala26.webp" alt="Capitoneado 26" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $410,000</p>
@@ -2028,7 +2017,7 @@
 
       <!-- 🪶 Capitoneado 27 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala27.webp" alt="Capitoneado 27" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala27.webp" alt="Capitoneado 27" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $280,000</p>
@@ -2037,7 +2026,7 @@
 
       <!-- 🪶 Capitoneado 28 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala28.webp" alt="Capitoneado 28" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala28.webp" alt="Capitoneado 28" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $250,000</p>
@@ -2046,7 +2035,7 @@
 
       <!-- 🪶 Capitoneado 29 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala29.webp" alt="Capitoneado 29" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala29.webp" alt="Capitoneado 29" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $650,000</p>
@@ -2055,7 +2044,7 @@
 
       <!-- 🪶 Capitoneado 30 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala30.webp" alt="Capitoneado 30" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala30.webp" alt="Capitoneado 30" loading="lazy">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $440,000</p>
