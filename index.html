@@ -839,7 +839,12 @@ nav a:hover, nav button:hover {
    }
   
 
-  </style>
+  
+    /* 2 cols mobile text adjust */
+    .producto h3 { font-size: 1.1em !important; }
+    .producto .precio { font-size: 1.1rem !important; }
+    .producto button { padding: 8px 10px !important; font-size: 0.9rem !important; }
+    </style>
 
   <style id="mobile-first-css">
     /* --- REDISEÑO MOBILE-FIRST --- */
@@ -847,8 +852,8 @@ nav a:hover, nav button:hover {
     /* 1. Base para la galería (1 columna en móviles) */
     .galeria, .seccion-productos .galeria, div.galeria {
       display: grid !important;
-      grid-template-columns: 1fr !important;
-      gap: 20px !important;
+      grid-template-columns: repeat(2, 1fr) !important;
+      gap: 10px !important;
       padding: 10px !important;
       width: 100% !important;
       box-sizing: border-box !important;
