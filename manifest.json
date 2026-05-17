@@ -1,0 +1,28 @@
+{
+  "name": "Primera Mano - Catálogo",
+  "short_name": "Primera Mano",
+  "description": "Productos de primera mano: muebles, electrodomésticos, combos y más. Importados y fabricados en Cuba.",
+  "start_url": "/1-Primera-Mano/",
+  "scope": "/1-Primera-Mano/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#d4af37",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["shopping", "lifestyle"],
+  "lang": "es",
+  "dir": "ltr"
+}
