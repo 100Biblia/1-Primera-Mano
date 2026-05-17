@@ -842,6 +842,97 @@ nav a:hover, nav button:hover {
   
 
   </style>
+
+  <style id="mobile-first-css">
+    /* --- REDISEÑO MOBILE-FIRST --- */
+    
+    /* 1. Base para la galería (1 columna en móviles) */
+    .galeria, .seccion-productos .galeria, div.galeria {
+      display: grid !important;
+      grid-template-columns: 1fr !important;
+      gap: 20px !important;
+      padding: 10px !important;
+      width: 100% !important;
+      box-sizing: border-box !important;
+    }
+
+    /* 2. Tarjetas de producto centradas y adaptables */
+    .producto {
+      width: 100% !important;
+      max-width: 400px !important;
+      margin: 0 auto !important;
+      text-align: center !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      box-sizing: border-box !important;
+    }
+
+    .producto img {
+      width: 100% !important;
+      max-width: 300px !important;
+      height: auto !important;
+      margin: 0 auto 10px auto !important;
+      border-radius: 8px !important;
+    }
+
+    /* 3. Textos y botones centrados */
+    .producto h3, .producto p, .producto .precio {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    .producto button, .producto select {
+      width: 90% !important;
+      max-width: 300px !important;
+      margin: 10px auto !important;
+      display: block !important;
+    }
+
+    /* 4. Navegación en móvil */
+    nav {
+      flex-wrap: wrap !important;
+      padding: 10px !important;
+      gap: 10px !important;
+    }
+    
+    nav a, nav button, #combos-toggle {
+      font-size: 0.9rem !important;
+      padding: 6px 10px !important;
+    }
+
+    header {
+      margin-top: 100px !important; /* Espacio extra para el nav envuelto */
+      padding: 20px 10px !important;
+    }
+
+    /* 5. Breakpoints para pantallas más grandes (Tablets / Desktop) */
+    @media (min-width: 600px) {
+      .galeria, .seccion-productos .galeria {
+        grid-template-columns: repeat(2, 1fr) !important;
+      }
+      nav { flex-wrap: nowrap !important; }
+      header { margin-top: 60px !important; }
+    }
+
+    @media (min-width: 900px) {
+      .galeria, .seccion-productos .galeria {
+        grid-template-columns: repeat(3, 1fr) !important;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .galeria, .seccion-productos .galeria {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+    }
+    
+    /* Prevenir overflow horizontal en body */
+    body {
+      overflow-x: hidden !important;
+      width: 100% !important;
+    }
+  </style>
 </head>
 <body>
 
