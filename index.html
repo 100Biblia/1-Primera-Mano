@@ -931,7 +931,54 @@ nav a:hover, nav button:hover {
       width: 100% !important;
     }
   </style>
-</head>
+
+      <style id="fix-visuals">
+        /* Filtro de agotado más agresivo para que funcione 100% */
+        .agotado { 
+          opacity: 0.4 !important; 
+          filter: grayscale(100%) !important; 
+          position: relative !important; 
+          pointer-events: none !important; /* Desactiva clicks */
+        }
+        
+        /* Asegurar que las imágenes viejas tengan lightbox pointer */
+        div.producto img {
+          cursor: zoom-in !important;
+        }
+
+        /* Letras blancas intensas para descripción, doradas para el precio */
+        .producto p, .producto h3 {
+          color: #ffffff !important;
+          text-shadow: 1px 1px 3px rgba(0,0,0,0.8) !important;
+        }
+        .producto .precio {
+          color: #d4af37 !important;
+          font-size: 1.3rem !important;
+          font-weight: 900 !important;
+        }
+        
+        /* Centrar todos los títulos de secciones */
+        section h2, .seccion-productos h2 {
+          text-align: center !important;
+          width: 100% !important;
+          display: block !important;
+          margin: 20px auto !important;
+          color: #d4af37 !important;
+        }
+        
+        /* Badge del carrito */
+        #contador-carrito {
+          background: #dc2626;
+          color: white;
+          border-radius: 50%;
+          padding: 2px 6px;
+          font-size: 0.8rem;
+          margin-left: 8px;
+          font-weight: bold;
+          vertical-align: top;
+        }
+      </style>
+    </head>
 <body>
 
   <header>
@@ -989,7 +1036,7 @@ nav a:hover, nav button:hover {
 
       <!-- AIR FRYER -->
       <div class="producto">
-        <img src="electrodomésticos/electro1.webp" alt="Air Fryer Royal 4L" loading="lazy">
+        <img src="electrodomésticos/electro1.webp" alt="Air Fryer Royal 4L" loading="lazy" onclick="abrirFoto('electrodomésticos/electro1.webp', 'Air Fryer Royal 4L')" style="pointer-events: auto;">
         <h3>Air Fryer Royal 4L</h3>
         <p class="precio">💵 $55</p>
         <p>USD</p>       
@@ -998,7 +1045,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🍃 Ventilador recargable F6 -->
       <div class="producto" style="position: relative;">
-        <img src="electrodomésticos/electro2.webp" alt="🍃 Ventilador recargable F6" loading="lazy">
+        <img src="electrodomésticos/electro2.webp" alt="🍃 Ventilador recargable F6" loading="lazy" onclick="abrirFoto('electrodomésticos/electro2.webp', '🍃 Ventilador recargable F6” Smart')" style="pointer-events: auto;">
         <h3>🍃 Ventilador recargable F6” Smart</h3>
         <p class="precio">💵 $40</p>
         <p>USD</p>        
@@ -1007,7 +1054,7 @@ nav a:hover, nav button:hover {
 
       <!-- COCINA DE KEROSENO -->
       <div class="producto">
-        <img src="electrodomésticos/electro3.webp" alt="Cocina de Keroseno BigWheel" loading="lazy">
+        <img src="electrodomésticos/electro3.webp" alt="Cocina de Keroseno BigWheel" loading="lazy" onclick="abrirFoto('electrodomésticos/electro3.webp', 'Cocina de Keroseno BigWheel')" style="pointer-events: auto;">
         <h3>Cocina de Keroseno BigWheel</h3>
         <p class="precio">💵 $36</p>
         <p>USD</p>
@@ -1016,7 +1063,7 @@ nav a:hover, nav button:hover {
 
       <!-- BOMBA DE AGUA -->
       <div class="producto">
-        <img src="electrodomésticos/electro4.webp" alt="Bomba de agua SP-QB60" loading="lazy">
+        <img src="electrodomésticos/electro4.webp" alt="Bomba de agua SP-QB60" loading="lazy" onclick="abrirFoto('electrodomésticos/electro4.webp', 'Bomba de Agua 1/2 HP')" style="pointer-events: auto;">
         <h3>Bomba de Agua 1/2 HP</h3>
         <p class="precio">💵 $36</p>
         <p>USD</p>       
@@ -1025,7 +1072,7 @@ nav a:hover, nav button:hover {
 
       <!-- LÁMPARA LED USB -->
       <div class="producto">
-        <img src="electrodomésticos/electro5.webp" alt="Lámpara LED USB" loading="lazy">
+        <img src="electrodomésticos/electro5.webp" alt="Lámpara LED USB" loading="lazy" onclick="abrirFoto('electrodomésticos/electro5.webp', 'Lámpara LED USB')" style="pointer-events: auto;">
         <h3>Lámpara LED USB</h3>
         <p class="precio">💵 $6</p>
         <p>USD</p>        
@@ -1034,7 +1081,7 @@ nav a:hover, nav button:hover {
 
       <!-- ARROCERA SACO 1.8L -->
       <div class="producto" style="position: relative;">
-        <img src="electrodomésticos/electro6.webp" alt="Arrocera SACO 1.8L" loading="lazy">
+        <img src="electrodomésticos/electro6.webp" alt="Arrocera SACO 1.8L" loading="lazy" onclick="abrirFoto('electrodomésticos/electro6.webp', 'Producto')" style="pointer-events: auto;">
         Arrocera SACO 1.8L (700W)
         <p class="precio">💵 $32</p>
         <p>USD</p>
@@ -1043,7 +1090,7 @@ nav a:hover, nav button:hover {
 
       <!-- OLLA DE PRESIÓN SACO 7L -->
       <div class="producto" style="position: relative;">
-        <img src="electrodomésticos/electro7.webp" alt="Olla de Presión Eléctrica SACO 7L" loading="lazy">
+        <img src="electrodomésticos/electro7.webp" alt="Olla de Presión Eléctrica SACO 7L" loading="lazy" onclick="abrirFoto('electrodomésticos/electro7.webp', 'Producto')" style="pointer-events: auto;">
         Olla de Presión SACO 7L
         <p class="precio">💵 $55</p>
         <p>USD</p>
@@ -1052,7 +1099,7 @@ nav a:hover, nav button:hover {
 
       <!-- LAVADORA ROYAL -->
       <div class="producto" style="position: relative;">
-        <img src="electrodomésticos/electro8.webp" alt="Lavadora Automática ROYAL" loading="lazy">
+        <img src="electrodomésticos/electro8.webp" alt="Lavadora Automática ROYAL" loading="lazy" onclick="abrirFoto('electrodomésticos/electro8.webp', 'Producto')" style="pointer-events: auto;">
         Lavadora Automática ROYAL
         <p class="precio">💵 $210</p>
         <p>USD</p>
@@ -1061,7 +1108,7 @@ nav a:hover, nav button:hover {
 
     <!-- AIR FRYER MILEXUS -->
       <div class="producto" style="position: relative;">
-        <img src="electrodomésticos/electro9.webp" alt="Air Fryer MILEXUS ML-AF-900" loading="lazy">
+        <img src="electrodomésticos/electro9.webp" alt="Air Fryer MILEXUS ML-AF-900" loading="lazy" onclick="abrirFoto('electrodomésticos/electro9.webp', 'Producto')" style="pointer-events: auto;">
         Freidora de Aire MILEXUS ML-AF-900
         <p class="precio">💵 $58</p>
         <p>USD</p>
@@ -1084,7 +1131,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 1 -->
       <div class="producto">
-        <img src="camas/cama1.webp" alt="Cama moderna 1">
+        <img src="camas/cama1.webp" alt="Cama moderna 1" onclick="abrirFoto('camas/cama1.webp', 'Cama Moderna 1')" style="pointer-events: auto;">
         <h3>Cama Moderna 1</h3>
         <p>Disponible en tamaño 3/4, Camera, Queen, King y de todos los colores.</p>
         <select id="muebles y descanso/cama1-tamano">
@@ -1098,7 +1145,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 2 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama2.webp" alt="Cama moderna 2" loading="lazy">
+        <img src="muebles y descanso/camas/cama2.webp" alt="Cama moderna 2" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama2.webp', 'Cama Moderna 2')" style="pointer-events: auto;">
         <h3>Cama Moderna 2</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama2-tamano">
@@ -1112,7 +1159,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 3 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama3.webp" alt="Cama moderna 3" loading="lazy">
+        <img src="muebles y descanso/camas/cama3.webp" alt="Cama moderna 3" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama3.webp', 'Cama Moderna 3')" style="pointer-events: auto;">
         <h3>Cama Moderna 3</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama3-tamano">
@@ -1126,7 +1173,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 4 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama4.webp" alt="Cama moderna 4" loading="lazy">
+        <img src="muebles y descanso/camas/cama4.webp" alt="Cama moderna 4" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama4.webp', 'Cama Moderna 4')" style="pointer-events: auto;">
         <h3>Cama Moderna 4</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama4-tamano">
@@ -1140,7 +1187,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 5 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama5.webp" alt="Cama moderna 5" loading="lazy">
+        <img src="muebles y descanso/camas/cama5.webp" alt="Cama moderna 5" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama5.webp', 'Cama Moderna 5')" style="pointer-events: auto;">
         <h3>Cama Moderna 5</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama5-tamano">
@@ -1154,7 +1201,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 6 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama6.webp" alt="Cama moderna 6" loading="lazy">
+        <img src="muebles y descanso/camas/cama6.webp" alt="Cama moderna 6" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama6.webp', 'Cama Moderna 6')" style="pointer-events: auto;">
         <h3>Cama Moderna 6</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama6-tamano">
@@ -1168,7 +1215,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 7 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama7.webp" alt="Cama Moderna 7" loading="lazy">
+        <img src="muebles y descanso/camas/cama7.webp" alt="Cama Moderna 7" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama7.webp', 'Cama Moderna 7')" style="pointer-events: auto;">
         <h3>Cama Moderna 7</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño de listas de muy buen confort</p>
         <select id="cama7-tamano">
@@ -1182,7 +1229,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 8 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama8.webp" alt="Cama Moderna 8" loading="lazy">
+        <img src="muebles y descanso/camas/cama8.webp" alt="Cama Moderna 8" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama8.webp', 'Cama Moderna 8')" style="pointer-events: auto;">
         <h3>Cama Moderna 8</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño cabecera plateada de Charol</p>
         <select id="cama8-tamano">
@@ -1196,7 +1243,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 9 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama9.webp" alt="Cama Moderna 9" loading="lazy">
+        <img src="muebles y descanso/camas/cama9.webp" alt="Cama Moderna 9" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama9.webp', 'Cama Moderna 9')" style="pointer-events: auto;">
         <h3>Cama Moderna 9</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. </p>
         <select id="cama9-tamano">
@@ -1210,7 +1257,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 10 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama10.webp" alt="Cama Moderna 10" loading="lazy">
+        <img src="muebles y descanso/camas/cama10.webp" alt="Cama Moderna 10" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama10.webp', 'Cama Moderna 10')" style="pointer-events: auto;">
         <h3>Cama Moderna 10</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama10-tamano">
@@ -1224,7 +1271,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 11 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama11.webp" alt="Cama Moderna 11" loading="lazy">
+        <img src="muebles y descanso/camas/cama11.webp" alt="Cama Moderna 11" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama11.webp', 'Cama Moderna 11')" style="pointer-events: auto;">
         <h3>Cama Moderna 11</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama11-tamano">
@@ -1238,7 +1285,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 12 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama12.webp" alt="Cama Moderna 12" loading="lazy">
+        <img src="muebles y descanso/camas/cama12.webp" alt="Cama Moderna 12" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama12.webp', 'Cama Moderna 12')" style="pointer-events: auto;">
         <h3>Cama Moderna 12</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama12-tamano">
@@ -1252,7 +1299,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 13 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama13.webp" alt="Cama Moderna 13" loading="lazy">
+        <img src="muebles y descanso/camas/cama13.webp" alt="Cama Moderna 13" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama13.webp', 'Cama Moderna 13')" style="pointer-events: auto;">
         <h3>Cama Moderna 13</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama13-tamano">
@@ -1266,7 +1313,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 14 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama14.webp" alt="Cama Moderna 14" loading="lazy">
+        <img src="muebles y descanso/camas/cama14.webp" alt="Cama Moderna 14" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama14.webp', 'Cama Moderna 14')" style="pointer-events: auto;">
         <h3>Cama Moderna 14</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama14-tamano">
@@ -1280,7 +1327,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 15 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama15.webp" alt="Cama Moderna 15" loading="lazy">
+        <img src="muebles y descanso/camas/cama15.webp" alt="Cama Moderna 15" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama15.webp', 'Cama Moderna 15')" style="pointer-events: auto;">
         <h3>Cama Moderna 15</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama15-tamano">
@@ -1294,7 +1341,7 @@ nav a:hover, nav button:hover {
       
             <!-- Cama 16 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama16.webp" alt="Cama Moderna 16" loading="lazy">
+        <img src="muebles y descanso/camas/cama16.webp" alt="Cama Moderna 16" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama16.webp', 'Cama Moderna 16')" style="pointer-events: auto;">
         <h3>Cama Moderna 16</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama16-tamano">
@@ -1308,7 +1355,7 @@ nav a:hover, nav button:hover {
 
                   <!-- Cama 17 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama17.webp" alt="Cama Moderna 17" loading="lazy">
+        <img src="muebles y descanso/camas/cama17.webp" alt="Cama Moderna 17" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama17.webp', 'Cama Moderna 17')" style="pointer-events: auto;">
         <h3>Cama Moderna 17</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama17-tamano">
@@ -1322,7 +1369,7 @@ nav a:hover, nav button:hover {
 
                   <!-- Cama 18 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama18.webp" alt="Cama Moderna 18" loading="lazy">
+        <img src="muebles y descanso/camas/cama18.webp" alt="Cama Moderna 18" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama18.webp', 'Cama Moderna 18')" style="pointer-events: auto;">
         <h3>Cama Moderna 18</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama18-tamano">
@@ -1336,7 +1383,7 @@ nav a:hover, nav button:hover {
 
                   <!-- Cama 19 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama19.webp" alt="Cama Moderna 19" loading="lazy">
+        <img src="muebles y descanso/camas/cama19.webp" alt="Cama Moderna 19" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama19.webp', 'Cama Moderna 19')" style="pointer-events: auto;">
         <h3>Cama Moderna 19</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama19-tamano">
@@ -1350,7 +1397,7 @@ nav a:hover, nav button:hover {
 
                   <!-- Cama 20 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama20.webp" alt="Cama Moderna 20" loading="lazy">
+        <img src="muebles y descanso/camas/cama20.webp" alt="Cama Moderna 20" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama20.webp', 'Cama Moderna 20')" style="pointer-events: auto;">
         <h3>Cama Moderna 20</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama20-tamano">
@@ -1364,7 +1411,7 @@ nav a:hover, nav button:hover {
       
       <!-- Cama 21 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama21.webp" alt="Cama Moderna 21" loading="lazy">
+        <img src="muebles y descanso/camas/cama21.webp" alt="Cama Moderna 21" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama21.webp', 'Cama Moderna 21')" style="pointer-events: auto;">
         <h3>Cama Moderna 21</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <p>Diseño de cabecera Capitoneada y con Charol Plateado. </p>
@@ -1379,7 +1426,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 22 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama22.webp" alt="Cama Moderna 22" loading="lazy">
+        <img src="muebles y descanso/camas/cama22.webp" alt="Cama Moderna 22" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama22.webp', 'Cama Moderna 22')" style="pointer-events: auto;">
         <h3>Cama Moderna 22</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <p>Diseño de cabecera Capitoneada y con Charol Plateado. </p>
@@ -1394,7 +1441,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 23 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama23.webp" alt="Cama Moderna 23" loading="lazy">
+        <img src="muebles y descanso/camas/cama23.webp" alt="Cama Moderna 23" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama23.webp', 'Cama Moderna 23')" style="pointer-events: auto;">
         <h3>Cama Moderna 23</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama23-tamano">
@@ -1408,7 +1455,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 24 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama24.webp" alt="Cama Moderna 24" loading="lazy">
+        <img src="muebles y descanso/camas/cama24.webp" alt="Cama Moderna 24" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama24.webp', 'Cama Moderna 24')" style="pointer-events: auto;">
         <h3>Cama Moderna 24</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama24-tamano">
@@ -1422,7 +1469,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 25 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama25.webp" alt="Cama Moderna 25" loading="lazy">
+        <img src="muebles y descanso/camas/cama25.webp" alt="Cama Moderna 25" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama25.webp', 'Cama Moderna 25')" style="pointer-events: auto;">
         <h3>Cama Moderna 25</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama25">
@@ -1436,7 +1483,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 26 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama26.webp" alt="Cama Moderna 26" loading="lazy">
+        <img src="muebles y descanso/camas/cama26.webp" alt="Cama Moderna 26" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama26.webp', 'Cama Moderna 26')" style="pointer-events: auto;">
         <h3>Cama Moderna 26</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama26-tamano">
@@ -1450,7 +1497,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 27 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama27.webp" alt="Cama Moderna 27" loading="lazy">
+        <img src="muebles y descanso/camas/cama27.webp" alt="Cama Moderna 27" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama27.webp', 'Cama Moderna 27')" style="pointer-events: auto;">
         <h3>Cama Moderna 27</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama27-tamano">
@@ -1464,7 +1511,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 28 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama28.webp" alt="Cama Moderna 28" loading="lazy">
+        <img src="muebles y descanso/camas/cama28.webp" alt="Cama Moderna 28" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama28.webp', 'Cama Moderna 28')" style="pointer-events: auto;">
         <h3>Cama Moderna 28</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama28-tamano">
@@ -1478,7 +1525,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 29 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama29.webp" alt="Cama Moderna 29" loading="lazy">
+        <img src="muebles y descanso/camas/cama29.webp" alt="Cama Moderna 29" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama29.webp', 'Cama Moderna 29')" style="pointer-events: auto;">
         <h3>Cama Moderna 29</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama29-tamano">
@@ -1492,7 +1539,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 30 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama30.webp" alt="Cama Moderna 30" loading="lazy">
+        <img src="muebles y descanso/camas/cama30.webp" alt="Cama Moderna 30" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama30.webp', 'Cama Moderna 30')" style="pointer-events: auto;">
         <h3>Cama Moderna 30</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama30-tamano">
@@ -1506,7 +1553,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 31 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama31.webp" alt="Cama Moderna 31" loading="lazy">
+        <img src="muebles y descanso/camas/cama31.webp" alt="Cama Moderna 31" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama31.webp', 'Cama Moderna 31')" style="pointer-events: auto;">
         <h3>Cama Moderna 31</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama31-tamano">
@@ -1520,7 +1567,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 32 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama32.webp" alt="Cama Moderna 32" loading="lazy">
+        <img src="muebles y descanso/camas/cama32.webp" alt="Cama Moderna 32" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama32.webp', 'Cama Moderna 32')" style="pointer-events: auto;">
         <h3>Cama Moderna 32</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores. Diseño de la cabecera es de lista</p>
         <select id="cama32-tamano">
@@ -1534,7 +1581,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 33 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama33.webp" alt="Cama Moderna 33" loading="lazy">
+        <img src="muebles y descanso/camas/cama33.webp" alt="Cama Moderna 33" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama33.webp', 'Cama Moderna 33')" style="pointer-events: auto;">
         <h3>Cama Moderna 33</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama33-tamano">
@@ -1548,7 +1595,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 34 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama34.webp" alt="Cama Moderna 34" loading="lazy">
+        <img src="muebles y descanso/camas/cama34.webp" alt="Cama Moderna 34" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama34.webp', 'Cama Moderna 34')" style="pointer-events: auto;">
         <h3>Cama Moderna 34</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama34-tamano">
@@ -1562,7 +1609,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 35 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama35.webp" alt="Cama Moderna 35" loading="lazy">
+        <img src="muebles y descanso/camas/cama35.webp" alt="Cama Moderna 35" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama35.webp', 'Cama Moderna 35')" style="pointer-events: auto;">
         <h3>Cama Moderna 35</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama35-tamano">
@@ -1576,7 +1623,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 36 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama36.webp" alt="Cama Moderna 36" loading="lazy">
+        <img src="muebles y descanso/camas/cama36.webp" alt="Cama Moderna 36" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama36.webp', 'Cama Moderna 36')" style="pointer-events: auto;">
         <h3>Cama Moderna 36</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama36-tamano">
@@ -1590,7 +1637,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 37 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama37.webp" alt="Cama Moderna 37" loading="lazy">
+        <img src="muebles y descanso/camas/cama37.webp" alt="Cama Moderna 37" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama37.webp', 'Cama Moderna 37')" style="pointer-events: auto;">
         <h3>Cama Moderna 37</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama37-tamano">
@@ -1604,7 +1651,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 38 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama38.webp" alt="Cama Moderna 38" loading="lazy">
+        <img src="muebles y descanso/camas/cama38.webp" alt="Cama Moderna 38" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama38.webp', 'Cama Moderna 38')" style="pointer-events: auto;">
         <h3>Cama Moderna 38</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama38-tamano">
@@ -1618,7 +1665,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 39 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama39.webp" alt="Cama Moderna 39" loading="lazy">
+        <img src="muebles y descanso/camas/cama39.webp" alt="Cama Moderna 39" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama39.webp', 'Cama Moderna 39')" style="pointer-events: auto;">
         <h3>Cama Moderna 39</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama39-tamano">
@@ -1632,7 +1679,7 @@ nav a:hover, nav button:hover {
 
       <!-- Cama 40 -->
       <div class="producto">
-        <img src="muebles y descanso/camas/cama40.webp" alt="Cama Moderna 40" loading="lazy">
+        <img src="muebles y descanso/camas/cama40.webp" alt="Cama Moderna 40" loading="lazy" onclick="abrirFoto('muebles y descanso/camas/cama40.webp', 'Cama Moderna 40')" style="pointer-events: auto;">
         <h3>Cama Moderna 40</h3>
         <p>Disponible en tamaño 3/4,Camera,Queen,King y de todos los colores.</p>
         <select id="cama40-tamano">
@@ -1657,7 +1704,7 @@ nav a:hover, nav button:hover {
        
       <!-- 🛋️ Mueble 1 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble1.webp" alt="Mueble L1" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble1.webp" alt="Mueble L1" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble1.webp', 'Mueble en L de Lujo')" style="pointer-events: auto;">
         <h3>Mueble en L de Lujo</h3>
         <p>✨ Confort y elegancia que transforman tu sala.</p>
         <p class="precio">💰 $195,000</p>
@@ -1666,7 +1713,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 2 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble2.webp" alt="Mueble L2" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble2.webp" alt="Mueble L2" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble2.webp', 'Mueble en L de Lujo')" style="pointer-events: auto;">
        <h3>Mueble en L de Lujo </h3>
        <p>🌟 Diseño fino y moderno para un hogar con estilo.</p>
        <p class="precio">💰 $210,000</p>
@@ -1675,7 +1722,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 3 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble3.webp" alt="Mueble L3" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble3.webp" alt="Mueble L3" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble3.webp', 'Mueble en L')" style="pointer-events: auto;">
         <h3>Mueble en L </h3>
         <p>🛋️ Elegancia y comodidad en perfecta armonía.</p>
         <p class="precio">💰 $170,000</p>
@@ -1684,7 +1731,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 4 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble4.webp" alt="Mueble L4" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble4.webp" alt="Mueble L4" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble4.webp', 'Mueble en L de Lujo')" style="pointer-events: auto;">
         <h3>Mueble en L de Lujo</h3>
         <p>✨Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1693,7 +1740,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 5 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble5.webp" alt="Mueble L5" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble5.webp" alt="Mueble L5" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble5.webp', 'Mueble en L de Lujo')" style="pointer-events: auto;">
         <h3>Mueble en L de Lujo</h3>
         <p>🏛️Diseño moderno con acabados premium. Ideal para espacios amplios.</p>
         <p class="precio">💰 $480,000</p>
@@ -1702,7 +1749,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 6 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble6.webp" alt="Mueble L6" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble6.webp" alt="Mueble L6" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble6.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>🏡 Ideal para crear un espacio acogedor y sofisticado.</p>
         <p class="precio">💰 $165,000</p>
@@ -1711,7 +1758,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 7 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble7.webp" alt="Mueble L7" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble7.webp" alt="Mueble L7" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble7.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>🛋️Elegancia y confort en cada rincón: seccional gris, Butaca Curva y detalles que inspiran.</p>
         <p class="precio">💰 $210,000</p>
@@ -1720,7 +1767,7 @@ nav a:hover, nav button:hover {
       
       <!-- 🛋️ Mueble 8 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble8.webp" alt="Mueble L8" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble8.webp" alt="Mueble L8" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble8.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>🖤Estilo minimalista con impacto visual: líneas modernas en blanco y negro para espacios únicos.</p>
         <p class="precio">💰 $145,000</p>
@@ -1729,7 +1776,7 @@ nav a:hover, nav button:hover {
       
       <!-- 🛋️ Mueble 9 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble9.webp" alt="Mueble L9" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble9.webp" alt="Mueble L9" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble9.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $190,000</p>
@@ -1738,7 +1785,7 @@ nav a:hover, nav button:hover {
       
       <!-- 🛋️ Mueble 10 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble10.webp" alt="Mueble L10" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble10.webp" alt="Mueble L10" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble10.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Diseño contemporáneo en blanco y negro: elegancia que transforma tu espacio.</p>
         <p class="precio">💰 $165,000</p>
@@ -1747,7 +1794,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 11 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble11.webp" alt="Mueble L11" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble11.webp" alt="Mueble L11" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble11.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $162,000</p>
@@ -1756,7 +1803,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 12 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble12.webp" alt="Mueble L12" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble12.webp" alt="Mueble L12" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble12.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $214,000</p>
@@ -1765,7 +1812,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 13 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble13.webp" alt="Mueble L13" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble13.webp" alt="Mueble L13" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble13.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1774,7 +1821,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 14 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble14.webp" alt="Mueble L14" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble14.webp" alt="Mueble L14" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble14.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $290,000</p>
@@ -1783,7 +1830,7 @@ nav a:hover, nav button:hover {
       
       <!-- 🛋️ Mueble 15 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble15.webp" alt="Mueble L15" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble15.webp" alt="Mueble L15" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble15.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $155,000</p>
@@ -1792,7 +1839,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 16 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble16.webp" alt="Mueble L16" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble16.webp" alt="Mueble L16" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble16.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>sofá blanco en L de 7 plaza con mesa de diseño para ambientes sofisticados.</p>
         <p class="precio">💰 $215,000</p>
@@ -1801,7 +1848,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 17 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble17.webp" alt="Mueble L17" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble17.webp" alt="Mueble L17" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble17.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $230,000</p>
@@ -1810,7 +1857,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 18 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble18.webp" alt="Mueble L10" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble18.webp" alt="Mueble L10" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble18.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $280,000</p>
@@ -1819,7 +1866,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 19 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble19.webp" alt="Mueble L19" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble19.webp" alt="Mueble L19" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble19.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $140,000</p>
@@ -1828,7 +1875,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 20 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble20.webp" alt="Mueble L20" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble20.webp" alt="Mueble L20" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble20.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $210,000</p>
@@ -1837,7 +1884,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 21 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble21.webp" alt="Mueble L21" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble21.webp" alt="Mueble L21" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble21.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $400,000</p>
@@ -1846,7 +1893,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 22 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble22.webp" alt="Mueble L22" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble22.webp" alt="Mueble L22" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble22.webp', 'Mueble en L Lujoso')" style="pointer-events: auto;">
         <h3>Mueble en L Lujoso</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $600,000</p>
@@ -1855,7 +1902,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 23 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble23.webp" alt="Mueble L23" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble23.webp" alt="Mueble L23" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble23.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $285,000</p>
@@ -1864,7 +1911,7 @@ nav a:hover, nav button:hover {
       
       <!-- 🛋️ Mueble 24 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble24.webp" alt="Mueble L24" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble24.webp" alt="Mueble L24" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble24.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $120,000</p>
@@ -1873,7 +1920,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 25 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble25.webp" alt="Mueble L25" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble25.webp" alt="Mueble L25" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble25.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $135,000</p>
@@ -1882,7 +1929,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 26 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble26.webp" alt="Mueble L26" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble26.webp" alt="Mueble L26" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble26.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $165,000</p>
@@ -1891,7 +1938,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 27 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble27.webp" alt="Mueble L27" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble27.webp" alt="Mueble L27" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble27.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $180,000</p>
@@ -1900,7 +1947,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 28 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble28.webp" alt="Mueble L28" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble28.webp" alt="Mueble L28" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble28.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $275,000</p>
@@ -1909,7 +1956,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 29 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble29.webp" alt="Mueble L29" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble29.webp" alt="Mueble L29" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble29.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $185,000</p>
@@ -1918,7 +1965,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🛋️ Mueble 30 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-l/mueble30.webp" alt="Mueble L30" loading="lazy">
+        <img src="muebles y descanso/muebles-l/mueble30.webp" alt="Mueble L30" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-l/mueble30.webp', 'Mueble en L Elegante')" style="pointer-events: auto;">
         <h3>Mueble en L Elegante</h3>
         <p>Confort y elegancia para tu hogar.</p>
         <p class="precio">💰 $270,000</p>
@@ -1937,7 +1984,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 1 -->
       <div class="producto">
-        <img src="muebles-capitoneados/sala1.webp" alt="Capitoneado 1" loading="lazy">
+        <img src="muebles-capitoneados/sala1.webp" alt="Capitoneado 1" loading="lazy" onclick="abrirFoto('muebles-capitoneados/sala1.webp', 'Mueble Capitoneado Clásico')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado Clásico</h3>
         <p>Diseño tradicional.</p>
         <p class="precio">💰 $370,000</p>
@@ -1946,7 +1993,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 2 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala2.webp" alt="Capitoneado 2" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala2.webp" alt="Capitoneado 2" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala2.webp', 'Mueble Capitoneado Real')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado Real</h3>
         <p>Estilo elegante con tapizado premium.</p>
         <p class="precio">💰 $270,000</p>
@@ -1955,7 +2002,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 3 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala3.webp" alt="Capitoneado 3" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala3.webp" alt="Capitoneado 3" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala3.webp', 'Mueble Capitoneado Lujoso')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado Lujoso</h3>
         <p>🌟 Detalles de lujo pensados para quienes aman lo exclusivo.</p>
         <p class="precio">💰 $560,000</p>
@@ -1964,7 +2011,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 4 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala4.webp" alt="Capitoneado 4" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala4.webp" alt="Capitoneado 4" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala4.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -1973,7 +2020,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 5 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala5.webp" alt="Capitoneado 5" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala5.webp" alt="Capitoneado 5" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala5.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $460,000</p>
@@ -1982,7 +2029,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 6 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala6.webp" alt="Capitoneado 6" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala6.webp" alt="Capitoneado 6" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala6.webp', 'Confort y diseño elegante en un solo mueble.')" style="pointer-events: auto;">
         <h3>Confort y diseño elegante en un solo mueble.</h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $260,000</p>
@@ -1991,7 +2038,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 7 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala7.webp" alt="Capitoneado 7" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala7.webp" alt="Capitoneado 7" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala7.webp', 'Mueble Capitoneado en L Lujoso')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L Lujoso </h3>
         <p>🌟 Diseño de lujo que refleja distinción y buena calidad.</p>
         <p class="precio">💰 $650,000</p>
@@ -2000,7 +2047,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 8 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala8.webp" alt="Capitoneado 8" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala8.webp" alt="Capitoneado 8" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala8.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $480,000</p>
@@ -2009,7 +2056,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 9 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala9.webp" alt="Capitoneado 9" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala9.webp" alt="Capitoneado 9" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala9.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $220,000</p>
@@ -2018,7 +2065,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 10 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala10.webp" alt="Capitoneado 10" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala10.webp" alt="Capitoneado 10" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala10.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -2027,7 +2074,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 11 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala11.webp" alt="Capitoneado 11" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala11.webp" alt="Capitoneado 11" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala11.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $470,000</p>
@@ -2036,7 +2083,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 12 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala12.webp" alt="Capitoneado 12" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala12.webp" alt="Capitoneado 12" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala12.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $560,000</p>
@@ -2045,7 +2092,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 13 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala13.webp" alt="Capitoneado 13" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala13.webp" alt="Capitoneado 13" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala13.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -2054,7 +2101,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 14 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala14.webp" alt="Capitoneado 14" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala14.webp" alt="Capitoneado 14" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala14.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $225,000</p>
@@ -2063,7 +2110,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 15 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala15.webp" alt="Capitoneado 15" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala15.webp" alt="Capitoneado 15" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala15.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $330,000</p>
@@ -2072,7 +2119,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 16 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala16.webp" alt="Capitoneado 16" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala16.webp" alt="Capitoneado 16" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala16.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $470,000</p>
@@ -2081,7 +2128,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 17 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala17.webp" alt="Capitoneado 17" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala17.webp" alt="Capitoneado 17" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala17.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $350,000</p>
@@ -2090,7 +2137,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 18 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala18.webp" alt="Capitoneado 18" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala18.webp" alt="Capitoneado 18" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala18.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $240,000</p>
@@ -2099,7 +2146,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 19 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala19.webp" alt="Capitoneado 19" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala19.webp" alt="Capitoneado 19" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala19.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -2108,7 +2155,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 20 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala20.webp" alt="Capitoneado 20" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala20.webp" alt="Capitoneado 20" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala20.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $380,000</p>
@@ -2117,7 +2164,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 21 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala21.webp" alt="Capitoneado 21" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala21.webp" alt="Capitoneado 21" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala21.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $300,000</p>
@@ -2126,7 +2173,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 22 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala22.webp" alt="Capitoneado 22" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala22.webp" alt="Capitoneado 22" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala22.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $530,000</p>
@@ -2135,7 +2182,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 23 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala23.webp" alt="Capitoneado 23" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala23.webp" alt="Capitoneado 23" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala23.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $270,000</p>
@@ -2144,7 +2191,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 24 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala24.webp" alt="Capitoneado 24" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala24.webp" alt="Capitoneado 24" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala24.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $255,000</p>
@@ -2153,7 +2200,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 25 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala25.webp" alt="Capitoneado 25" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala25.webp" alt="Capitoneado 25" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala25.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $350,000</p>
@@ -2162,7 +2209,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 26 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala26.webp" alt="Capitoneado 26" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala26.webp" alt="Capitoneado 26" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala26.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $410,000</p>
@@ -2171,7 +2218,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 27 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala27.webp" alt="Capitoneado 27" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala27.webp" alt="Capitoneado 27" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala27.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $280,000</p>
@@ -2180,7 +2227,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 28 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala28.webp" alt="Capitoneado 28" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala28.webp" alt="Capitoneado 28" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala28.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $250,000</p>
@@ -2189,7 +2236,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 29 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala29.webp" alt="Capitoneado 29" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala29.webp" alt="Capitoneado 29" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala29.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $650,000</p>
@@ -2198,7 +2245,7 @@ nav a:hover, nav button:hover {
 
       <!-- 🪶 Capitoneado 30 -->
       <div class="producto">
-        <img src="muebles y descanso/muebles-capitoneados/sala30.webp" alt="Capitoneado 30" loading="lazy">
+        <img src="muebles y descanso/muebles-capitoneados/sala30.webp" alt="Capitoneado 30" loading="lazy" onclick="abrirFoto('muebles y descanso/muebles-capitoneados/sala30.webp', 'Mueble Capitoneado en L')" style="pointer-events: auto;">
         <h3>Mueble Capitoneado en L </h3>
         <p>Confort y diseño elegante en un solo mueble.</p>
         <p class="precio">💰 $440,000</p>
@@ -2214,7 +2261,7 @@ nav a:hover, nav button:hover {
 
     <!-- Paquete de pollo 10 lb -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos1.webp" alt="Paquete de pollo 10 lb" loading="lazy">
+      <img src="combos/carnicos/carnicos1.webp" alt="Paquete de pollo 10 lb" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos1.webp', 'Paquete de pollo 10 lb')" style="pointer-events: auto;">
       <h3>Paquete de pollo 10 lb</h3>
       <p class="precio">💵 $10.90 USD</p>
       <p>Paquete de pollo 10 lb</p>
@@ -2223,7 +2270,7 @@ nav a:hover, nav button:hover {
 
     <!-- Pechuga de pollo sin hueso 2 kg -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos2.webp" alt="Pechuga de pollo sin hueso 2 kg" loading="lazy">
+      <img src="combos/carnicos/carnicos2.webp" alt="Pechuga de pollo sin hueso 2 kg" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos2.webp', 'Pechuga de pollo sin hueso 2 kg')" style="pointer-events: auto;">
       <h3>Pechuga de pollo sin hueso 2 kg</h3>
       <p class="precio">💵 $17.99 USD</p>
       <p>Pechuga de pollo sin hueso 2 kg</p>
@@ -2232,7 +2279,7 @@ nav a:hover, nav button:hover {
 
     <!-- Pierna de cerdo deshuesada / lb -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos3.webp" alt="Pierna de cerdo deshuesada / lb" loading="lazy">
+      <img src="combos/carnicos/carnicos3.webp" alt="Pierna de cerdo deshuesada / lb" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos3.webp', 'Pierna de cerdo deshuesada / lb')" style="pointer-events: auto;">
       <h3>Pierna de cerdo deshuesada / lb</h3>
       <p class="precio">💵 $4.10 USD</p>
       <p>Pierna de cerdo deshuesada / lb</p>
@@ -2241,7 +2288,7 @@ nav a:hover, nav button:hover {
 
     <!-- Lomo de cerdo deshuesado / lb -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos4.webp" alt="Lomo de cerdo deshuesado / lb" loading="lazy">
+      <img src="combos/carnicos/carnicos4.webp" alt="Lomo de cerdo deshuesado / lb" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos4.webp', 'Lomo de cerdo deshuesado / lb')" style="pointer-events: auto;">
       <h3>Lomo de cerdo deshuesado / lb</h3>
       <p class="precio">💵 $3.95 USD</p>
       <p>Lomo de cerdo deshuesado / lb</p>
@@ -2250,7 +2297,7 @@ nav a:hover, nav button:hover {
 
     <!-- Picadillo de pollo condimentado 400 g -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos5.webp" alt="Picadillo de pollo condimentado 400 g" loading="lazy">
+      <img src="combos/carnicos/carnicos5.webp" alt="Picadillo de pollo condimentado 400 g" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos5.webp', 'Picadillo de pollo condimentado 400 g')" style="pointer-events: auto;">
       <h3>Picadillo de pollo condimentado 400 g</h3>
       <p class="precio">💵 $1.69 USD</p>
       <p>Picadillo de pollo condimentado 400 g</p>
@@ -2259,7 +2306,7 @@ nav a:hover, nav button:hover {
 
     <!-- Salchicha de pollo (10 unidades) -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos6.webp" alt="Salchicha de pollo (10 unidades)" loading="lazy">
+      <img src="combos/carnicos/carnicos6.webp" alt="Salchicha de pollo (10 unidades)" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos6.webp', 'Salchicha de pollo (10 unidades)')" style="pointer-events: auto;">
       <h3>Salchicha de pollo (10 unidades)</h3>
       <p class="precio">💵 $1.89 USD</p>
       <p>Salchicha de pollo (10 unidades)</p>
@@ -2268,7 +2315,7 @@ nav a:hover, nav button:hover {
 
     <!-- Croquetas de Pollo (10 unidades) -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos7.webp" alt="Croquetas de Pollo (10 unidades)" loading="lazy">
+      <img src="combos/carnicos/carnicos7.webp" alt="Croquetas de Pollo (10 unidades)" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos7.webp', 'Croquetas de Pollo (10 unidades)')" style="pointer-events: auto;">
       <h3>Croquetas de Pollo (10 unidades)</h3>
       <p class="precio">💵 $1.59 USD</p>
       <p>Croquetas de Pollo (10 unidades)</p>
@@ -2277,7 +2324,7 @@ nav a:hover, nav button:hover {
 
     <!-- Varitas de Merluza 1 kg -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos8.webp" alt="Varitas de Merluza 1 kg" loading="lazy">
+      <img src="combos/carnicos/carnicos8.webp" alt="Varitas de Merluza 1 kg" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos8.webp', 'Varitas de Merluza 1 kg')" style="pointer-events: auto;">
       <h3>Varitas de Merluza 1 kg</h3>
       <p class="precio">💵 $5.89 USD</p>
       <p>Varitas de Merluza 1 kg</p>
@@ -2286,7 +2333,7 @@ nav a:hover, nav button:hover {
 
     <!-- Atún 140 g -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos9.webp" alt="Atún 140 g" loading="lazy">
+      <img src="combos/carnicos/carnicos9.webp" alt="Atún 140 g" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos9.webp', 'Atún 140 g')" style="pointer-events: auto;">
       <h3>Atún 140 g</h3>
       <p class="precio">💵 $3.59 USD</p>
       <p>Atún 140 g</p>
@@ -2295,7 +2342,7 @@ nav a:hover, nav button:hover {
 
     <!-- Jamón García bloque de 5 lb -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos10.webp" alt="Jamon Garcia bloque de 5 lb" loading="lazy">
+      <img src="combos/carnicos/carnicos10.webp" alt="Jamon Garcia bloque de 5 lb" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos10.webp', 'Jamón García bloque de 5 lb')" style="pointer-events: auto;">
       <h3>Jamón García bloque de 5 lb</h3>
       <p class="precio">💵 $21.00 USD</p>
       <p>Jamón García bloque de 5 lb</p>
@@ -2304,7 +2351,7 @@ nav a:hover, nav button:hover {
 
     <!-- Queso Gouda bloque de 3 kg -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos11.webp" alt="Queso Gouda bloque de 3 kg" loading="lazy">
+      <img src="combos/carnicos/carnicos11.webp" alt="Queso Gouda bloque de 3 kg" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos11.webp', 'Queso Gouda bloque de 3 kg')" style="pointer-events: auto;">
       <h3>Queso Gouda bloque de 3 kg</h3>
       <p class="precio">💵 $34.99 USD</p>
       <p>Queso Gouda bloque de 3 kg</p>
@@ -2313,7 +2360,7 @@ nav a:hover, nav button:hover {
 
     <!-- Medio bloque de queso Gouda 1.5 kg -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos12.webp" alt="Medio bloque de queso Gouda 1.5 kg" loading="lazy">
+      <img src="combos/carnicos/carnicos12.webp" alt="Medio bloque de queso Gouda 1.5 kg" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos12.webp', 'Medio bloque de Queso Gouda 1.5 kg')" style="pointer-events: auto;">
       <h3>Medio bloque de Queso Gouda 1.5 kg</h3>
       <p class="precio">💵 $19.50 USD</p>
       <p>Medio bloque de Queso Gouda 1.5 kg</p>
@@ -2322,7 +2369,7 @@ nav a:hover, nav button:hover {
 
     <!-- Hamburguesas de pollo (5 unidades) -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos13.webp" alt="Hamburguesas de pollo (5 unidades)" loading="lazy">
+      <img src="combos/carnicos/carnicos13.webp" alt="Hamburguesas de pollo (5 unidades)" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos13.webp', 'Hamburguesas de pollo (5 unidades)')" style="pointer-events: auto;">
       <h3>Hamburguesas de pollo (5 unidades)</h3>
       <p class="precio">💵 $2.70 USD</p>
       <p>Hamburguesas de pollo (5 unidades)</p>
@@ -2331,7 +2378,7 @@ nav a:hover, nav button:hover {
 
     <!-- Huevos (30 unidades) -->
     <div class="producto">
-      <img src="combos/carnicos/carnicos14.webp" alt="Huevos (30 unidades)" loading="lazy">
+      <img src="combos/carnicos/carnicos14.webp" alt="Huevos (30 unidades)" loading="lazy" onclick="abrirFoto('combos/carnicos/carnicos14.webp', 'Huevos (30 unidades)')" style="pointer-events: auto;">
       <h3>Huevos (30 unidades)</h3>
       <p class="precio">💵 $8.99 USD</p>
       <p>Huevos (30 unidades)</p>
@@ -2348,7 +2395,7 @@ nav a:hover, nav button:hover {
 
     <!-- Arroz / kg -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado1.webp" alt="Arroz / kg" loading="lazy">
+      <img src="combos/agromercado/agromercado1.webp" alt="Arroz / kg" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado1.webp', 'Arroz / kg')" style="pointer-events: auto;">
       <h3>Arroz / kg</h3>
       <p class="precio">💵 $2.75 USD</p>
       <p>Arroz / kg</p>
@@ -2357,7 +2404,7 @@ nav a:hover, nav button:hover {
 
     <!-- Frijol negro / lb -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado2.webp" alt="Frijol negro / lb" loading="lazy">
+      <img src="combos/agromercado/agromercado2.webp" alt="Frijol negro / lb" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado2.webp', 'Frijol negro / lb')" style="pointer-events: auto;">
       <h3>Frijol negro / lb</h3>
       <p class="precio">💵 $2.09 USD</p>
       <p>Frijol negro / lb</p>
@@ -2366,7 +2413,7 @@ nav a:hover, nav button:hover {
 
     <!-- Frijol colorado / lb -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado3.webp" alt="Frijol colorado / lb" loading="lazy">
+      <img src="combos/agromercado/agromercado3.webp" alt="Frijol colorado / lb" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado3.webp', 'Frijol colorado / lb')" style="pointer-events: auto;">
       <h3>Frijol colorado / lb</h3>
       <p class="precio">💵 $2.20 USD</p>
       <p>Frijol colorado / lb</p>
@@ -2375,7 +2422,7 @@ nav a:hover, nav button:hover {
 
     <!-- Garbanzos pkt 500 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado4.webp" alt="Garbanzos pkt 500 g" loading="lazy">
+      <img src="combos/agromercado/agromercado4.webp" alt="Garbanzos pkt 500 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado4.webp', 'Garbanzos pkt 500 g')" style="pointer-events: auto;">
       <h3>Garbanzos pkt 500 g</h3>
       <p class="precio">💵 $2.99 USD</p>
       <p>Garbanzos pkt 500 g</p>
@@ -2384,7 +2431,7 @@ nav a:hover, nav button:hover {
 
     <!-- Maíz en grano lata de 425 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado5.webp" alt="Maíz en grano lata de 425 g" loading="lazy">
+      <img src="combos/agromercado/agromercado5.webp" alt="Maíz en grano lata de 425 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado5.webp', 'Maíz en grano (lata 425 g)')" style="pointer-events: auto;">
       <h3>Maíz en grano (lata 425 g)</h3>
       <p class="precio">💵 $2.29 USD</p>
       <p>Maíz en grano lata de 425 g</p>
@@ -2393,7 +2440,7 @@ nav a:hover, nav button:hover {
 
     <!-- Espagueti 500 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado6.webp" alt="Espagueti 500 g" loading="lazy">
+      <img src="combos/agromercado/agromercado6.webp" alt="Espagueti 500 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado6.webp', 'Espagueti 500 g')" style="pointer-events: auto;">
       <h3>Espagueti 500 g</h3>
       <p class="precio">💵 $1.70 USD</p>
       <p>Espagueti 500 g</p>
@@ -2402,7 +2449,7 @@ nav a:hover, nav button:hover {
 
     <!-- Fideos 350 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado7.webp" alt="Fideos 350 g" loading="lazy">
+      <img src="combos/agromercado/agromercado7.webp" alt="Fideos 350 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado7.webp', 'Fideos 350 g')" style="pointer-events: auto;">
       <h3>Fideos 350 g</h3>
       <p class="precio">💵 $0.95 USD</p>
       <p>Fideos 350 g</p>
@@ -2411,7 +2458,7 @@ nav a:hover, nav button:hover {
 
     <!-- Sal 1 kg -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado8.webp" alt="Sal 1 kg" loading="lazy">
+      <img src="combos/agromercado/agromercado8.webp" alt="Sal 1 kg" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado8.webp', 'Sal 1 kg')" style="pointer-events: auto;">
       <h3>Sal 1 kg</h3>
       <p class="precio">💵 $1.05 USD</p>
       <p>Sal 1 kg</p>
@@ -2420,7 +2467,7 @@ nav a:hover, nav button:hover {
 
     <!-- Azúcar blanca 1 kg -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado9.webp" alt="Azúcar blanca 1 kg" loading="lazy">
+      <img src="combos/agromercado/agromercado9.webp" alt="Azúcar blanca 1 kg" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado9.webp', 'Azúcar blanca 1 kg')" style="pointer-events: auto;">
       <h3>Azúcar blanca 1 kg</h3>
       <p class="precio">💵 $2.40 USD</p>
       <p>Azúcar blanca 1 kg</p>
@@ -2429,7 +2476,7 @@ nav a:hover, nav button:hover {
 
     <!-- Aceite 1 L -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado10.webp" alt="Aceite 1 L" loading="lazy">
+      <img src="combos/agromercado/agromercado10.webp" alt="Aceite 1 L" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado10.webp', 'Aceite 1 L')" style="pointer-events: auto;">
       <h3>Aceite 1 L</h3>
       <p class="precio">💵 $3.45 USD</p>
       <p>Aceite 1 L</p>
@@ -2438,7 +2485,7 @@ nav a:hover, nav button:hover {
 
     <!-- Vinagre 1 l -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado11.webp" alt="Vinagre 1 L" loading="lazy">
+      <img src="combos/agromercado/agromercado11.webp" alt="Vinagre 1 L" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado11.webp', 'Vinagre 1 L')" style="pointer-events: auto;">
       <h3>Vinagre 1 L</h3>
       <p class="precio">💵 $2.25 USD</p>
       <p>Vinagre 1 L</p>
@@ -2447,7 +2494,7 @@ nav a:hover, nav button:hover {
 
     <!-- Zumo de Limón 295 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado12.webp" alt="Zumo de Limón 295 g" loading="lazy">
+      <img src="combos/agromercado/agromercado12.webp" alt="Zumo de Limón 295 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado12.webp', 'Zumo de Limón 295 g')" style="pointer-events: auto;">
       <h3>Zumo de Limón 295 g</h3>
       <p class="precio">💵 $2.87 USD</p>
       <p>Zumo de Limón 295 g</p>
@@ -2456,7 +2503,7 @@ nav a:hover, nav button:hover {
 
     <!-- Sazon Iberia 10 u -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado13.webp" alt="Sazon Iberia 10 u" loading="lazy">
+      <img src="combos/agromercado/agromercado13.webp" alt="Sazon Iberia 10 u" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado13.webp', 'Sazon Iberia 10 u')" style="pointer-events: auto;">
       <h3>Sazon Iberia 10 u</h3>
       <p class="precio">💵 $2.20 USD</p>
       <p>Sazon Iberia 10 u</p>
@@ -2465,7 +2512,7 @@ nav a:hover, nav button:hover {
 
     <!-- Caldito de pollo -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado14.webp" alt="Caldito de pollo" loading="lazy">
+      <img src="combos/agromercado/agromercado14.webp" alt="Caldito de pollo" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado14.webp', 'Caldito de pollo')" style="pointer-events: auto;">
       <h3>Caldito de pollo</h3>
       <p class="precio">💵 $0.25 USD</p>
       <p>Caldito de pollo</p>
@@ -2474,7 +2521,7 @@ nav a:hover, nav button:hover {
 
     <!-- Pasta de tomate 400 g -->
     <div class="producto">
-      <img src="combos/agromercado/agromercado15.webp" alt="Pasta de tomate 400 g" loading="lazy">
+      <img src="combos/agromercado/agromercado15.webp" alt="Pasta de tomate 400 g" loading="lazy" onclick="abrirFoto('combos/agromercado/agromercado15.webp', 'Pasta de tomate 400 g')" style="pointer-events: auto;">
       <h3>Pasta de tomate 400 g</h3>
       <p class="precio">💵 $2.49 USD</p>
       <p>Pasta de tomate 400 g</p>
@@ -2491,7 +2538,7 @@ nav a:hover, nav button:hover {
 
     <!-- Galletas Renata -->
     <div class="producto">
-      <img src="combos/confituras/confituras1.webp" alt="Galletas Renata" loading="lazy">
+      <img src="combos/confituras/confituras1.webp" alt="Galletas Renata" loading="lazy" onclick="abrirFoto('combos/confituras/confituras1.webp', 'Galletas Renata')" style="pointer-events: auto;">
       <h3>Galletas Renata</h3>
       <p class="precio">💵 $1.39 USD</p>
       <p>Galletas Renata</p>
@@ -2500,7 +2547,7 @@ nav a:hover, nav button:hover {
 
     <!-- Galletas Florbu con chispas de chocolate -->
     <div class="producto">
-      <img src="combos/confituras/confituras2.webp" alt="Galletas Florbu con chispas de chocolate" loading="lazy">
+      <img src="combos/confituras/confituras2.webp" alt="Galletas Florbu con chispas de chocolate" loading="lazy" onclick="abrirFoto('combos/confituras/confituras2.webp', 'Galletas Florbu con chispas de chocolate')" style="pointer-events: auto;">
       <h3>Galletas Florbu con chispas de chocolate</h3>
       <p class="precio">💵 $1.79 USD</p>
       <p>Galletas Florbu con chispas de chocolate</p>
@@ -2509,7 +2556,7 @@ nav a:hover, nav button:hover {
 
     <!-- Bocadito de helado Sandy Nestle -->
     <div class="producto">
-      <img src="combos/confituras/confituras3.webp" alt="Bocadito de helado Sandy Nestle" loading="lazy">
+      <img src="combos/confituras/confituras3.webp" alt="Bocadito de helado Sandy Nestle" loading="lazy" onclick="abrirFoto('combos/confituras/confituras3.webp', 'Bocadito de helado Sandy Nestle')" style="pointer-events: auto;">
       <h3>Bocadito de helado Sandy Nestle</h3>
       <p class="precio">💵 $1.25 USD</p>
       <p>Bocadito de helado Sandy Nestle</p>
@@ -2518,7 +2565,7 @@ nav a:hover, nav button:hover {
 
     <!-- Pote de helado Nestle 450 ml -->
     <div class="producto">
-      <img src="combos/confituras/confituras4.webp" alt="Pote de helado Nestle 450 ml" loading="lazy">
+      <img src="combos/confituras/confituras4.webp" alt="Pote de helado Nestle 450 ml" loading="lazy" onclick="abrirFoto('combos/confituras/confituras4.webp', 'Pote de helado Nestle 450 ml')" style="pointer-events: auto;">
       <h3>Pote de helado Nestle 450 ml</h3>
       <p class="precio">💵 $3.99 USD</p>
       <p>Pote de helado Nestle 450 ml</p>
@@ -2527,7 +2574,7 @@ nav a:hover, nav button:hover {
 
     <!-- Sorbetos 175 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras5.webp" alt="Sorbetos 175 g" loading="lazy">
+      <img src="combos/confituras/confituras5.webp" alt="Sorbetos 175 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras5.webp', 'Sorbetos 175 g')" style="pointer-events: auto;">
       <h3>Sorbetos 175 g</h3>
       <p class="precio">💵 $1.95 USD</p>
       <p>Sorbetos 175 g</p>
@@ -2536,7 +2583,7 @@ nav a:hover, nav button:hover {
 
     <!-- Paquete de 20 Bombones -->
     <div class="producto">
-      <img src="combos/confituras/confituras6.webp" alt="Paquete de 20 Bombones" loading="lazy">
+      <img src="combos/confituras/confituras6.webp" alt="Paquete de 20 Bombones" loading="lazy" onclick="abrirFoto('combos/confituras/confituras6.webp', 'Paquete de 20 Bombones')" style="pointer-events: auto;">
       <h3>Paquete de 20 Bombones</h3>
       <p class="precio">💵 $3.90 USD</p>
       <p>Paquete de 20 Bombones</p>
@@ -2545,7 +2592,7 @@ nav a:hover, nav button:hover {
 
     <!-- M&M 43.8 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras7.webp" alt="M&amp;M 43.8 g" loading="lazy">
+      <img src="combos/confituras/confituras7.webp" alt="M&amp;M 43.8 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras7.webp', 'M&amp;M 43.8 g')" style="pointer-events: auto;">
       <h3>M&amp;M 43.8 g</h3>
       <p class="precio">💵 $2.27 USD</p>
       <p>M&amp;M 43.8 g</p>
@@ -2554,7 +2601,7 @@ nav a:hover, nav button:hover {
 
     <!-- Snickers 48 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras8.webp" alt="Snickers 48 g" loading="lazy">
+      <img src="combos/confituras/confituras8.webp" alt="Snickers 48 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras8.webp', 'Snickers 48 g')" style="pointer-events: auto;">
       <h3>Snickers 48 g</h3>
       <p class="precio">💵 $2.49 USD</p>
       <p>Snickers 48 g</p>
@@ -2563,7 +2610,7 @@ nav a:hover, nav button:hover {
 
     <!-- Milky Way 48 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras9.webp" alt="Milky Way 48 g" loading="lazy">
+      <img src="combos/confituras/confituras9.webp" alt="Milky Way 48 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras9.webp', 'Milky Way 48 g')" style="pointer-events: auto;">
       <h3>Milky Way 48 g</h3>
       <p class="precio">💵 $2.49 USD</p>
       <p>Milky Way 48 g</p>
@@ -2572,7 +2619,7 @@ nav a:hover, nav button:hover {
 
     <!-- Peter Hersheys chocolate blanco 20 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras10.webp" alt="Peter Hersheys chocolate blanco 20 g" loading="lazy">
+      <img src="combos/confituras/confituras10.webp" alt="Peter Hersheys chocolate blanco 20 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras10.webp', 'Peter Hersheys chocolate blanco 20 g')" style="pointer-events: auto;">
       <h3>Peter Hersheys chocolate blanco 20 g</h3>
       <p class="precio">💵 $1.59 USD</p>
       <p>Peter Hersheys chocolate blanco 20 g</p>
@@ -2581,7 +2628,7 @@ nav a:hover, nav button:hover {
 
     <!-- Barrita de chocolate Nuvix 22 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras11.webp" alt="Barrita de chocolate Nuvix 22 g" loading="lazy">
+      <img src="combos/confituras/confituras11.webp" alt="Barrita de chocolate Nuvix 22 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras11.webp', 'Barrita de chocolate Nuvix 22 g')" style="pointer-events: auto;">
       <h3>Barrita de chocolate Nuvix 22 g</h3>
       <p class="precio">💵 $0.33 USD</p>
       <p>Barrita de chocolate Nuvix 22 g</p>
@@ -2590,7 +2637,7 @@ nav a:hover, nav button:hover {
 
     <!-- Barrita de chocolate Erdem 20 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras12.webp" alt="Barrita de chocolate Erdem 20 g" loading="lazy">
+      <img src="combos/confituras/confituras12.webp" alt="Barrita de chocolate Erdem 20 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras12.webp', 'Barrita de chocolate Erdem 20 g')" style="pointer-events: auto;">
       <h3>Barrita de chocolate Erdem 20 g</h3>
       <p class="precio">💵 $0.31 USD</p>
       <p>Barrita de chocolate Erdem 20 g</p>
@@ -2599,7 +2646,7 @@ nav a:hover, nav button:hover {
 
     <!-- Sorbeto Greedy 30 g -->
     <div class="producto">
-      <img src="combos/confituras/confituras13.webp" alt="Sorbeto Greedy 30 g" loading="lazy">
+      <img src="combos/confituras/confituras13.webp" alt="Sorbeto Greedy 30 g" loading="lazy" onclick="abrirFoto('combos/confituras/confituras13.webp', 'Sorbeto Greedy 30 g')" style="pointer-events: auto;">
       <h3>Sorbeto Greedy 30 g</h3>
       <p class="precio">💵 $0.41 USD</p>
       <p>Sorbeto Greedy 30 g</p>
@@ -2615,7 +2662,7 @@ nav a:hover, nav button:hover {
 
     <!-- Refresco en polvo 1L (10u) -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas1.webp" alt="Refresco en polvo 1L (10u)" loading="lazy">
+      <img src="combos/bebidas/bebidas1.webp" alt="Refresco en polvo 1L (10u)" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas1.webp', 'Refresco en polvo 1L (10u)')" style="pointer-events: auto;">
       <h3>Refresco en polvo 1L (10u)</h3>
       <p class="precio">💵 $1.80 USD</p>
       <p>Refresco en polvo 1L (10u)</p>
@@ -2624,7 +2671,7 @@ nav a:hover, nav button:hover {
 
     <!-- Refresco gaseado 330 ml (Cola / Limón / Naranja) -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas2.webp" alt="Refresco gaseado 330 ml (Cola / Limón / Naranja)" loading="lazy">
+      <img src="combos/bebidas/bebidas2.webp" alt="Refresco gaseado 330 ml (Cola / Limón / Naranja)" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas2.webp', 'Refresco gaseado 330 ml')" style="pointer-events: auto;">
       <h3>Refresco gaseado 330 ml</h3>
       <p class="precio">💵 $0.79 USD</p>
       <p>Cola / Limón / Naranja - 330 ml</p>
@@ -2633,7 +2680,7 @@ nav a:hover, nav button:hover {
 
     <!-- Malta -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas3.webp" alt="Malta" loading="lazy">
+      <img src="combos/bebidas/bebidas3.webp" alt="Malta" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas3.webp', 'Malta')" style="pointer-events: auto;">
       <h3>Malta</h3>
       <p class="precio">💵 $0.91 USD</p>
       <p>Malta</p>
@@ -2642,7 +2689,7 @@ nav a:hover, nav button:hover {
 
     <!-- Jugo 1 Litro -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas4.webp" alt="Jugo 1 Litro" loading="lazy">
+      <img src="combos/bebidas/bebidas4.webp" alt="Jugo 1 Litro" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas4.webp', 'Jugo 1 Litro')" style="pointer-events: auto;">
       <h3>Jugo 1 Litro</h3>
       <p class="precio">💵 $2.40 USD</p>
       <p>Jugo 1 Litro</p>
@@ -2651,7 +2698,7 @@ nav a:hover, nav button:hover {
 
     <!-- Yogurt Natural / Fresa 1.5 L -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas5.webp" alt="Yogurt Natural / Fresa 1.5 L" loading="lazy">
+      <img src="combos/bebidas/bebidas5.webp" alt="Yogurt Natural / Fresa 1.5 L" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas5.webp', 'Yogurt Natural / Fresa 1.5 L')" style="pointer-events: auto;">
       <h3>Yogurt Natural / Fresa 1.5 L</h3>
       <p class="precio">💵 $6.59 USD</p>
       <p>Yogurt Natural / Fresa 1.5 L</p>
@@ -2660,7 +2707,7 @@ nav a:hover, nav button:hover {
 
     <!-- Vino Tinto 750 ml -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas6.webp" alt="Vino Tinto 750 ml" loading="lazy">
+      <img src="combos/bebidas/bebidas6.webp" alt="Vino Tinto 750 ml" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas6.webp', 'Vino Tinto 750 ml')" style="pointer-events: auto;">
       <h3>Vino Tinto 750 ml</h3>
       <p class="precio">💵 $9.17 USD</p>
       <p>Vino Tinto 750 ml</p>
@@ -2669,7 +2716,7 @@ nav a:hover, nav button:hover {
 
     <!-- Sidra sin alcohol -->
     <div class="producto">
-      <img src="combos/bebidas/bebidas7.webp" alt="Sidra sin alcohol" loading="lazy">
+      <img src="combos/bebidas/bebidas7.webp" alt="Sidra sin alcohol" loading="lazy" onclick="abrirFoto('combos/bebidas/bebidas7.webp', 'Sidra sin alcohol')" style="pointer-events: auto;">
       <h3>Sidra sin alcohol</h3>
       <p class="precio">💵 $2.99 USD</p>
       <p>Sidra sin alcohol</p>
@@ -2685,7 +2732,7 @@ nav a:hover, nav button:hover {
 
     <!-- LIMPIEZA -->
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza1.webp" alt="Detergente liquido lavavajillas" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza1.webp" alt="Detergente liquido lavavajillas" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza1.webp', 'Detergente líquido lavavajillas')" style="pointer-events: auto;">
       <h3>Detergente líquido lavavajillas</h3>
       <p class="precio">💵 $4.51 USD</p>
       <p>Detergente líquido lavavajillas</p>
@@ -2693,7 +2740,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza2.webp" alt="Detergente en polvo 500 g" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza2.webp" alt="Detergente en polvo 500 g" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza2.webp', 'Detergente en polvo 500 g')" style="pointer-events: auto;">
       <h3>Detergente en polvo 500 g</h3>
       <p class="precio">💵 $1.89 USD</p>
       <p>Detergente en polvo 500 g</p>
@@ -2701,7 +2748,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza3.webp" alt="Esponja de fregar" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza3.webp" alt="Esponja de fregar" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza3.webp', 'Esponja de fregar')" style="pointer-events: auto;">
       <h3>Esponja de fregar</h3>
       <p class="precio">💵 $0.39 USD</p>
       <p>Esponja de fregar</p>
@@ -2709,7 +2756,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza4.webp" alt="Jabón de lavar 250 g" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza4.webp" alt="Jabón de lavar 250 g" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza4.webp', 'Jabón de lavar 250 g')" style="pointer-events: auto;">
       <h3>Jabón de lavar 250 g</h3>
       <p class="precio">💵 $1.89 USD</p>
       <p>Jabón de lavar 250 g</p>
@@ -2718,7 +2765,7 @@ nav a:hover, nav button:hover {
 
     <!-- ASEO -->
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza5.webp" alt="Jabón de baño" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza5.webp" alt="Jabón de baño" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza5.webp', 'Jabón de baño')" style="pointer-events: auto;">
       <h3>Jabón de baño</h3>
       <p class="precio">💵 $1.10 USD</p>
       <p>Jabón de baño</p>
@@ -2726,7 +2773,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza6.webp" alt="Juego de shampoo y acondicionador" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza6.webp" alt="Juego de shampoo y acondicionador" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza6.webp', 'Juego shampoo + acondicionador')" style="pointer-events: auto;">
       <h3>Juego shampoo + acondicionador</h3>
       <p class="precio">💵 $8.25 USD</p>
       <p>Juego de shampoo y acondicionador</p>
@@ -2734,7 +2781,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza7.webp" alt="Juego de shampoo y acondicionador sin sal" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza7.webp" alt="Juego de shampoo y acondicionador sin sal" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza7.webp', 'Juego shampoo + acond. sin sal')" style="pointer-events: auto;">
       <h3>Juego shampoo + acond. sin sal</h3>
       <p class="precio">💵 $12.65 USD</p>
       <p>Juego de shampoo y acondicionador sin sal</p>
@@ -2742,7 +2789,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza8.webp" alt="Desodorante pasta / spray" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza8.webp" alt="Desodorante pasta / spray" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza8.webp', 'Desodorante (pasta / spray)')" style="pointer-events: auto;">
       <h3>Desodorante (pasta / spray)</h3>
       <p class="precio">💵 $8.36 USD</p>
       <p>Desodorante pasta / spray</p>
@@ -2750,7 +2797,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza9.webp" alt="Colonia 300 ml" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza9.webp" alt="Colonia 300 ml" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza9.webp', 'Colonia 300 ml')" style="pointer-events: auto;">
       <h3>Colonia 300 ml</h3>
       <p class="precio">💵 $7.65 USD</p>
       <p>Colonia 300 ml</p>
@@ -2758,7 +2805,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza10.webp" alt="Perfume Mariposa / Camerata" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza10.webp" alt="Perfume Mariposa / Camerata" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza10.webp', 'Perfume Mariposa / Camerata')" style="pointer-events: auto;">
       <h3>Perfume Mariposa / Camerata</h3>
       <p class="precio">💵 $16.50 USD</p>
       <p>Perfume Mariposa / Camerata</p>
@@ -2766,7 +2813,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza11.webp" alt="Crema corporal" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza11.webp" alt="Crema corporal" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza11.webp', 'Crema corporal')" style="pointer-events: auto;">
       <h3>Crema corporal</h3>
       <p class="precio">💵 $5.50 USD</p>
       <p>Crema corporal</p>
@@ -2774,7 +2821,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza12.webp" alt="Pasta dental Royal Fresh 115 g" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza12.webp" alt="Pasta dental Royal Fresh 115 g" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza12.webp', 'Pasta dental Royal Fresh 115 g')" style="pointer-events: auto;">
       <h3>Pasta dental Royal Fresh 115 g</h3>
       <p class="precio">💵 $4.99 USD</p>
       <p>Pasta dental Royal Fresh 115 g</p>
@@ -2782,7 +2829,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza13.webp" alt="Toallitas húmedas" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza13.webp" alt="Toallitas húmedas" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza13.webp', 'Toallitas húmedas')" style="pointer-events: auto;">
       <h3>Toallitas húmedas</h3>
       <p class="precio">💵 $4.40 USD</p>
       <p>Toallitas húmedas</p>
@@ -2790,7 +2837,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza14.webp" alt="Papel higiénico (4 rollos)" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza14.webp" alt="Papel higiénico (4 rollos)" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza14.webp', 'Papel higiénico (4 rollos)')" style="pointer-events: auto;">
       <h3>Papel higiénico (4 rollos)</h3>
       <p class="precio">💵 $4.18 USD</p>
       <p>Papel higiénico (4 rollos)</p>
@@ -2798,7 +2845,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/aseo-limpieza/limpieza15.webp" alt="Íntimas 10 u" loading="lazy">
+      <img src="combos/aseo-limpieza/limpieza15.webp" alt="Íntimas 10 u" loading="lazy" onclick="abrirFoto('combos/aseo-limpieza/limpieza15.webp', 'Íntimas 10 u')" style="pointer-events: auto;">
       <h3>Íntimas 10 u</h3>
       <p class="precio">💵 $2.53 USD</p>
       <p>Íntimas 10 u</p>
@@ -2813,7 +2860,7 @@ nav a:hover, nav button:hover {
   <div class="galeria">
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia1.webp" alt="Cefalexina 12 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia1.webp" alt="Cefalexina 12 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia1.webp', 'Cefalexina 12 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Cefalexina 12 tab de 500 mg</h3>
       <p class="precio">💵 $3.90 USD</p>
       <p>Cefalexina 12 tab de 500 mg</p>
@@ -2821,7 +2868,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia2.webp" alt="Azitromicina 3 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia2.webp" alt="Azitromicina 3 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia2.webp', 'Azitromicina 3 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Azitromicina 3 tab de 500 mg</h3>
       <p class="precio">💵 $2.95 USD</p>
       <p>Azitromicina 3 tab de 500 mg</p>
@@ -2829,7 +2876,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto" style="position: relative;">
-      <img src="combos/farmacia/farmacia3.webp" alt="Vitaminas A, C, D (infantil 30 ml)" loading="lazy">
+      <img src="combos/farmacia/farmacia3.webp" alt="Vitaminas A, C, D (infantil 30 ml)" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia3.webp', 'Vitaminas A, C, D (infantil 30 ml)')" style="pointer-events: auto;">
       <h3>Vitaminas A, C, D (infantil 30 ml)</h3>
       <p class="precio">💵 $4.99 USD</p>
       <p>Vitaminas A, C, D (infantil 30 ml)</p>
@@ -2837,7 +2884,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia4.webp" alt="Vitamina C 80 tab" loading="lazy">
+      <img src="combos/farmacia/farmacia4.webp" alt="Vitamina C 80 tab" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia4.webp', 'Vitamina C 80 tab')" style="pointer-events: auto;">
       <h3>Vitamina C 80 tab</h3>
       <p class="precio">💵 $4.10 USD</p>
       <p>Vitamina C 80 tab</p>
@@ -2845,7 +2892,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia5.webp" alt="Metronidazol 10 tab" loading="lazy">
+      <img src="combos/farmacia/farmacia5.webp" alt="Metronidazol 10 tab" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia5.webp', 'Metronidazol 10 tab')" style="pointer-events: auto;">
       <h3>Metronidazol 10 tab</h3>
       <p class="precio">💵 $2.90 USD</p>
       <p>Metronidazol 10 tab</p>
@@ -2853,7 +2900,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia6.webp" alt="Aspirina 20 tab" loading="lazy">
+      <img src="combos/farmacia/farmacia6.webp" alt="Aspirina 20 tab" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia6.webp', 'Aspirina 20 tab')" style="pointer-events: auto;">
       <h3>Aspirina 20 tab</h3>
       <p class="precio">💵 $2.00 USD</p>
       <p>Aspirina 20 tab</p>
@@ -2861,7 +2908,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia7.webp" alt="Captopril 25 mg 30 tabletas" loading="lazy">
+      <img src="combos/farmacia/farmacia7.webp" alt="Captopril 25 mg 30 tabletas" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia7.webp', 'Captopril 25 mg 30 tabletas')" style="pointer-events: auto;">
       <h3>Captopril 25 mg 30 tabletas</h3>
       <p class="precio">💵 $1.90 USD</p>
       <p>Captopril 25 mg 30 tabletas</p>
@@ -2869,7 +2916,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia8.webp" alt="Diclofenaco en gel 60 g" loading="lazy">
+      <img src="combos/farmacia/farmacia8.webp" alt="Diclofenaco en gel 60 g" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia8.webp', 'Diclofenaco en gel 60 g')" style="pointer-events: auto;">
       <h3>Diclofenaco en gel 60 g</h3>
       <p class="precio">💵 $5.90 USD</p>
       <p>Diclofenaco en gel 60 g</p>
@@ -2877,7 +2924,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia9.webp" alt="Metamizol (Dipirona) 10 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia9.webp" alt="Metamizol (Dipirona) 10 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia9.webp', 'Metamizol (Dipirona) 10 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Metamizol (Dipirona) 10 tab de 500 mg</h3>
       <p class="precio">💵 $1.80 USD</p>
       <p>Metamizol (Dipirona) 10 tab de 500 mg</p>
@@ -2885,7 +2932,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia10.webp" alt="Amoxicilina 12 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia10.webp" alt="Amoxicilina 12 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia10.webp', 'Amoxicilina 12 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Amoxicilina 12 tab de 500 mg</h3>
       <p class="precio">💵 $3.00 USD</p>
       <p>Amoxicilina 12 tab de 500 mg</p>
@@ -2893,7 +2940,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia11.webp" alt="Ciprofloxacino 10 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia11.webp" alt="Ciprofloxacino 10 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia11.webp', 'Ciprofloxacino 10 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Ciprofloxacino 10 tab de 500 mg</h3>
       <p class="precio">💵 $3.50 USD</p>
       <p>Ciprofloxacino 10 tab de 500 mg</p>
@@ -2901,7 +2948,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia12.webp" alt="Paracetamol 10 tab de 500 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia12.webp" alt="Paracetamol 10 tab de 500 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia12.webp', 'Paracetamol 10 tab de 500 mg')" style="pointer-events: auto;">
       <h3>Paracetamol 10 tab de 500 mg</h3>
       <p class="precio">💵 $1.80 USD</p>
       <p>Paracetamol 10 tab de 500 mg</p>
@@ -2909,7 +2956,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia13.webp" alt="Loratadina 10 tab de 10 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia13.webp" alt="Loratadina 10 tab de 10 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia13.webp', 'Loratadina 10 tab de 10 mg')" style="pointer-events: auto;">
       <h3>Loratadina 10 tab de 10 mg</h3>
       <p class="precio">💵 $2.00 USD</p>
       <p>Loratadina 10 tab de 10 mg</p>
@@ -2917,7 +2964,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia14.webp" alt="Ibuprofeno en suspensión 120 ml" loading="lazy">
+      <img src="combos/farmacia/farmacia14.webp" alt="Ibuprofeno en suspensión 120 ml" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia14.webp', 'Ibuprofeno en suspensión 120 ml')" style="pointer-events: auto;">
       <h3>Ibuprofeno en suspensión 120 ml</h3>
       <p class="precio">💵 $5.99 USD</p>
       <p>Ibuprofeno en suspensión 120 ml</p>
@@ -2925,7 +2972,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia15.webp" alt="Alkaseltzer 2 capsulas" loading="lazy">
+      <img src="combos/farmacia/farmacia15.webp" alt="Alkaseltzer 2 capsulas" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia15.webp', 'Alkaseltzer 2 cápsulas')" style="pointer-events: auto;">
       <h3>Alkaseltzer 2 cápsulas</h3>
       <p class="precio">💵 $0.97 USD</p>
       <p>Alkaseltzer 2 cápsulas</p>
@@ -2933,7 +2980,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia16.webp" alt="Hidroclorotiazida" loading="lazy">
+      <img src="combos/farmacia/farmacia16.webp" alt="Hidroclorotiazida" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia16.webp', 'Hidroclorotiazida')" style="pointer-events: auto;">
       <h3>Hidroclorotiazida</h3>
       <p class="precio">💵 $2.00 USD</p>
       <p>Hidroclorotiazida</p>
@@ -2941,7 +2988,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia17.webp" alt="Omeprazol 14 cápsulas de 20 mg" loading="lazy">
+      <img src="combos/farmacia/farmacia17.webp" alt="Omeprazol 14 cápsulas de 20 mg" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia17.webp', 'Omeprazol 14 cápsulas de 20 mg')" style="pointer-events: auto;">
       <h3>Omeprazol 14 cápsulas de 20 mg</h3>
       <p class="precio">💵 $1.89 USD</p>
       <p>Omeprazol 14 cápsulas de 20 mg</p>
@@ -2949,7 +2996,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia18.webp" alt="Termómetro digital" loading="lazy">
+      <img src="combos/farmacia/farmacia18.webp" alt="Termómetro digital" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia18.webp', 'Termómetro digital')" style="pointer-events: auto;">
       <h3>Termómetro digital</h3>
       <p class="precio">💵 $4.89 USD</p>
       <p>Termómetro digital</p>
@@ -2957,7 +3004,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/farmacia/farmacia19.webp" alt="Ungüento mentol" loading="lazy">
+      <img src="combos/farmacia/farmacia19.webp" alt="Ungüento mentol" loading="lazy" onclick="abrirFoto('combos/farmacia/farmacia19.webp', 'Ungüento mentol')" style="pointer-events: auto;">
       <h3>Ungüento mentol</h3>
       <p class="precio">💵 $3.00 USD</p>
       <p>Ungüento mentol</p>
@@ -2972,7 +3019,7 @@ nav a:hover, nav button:hover {
   <div class="galeria">
 
     <div class="producto">
-      <img src="combos/otros/otros1.webp" alt="Leche en polvo 1 kg" loading="lazy">
+      <img src="combos/otros/otros1.webp" alt="Leche en polvo 1 kg" loading="lazy" onclick="abrirFoto('combos/otros/otros1.webp', 'Leche en polvo 1 kg')" style="pointer-events: auto;">
       <h3>Leche en polvo 1 kg</h3>
       <p class="precio">💵 $7.39 USD</p>
       <p>Leche en polvo 1 kg</p>
@@ -2980,7 +3027,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros2.webp" alt="Café Aroma 250 g" loading="lazy">
+      <img src="combos/otros/otros2.webp" alt="Café Aroma 250 g" loading="lazy" onclick="abrirFoto('combos/otros/otros2.webp', 'Café Aroma 250 g')" style="pointer-events: auto;">
       <h3>Café Aroma 250 g</h3>
       <p class="precio">💵 $5.79 USD</p>
       <p>Café Aroma 250 g</p>
@@ -2988,7 +3035,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros3.webp" alt="Chocolate en polvo 500 g" loading="lazy">
+      <img src="combos/otros/otros3.webp" alt="Chocolate en polvo 500 g" loading="lazy" onclick="abrirFoto('combos/otros/otros3.webp', 'Chocolate en polvo 500 g')" style="pointer-events: auto;">
       <h3>Chocolate en polvo 500 g</h3>
       <p class="precio">💵 $3.99 USD</p>
       <p>Chocolate en polvo 500 g</p>
@@ -2996,7 +3043,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros4.webp" alt="Leche condensada 385 g" loading="lazy">
+      <img src="combos/otros/otros4.webp" alt="Leche condensada 385 g" loading="lazy" onclick="abrirFoto('combos/otros/otros4.webp', 'Leche condensada 385 g')" style="pointer-events: auto;">
       <h3>Leche condensada 385 g</h3>
       <p class="precio">💵 $1.88 USD</p>
       <p>Leche condensada 385 g</p>
@@ -3004,7 +3051,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros5-40g.webp" alt="Gelatina de Mandarina 40 g" loading="lazy">
+      <img src="combos/otros/otros5-40g.webp" alt="Gelatina de Mandarina 40 g" loading="lazy" onclick="abrirFoto('combos/otros/otros5-40g.webp', 'Gelatina de Mandarina 40 g')" style="pointer-events: auto;">
       <h3>Gelatina de Mandarina 40 g</h3>
       <p class="precio">💵 $0.69 USD</p>
       <p>Gelatina de Mandarina 40 g</p>
@@ -3012,7 +3059,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros6.webp" alt="Mayonesa 500 g" loading="lazy">
+      <img src="combos/otros/otros6.webp" alt="Mayonesa 500 g" loading="lazy" onclick="abrirFoto('combos/otros/otros6.webp', 'Mayonesa 500 g')" style="pointer-events: auto;">
       <h3>Mayonesa 500 g</h3>
       <p class="precio">💵 $3.23 USD</p>
       <p>Mayonesa 500 g</p>
@@ -3020,7 +3067,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros7.webp" alt="Mantequilla 250 g" loading="lazy">
+      <img src="combos/otros/otros7.webp" alt="Mantequilla 250 g" loading="lazy" onclick="abrirFoto('combos/otros/otros7.webp', 'Mantequilla 250 g')" style="pointer-events: auto;">
       <h3>Mantequilla 250 g</h3>
       <p class="precio">💵 $2.60 USD</p>
       <p>Mantequilla 250 g</p>
@@ -3028,7 +3075,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros8.webp" alt="Queso Crema 226 g" loading="lazy">
+      <img src="combos/otros/otros8.webp" alt="Queso Crema 226 g" loading="lazy" onclick="abrirFoto('combos/otros/otros8.webp', 'Queso Crema 226 g')" style="pointer-events: auto;">
       <h3>Queso Crema 226 g</h3>
       <p class="precio">💵 $3.69 USD</p>
       <p>Queso Crema 226 g</p>
@@ -3036,7 +3083,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros9.webp" alt="Galletas Crokantinas (7 pkt)" loading="lazy">
+      <img src="combos/otros/otros9.webp" alt="Galletas Crokantinas (7 pkt)" loading="lazy" onclick="abrirFoto('combos/otros/otros9.webp', 'Galletas Crokantinas (7 pkt)')" style="pointer-events: auto;">
       <h3>Galletas Crokantinas (7 pkt)</h3>
       <p class="precio">💵 $3.90 USD</p>
       <p>Galletas Crokantinas (7 pkt)</p>
@@ -3044,7 +3091,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros10.webp" alt="Papas prefritas 2.5 kg" loading="lazy">
+      <img src="combos/otros/otros10.webp" alt="Papas prefritas 2.5 kg" loading="lazy" onclick="abrirFoto('combos/otros/otros10.webp', 'Papas prefritas 2.5 kg')" style="pointer-events: auto;">
       <h3>Papas prefritas 2.5 kg</h3>
       <p class="precio">💵 $9.90 USD</p>
       <p>Papas prefritas 2.5 kg</p>
@@ -3052,7 +3099,7 @@ nav a:hover, nav button:hover {
     </div>
 
     <div class="producto">
-      <img src="combos/otros/otros11.webp" alt="Papas prefritas 1 kg" loading="lazy">
+      <img src="combos/otros/otros11.webp" alt="Papas prefritas 1 kg" loading="lazy" onclick="abrirFoto('combos/otros/otros11.webp', 'Papas prefritas 1 kg')" style="pointer-events: auto;">
       <h3>Papas prefritas 1 kg</h3>
       <p class="precio">💵 $5.29 USD</p>
       <p>Papas prefritas 1 kg</p>
@@ -3564,4 +3611,44 @@ toggleBtn.onclick = () =&gt; {
   </script>
 
 
-</div></section></body></html>
+</div></section>
+      <script id="overrideCarrito">
+        // Interceptar la función original del carrito
+        setTimeout(function() {
+          if (typeof window.agregarAlCarrito === 'function' && typeof window.originalAgregarAlCarrito === 'undefined') {
+            window.originalAgregarAlCarrito = window.agregarAlCarrito;
+            
+            // Función nueva con confirmación
+            window.agregarAlCarrito = function(nombre, precio) {
+              if (confirm('¿Estás seguro de que deseas añadir "\n' + nombre + '\n" al carrito?')) {
+                 // Llamar a la original
+                 window.originalAgregarAlCarrito(nombre, precio);
+                 
+                 // Actualizar badge visual en el botón de ver carrito flotante
+                 var btnCarrito = document.querySelector('.boton-flotante-carrito') || document.querySelector('#ver-carrito');
+                 if (btnCarrito) {
+                   var badge = document.getElementById('contador-carrito');
+                   if (!badge) {
+                     badge = document.createElement('span');
+                     badge.id = 'contador-carrito';
+                     btnCarrito.appendChild(badge);
+                   }
+                   // Asumimos que la original hace un push a window.carrito
+                   if (window.carrito && Array.isArray(window.carrito)) {
+                     badge.innerText = window.carrito.length;
+                   } else {
+                     // Fallback si la variable se llama distinto
+                     var count = parseInt(badge.innerText || '0') + 1;
+                     badge.innerText = count;
+                   }
+                   
+                   // Animación de pop
+                   badge.style.transform = 'scale(1.5)';
+                   setTimeout(()=> badge.style.transform = 'scale(1)', 200);
+                 }
+              }
+            };
+          }
+        }, 1000); // Esperar a que el script original cargue
+      </script>
+    </body></html>
