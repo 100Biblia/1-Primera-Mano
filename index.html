@@ -994,6 +994,7 @@ nav a:hover, nav button:hover {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1437,6 +1438,49 @@ nav a:hover, nav button:hover {
     }
 
     // Modificar Chat Box existente (IA Bot) para que sea Gigante
+    $('#chat-box').attr('style', 'display:none;width:750px !important;background:linear-gradient(to bottom,#0a0a0a,#111);border:4px solid #d4af37;border-radius:35px;box-shadow:0 15px 50px rgba(0,0,0,0.9);overflow:hidden;font-family:sans-serif');
+    
+    // El header del chat
+    $('#chat-box > div:first-child').attr('style', 'background:linear-gradient(to right,#000,#1a0f00);padding:30px 40px;color:#d4af37;font-weight:bold;font-size:3rem;border-bottom:3px solid #d4af37;display:flex;justify-content:space-between;align-items:center');
+    
+    // El botón de cierre del chat
+    $('#chat-box > div:first-child > span:last-child').attr('style', 'cursor:pointer;font-size:4rem;color:#888');
+
+    // El área principal de mensajes
+    $('#chat-box > div:nth-child(2)').attr('style', 'padding:40px;color:#ccc;font-size:2.5rem');
+
+    // Los mensajes en sí
+    $('#chat-messages').attr('style', 'height:500px;overflow-y:auto;margin-bottom:30px;display:flex;flex-direction:column;gap:20px;');
+    $('#chat-messages > div').css({ 'padding': '25px 30px', 'border-radius': '20px', 'font-size': '2.5rem' });
+
+    // La entrada de chat y botón enviar
+    $('#chat-box > div:nth-child(2) > div:last-child').attr('style', 'display:flex;gap:20px;');
+    $('#chat-input').attr('style', 'flex:1;padding:25px;border:3px solid #333;background:#0a0a0a;color:#d4af37;border-radius:20px;font-size:2.5rem');
+    $('#chat-box > div:nth-child(2) > div:last-child > button').attr('style', 'padding:25px 35px;background:#d4af37;color:#000;border:none;border-radius:20px;font-weight:bold;font-size:2.5rem;cursor:pointer;transition:0.3s');
+  </script></div>
+  
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+
+    // Modificar Chat Box existente (IA Bot) para que sea Gigante
     $('#chat-box').attr('style', 'display:none;width:650px !important;background:linear-gradient(to bottom,#0a0a0a,#111);border:3px solid #d4af37;border-radius:30px;box-shadow:0 15px 50px rgba(0,0,0,0.9);overflow:hidden;font-family:sans-serif');
     
     // El header del chat
@@ -1456,7 +1500,7 @@ nav a:hover, nav button:hover {
     $('#chat-box > div:nth-child(2) > div:last-child').attr('style', 'display:flex;gap:15px;');
     $('#chat-input').attr('style', 'flex:1;padding:20px;border:2px solid #333;background:#0a0a0a;color:#d4af37;border-radius:15px;font-size:1.6rem');
     $('#chat-box > div:nth-child(2) > div:last-child > button').attr('style', 'padding:20px 25px;background:#d4af37;color:#000;border:none;border-radius:15px;font-weight:bold;font-size:1.6rem;cursor:pointer;transition:0.3s');
-  </script></div>
+  </script>
   
   <script>
     function normalizar(t) {
@@ -4364,6 +4408,45 @@ toggleBtn.onclick = () =&gt; {
 
   
   
+  
+  <!-- Estilos para Modal de Confirmación -->
+  <style id="confirm-modal-css">
+    @keyframes popInConfirm {
+      0% { transform: scale(0.7); opacity: 0; }
+      70% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .btn-confirm-cancel:hover {
+      background: rgba(255,255,255,0.1) !important;
+      border-color: #fff !important;
+    }
+    .btn-confirm-add:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(212,175,55,0.7) !important;
+      background: linear-gradient(135deg, #fcecae, #d4af37) !important;
+    }
+  </style>
+
+  <!-- Modal de Confirmación Gigante -->
+  <div id="custom-confirm-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); z-index:11000; justify-content:center; align-items:center;">
+    <div style="background:linear-gradient(145deg, #111, #1a1a1a); border:3px solid #d4af37; border-radius:30px; box-shadow:0 20px 60px rgba(212,175,55,0.3); padding:50px 40px; text-align:center; max-width:700px; width:90%; color:#fff; font-family:sans-serif; animation: popInConfirm 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div style="width:120px; height:120px; border-radius:50%; background:linear-gradient(135deg, #d4af37, #b8921b); display:flex; justify-content:center; align-items:center; margin:0 auto 30px; box-shadow:0 8px 25px rgba(212,175,55,0.5);">
+        <i class="fa-solid fa-cart-arrow-down" style="font-size:4rem; color:#000;"></i>
+      </div>
+      <h3 style="margin:0 0 15px 0; color:#d4af37; font-size:2.8rem; text-transform:uppercase; letter-spacing:2px;">Confirmar Pedido</h3>
+      <p style="margin:0 0 40px 0; font-size:1.8rem; color:#ddd; line-height:1.6;">¿Deseas añadir <br><b id="confirm-product-name" style="color:#fff; font-size:2.2rem; display:block; margin-top:10px;"></b><br> a tu carrito?</p>
+      <div style="display:flex; justify-content:space-between; gap:25px;">
+        <button class="btn-confirm-cancel" onclick="cerrarConfirmacion()" style="flex:1; padding:20px; border-radius:18px; border:3px solid #555; background:transparent; color:#ccc; font-size:1.8rem; font-weight:bold; cursor:pointer; transition:0.3s;">Cancelar</button>
+        <button class="btn-confirm-add" onclick="ejecutarAgregarAlCarrito()" style="flex:1; padding:20px; border-radius:18px; border:none; background:linear-gradient(135deg, #d4af37, #b8921b); color:#000; font-size:1.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 20px rgba(212,175,55,0.5); transition:0.3s;">Sí, añadir 🛒</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notificación Lateral -->
+  
+
+  
+  
   <div id="cart-float-container">
     <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
       <i class="fa-solid fa-cart-shopping"></i>
@@ -4409,15 +4492,15 @@ toggleBtn.onclick = () =&gt; {
 
   <!-- Modal de Confirmación Gigante -->
   <div id="custom-confirm-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); z-index:11000; justify-content:center; align-items:center;">
-    <div style="background:linear-gradient(145deg, #111, #1a1a1a); border:3px solid #d4af37; border-radius:30px; box-shadow:0 20px 60px rgba(212,175,55,0.3); padding:50px 40px; text-align:center; max-width:700px; width:90%; color:#fff; font-family:sans-serif; animation: popInConfirm 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-      <div style="width:120px; height:120px; border-radius:50%; background:linear-gradient(135deg, #d4af37, #b8921b); display:flex; justify-content:center; align-items:center; margin:0 auto 30px; box-shadow:0 8px 25px rgba(212,175,55,0.5);">
-        <i class="fa-solid fa-cart-arrow-down" style="font-size:4rem; color:#000;"></i>
+    <div style="background:linear-gradient(145deg, #111, #1a1a1a); border:4px solid #d4af37; border-radius:40px; box-shadow:0 20px 60px rgba(212,175,55,0.3); padding:60px 50px; text-align:center; max-width:850px; width:90%; color:#fff; font-family:sans-serif; animation: popInConfirm 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div style="width:160px; height:160px; border-radius:50%; background:linear-gradient(135deg, #d4af37, #b8921b); display:flex; justify-content:center; align-items:center; margin:0 auto 40px; box-shadow:0 8px 25px rgba(212,175,55,0.5);">
+        <i class="fa-solid fa-cart-arrow-down" style="font-size:6rem; color:#000;"></i>
       </div>
-      <h3 style="margin:0 0 15px 0; color:#d4af37; font-size:2.8rem; text-transform:uppercase; letter-spacing:2px;">Confirmar Pedido</h3>
-      <p style="margin:0 0 40px 0; font-size:1.8rem; color:#ddd; line-height:1.6;">¿Deseas añadir <br><b id="confirm-product-name" style="color:#fff; font-size:2.2rem; display:block; margin-top:10px;"></b><br> a tu carrito?</p>
-      <div style="display:flex; justify-content:space-between; gap:25px;">
-        <button class="btn-confirm-cancel" onclick="cerrarConfirmacion()" style="flex:1; padding:20px; border-radius:18px; border:3px solid #555; background:transparent; color:#ccc; font-size:1.8rem; font-weight:bold; cursor:pointer; transition:0.3s;">Cancelar</button>
-        <button class="btn-confirm-add" onclick="ejecutarAgregarAlCarrito()" style="flex:1; padding:20px; border-radius:18px; border:none; background:linear-gradient(135deg, #d4af37, #b8921b); color:#000; font-size:1.8rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 20px rgba(212,175,55,0.5); transition:0.3s;">Sí, añadir 🛒</button>
+      <h3 style="margin:0 0 20px 0; color:#d4af37; font-size:4.5rem; text-transform:uppercase; letter-spacing:2px;">Confirmar Pedido</h3>
+      <p style="margin:0 0 50px 0; font-size:2.8rem; color:#ddd; line-height:1.6;">¿Deseas añadir <br><b id="confirm-product-name" style="color:#fff; font-size:3.5rem; display:block; margin-top:20px;"></b><br> a tu carrito?</p>
+      <div style="display:flex; justify-content:space-between; gap:30px;">
+        <button class="btn-confirm-cancel" onclick="cerrarConfirmacion()" style="flex:1; padding:25px; border-radius:20px; border:4px solid #555; background:transparent; color:#ccc; font-size:2.5rem; font-weight:bold; cursor:pointer; transition:0.3s;">Cancelar</button>
+        <button class="btn-confirm-add" onclick="ejecutarAgregarAlCarrito()" style="flex:1; padding:25px; border-radius:20px; border:none; background:linear-gradient(135deg, #d4af37, #b8921b); color:#000; font-size:2.5rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 20px rgba(212,175,55,0.5); transition:0.3s;">Sí, añadir 🛒</button>
       </div>
     </div>
   </div>
@@ -4507,5 +4590,48 @@ toggleBtn.onclick = () =&gt; {
         };
       }
     }, 1000);
+  </script>
+  
+  <script id="overrideChatScript">
+    window.sendChat = async function() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+      
+      const msgs = document.getElementById('chat-messages');
+      const userDiv = document.createElement('div');
+      userDiv.style.cssText = "background:#d4af37;color:#000;padding:25px 30px;border-radius:20px;align-self:flex-end;max-width:85%;font-weight:bold;font-size:2.5rem;";
+      userDiv.textContent = text;
+      msgs.appendChild(userDiv);
+      input.value = '';
+      msgs.scrollTop = msgs.scrollHeight;
+
+      const botDiv = document.createElement('div');
+      botDiv.style.cssText = "background:#222;padding:25px 30px;border-radius:20px;align-self:flex-start;max-width:85%;color:#888;font-style:italic;font-size:2.5rem;";
+      botDiv.textContent = "Escribiendo...";
+      msgs.appendChild(botDiv);
+      msgs.scrollTop = msgs.scrollHeight;
+
+      try {
+        const res = await fetch(BOT_API_URL + "/api/chat", {
+          method: "POST",
+          headers: { 
+             "Content-Type": "application/json",
+             "Bypass-Tunnel-Reminder": "true" 
+          },
+          body: JSON.stringify({ message: text })
+        });
+        
+        if(!res.ok) throw new Error("Network response was not ok");
+        
+        const data = await res.json();
+        botDiv.style.color = "#fff";
+        botDiv.style.fontStyle = "normal";
+        botDiv.textContent = data.reply || "Error procesando respuesta.";
+      } catch (e) {
+        botDiv.textContent = "⚠️ Servidor no disponible en este momento.";
+      }
+      msgs.scrollTop = msgs.scrollHeight;
+    };
   </script>
   </body></html>
