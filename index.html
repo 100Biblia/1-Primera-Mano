@@ -990,6 +990,7 @@ nav a:hover, nav button:hover {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1432,13 +1433,7 @@ nav a:hover, nav button:hover {
       });
     }
   </script></div>
-  <div class="top-bar">
-    <div class="brand-container">
-      <i class="fa-solid fa-gem icon-animado"></i>
-      <h1 class="titulo-animado">Primera Mano</h1>
-    </div>
-    
-  </div>
+  
   <script>
     function normalizar(t) {
       return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -1460,13 +1455,7 @@ nav a:hover, nav button:hover {
       });
     }
   </script>
-  <div class="top-bar">
-    <div class="brand-container">
-      <i class="fa-solid fa-gem icon-animado"></i>
-      <h1 class="titulo-animado">Primera Mano</h1>
-    </div>
-    
-  </div>
+  
   <script>
     function normalizar(t) {
       return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -1488,13 +1477,29 @@ nav a:hover, nav button:hover {
       });
     }
   </script>
-  <div class="top-bar">
-    <div class="brand-container">
-      <i class="fa-solid fa-gem icon-animado"></i>
-      <h1 class="titulo-animado">Primera Mano</h1>
-    </div>
-    
-  </div>
+  
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
+  
   <script>
     function normalizar(t) {
       return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -4221,46 +4226,9 @@ toggleBtn.onclick = () =&gt; {
 
 
 </div></section>
-      <script id="overrideCarrito">
-        // Interceptar la función original del carrito
-        setTimeout(function() {
-          if (typeof window.agregarAlCarrito === 'function' && typeof window.originalAgregarAlCarrito === 'undefined') {
-            window.originalAgregarAlCarrito = window.agregarAlCarrito;
-            
-            // Función nueva con confirmación
-            window.agregarAlCarrito = function(nombre, precio) {
-              if (confirm('¿Estás seguro de que deseas añadir "\n' + nombre + '\n" al carrito?')) {
-                 // Llamar a la original
-                 window.originalAgregarAlCarrito(nombre, precio);
-                 
-                 // Actualizar badge visual en el botón de ver carrito flotante
-                 var btnCarrito = document.querySelector('.boton-flotante-carrito') || document.querySelector('#ver-carrito');
-                 if (btnCarrito) {
-                   var badge = document.getElementById('contador-carrito');
-                   if (!badge) {
-                     badge = document.createElement('span');
-                     badge.id = 'contador-carrito';
-                     btnCarrito.appendChild(badge);
-                   }
-                   // Asumimos que la original hace un push a window.carrito
-                   if (window.carrito && Array.isArray(window.carrito)) {
-                     badge.innerText = window.carrito.length;
-                   } else {
-                     // Fallback si la variable se llama distinto
-                     var count = parseInt(badge.innerText || '0') + 1;
-                     badge.innerText = count;
-                   }
-                   
-                   // Animación de pop
-                   badge.style.transform = 'scale(1.5)';
-                   setTimeout(()=> badge.style.transform = 'scale(1)', 200);
-                 }
-              }
-            };
-          }
-        }, 1000); // Esperar a que el script original cargue
-      </script>
+      
     
+  
   
   <div id="cart-float-container">
     <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
@@ -4273,7 +4241,6 @@ toggleBtn.onclick = () =&gt; {
         if (c) {
           c.style.setProperty('display', (c.style.display === 'none' || c.style.display === '') ? 'block' : 'none', 'important');
         } else {
-          // Fallback si no existe (algunas páginas viejas podían no tenerlo)
           window.location.hash = '#carrito';
         }
       }
@@ -4287,4 +4254,68 @@ toggleBtn.onclick = () =&gt; {
         }
       }, 500);
     </script>
-  </div></body></html>
+  </div>
+  <div id="custom-toast" style="display:none; position:fixed; top:30px; right:30px; background:linear-gradient(135deg, #0a0a0a, #1a1a1a); border:2px solid #d4af37; border-radius:12px; padding:15px 20px; z-index:10000; box-shadow:0 10px 40px rgba(0,0,0,0.9); color:#fff; font-family:sans-serif; min-width:320px; transform:translateX(150%); transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+    <div style="display:flex; align-items:center; gap:15px;">
+      <img id="toast-img" src="" style="width:65px; height:65px; object-fit:cover; border-radius:8px; border:1px solid #d4af37; box-shadow: 0 0 10px rgba(212,175,55,0.4);">
+      <div>
+        <div style="color:#d4af37; font-weight:bold; font-size:1.1rem; margin-bottom:4px; text-shadow:0 0 5px rgba(212,175,55,0.5);">✅ Agregado al Pedido</div>
+        <div id="toast-name" style="font-size:0.95rem; color:#eee; font-weight:500;"></div>
+      </div>
+    </div>
+  </div>
+  <script id="overrideCarrito">
+    setTimeout(function() {
+      if (typeof window.agregarAlCarrito === 'function' && typeof window.originalAgregarAlCarrito === 'undefined') {
+        window.originalAgregarAlCarrito = window.agregarAlCarrito;
+        window.agregarAlCarrito = function(nombre, precio) {
+           // Llamar a la lógica original (agrega al array carrito y actualiza UI interna)
+           window.originalAgregarAlCarrito(nombre, precio);
+           
+           // Buscar la imagen del producto
+           let imgSrc = '';
+           const productos = document.querySelectorAll('.producto');
+           for(let p of productos) {
+              const btn = p.querySelector('button');
+              if(btn && btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(nombre)) {
+                 const img = p.querySelector('img');
+                 if(img) imgSrc = img.src;
+                 break;
+              }
+           }
+
+           const toast = document.getElementById('custom-toast');
+           if (toast) {
+             document.getElementById('toast-name').innerText = nombre;
+             const imgEl = document.getElementById('toast-img');
+             if(imgSrc) {
+               imgEl.src = imgSrc;
+               imgEl.style.display = 'block';
+             } else {
+               imgEl.style.display = 'none';
+             }
+             
+             toast.style.display = 'block';
+             // Forzar repintado
+             void toast.offsetWidth;
+             toast.style.transform = 'translateX(0)';
+             
+             // Animación pop del badge del carrito
+             var badge = document.getElementById('cart-badge');
+             if (badge) {
+                badge.style.transform = 'scale(1.5)';
+                setTimeout(()=> badge.style.transform = 'scale(1)', 300);
+             }
+
+             // Ocultar toast después de 3.5 segundos
+             if(window.toastTimeout) clearTimeout(window.toastTimeout);
+             window.toastTimeout = setTimeout(() => { 
+                toast.style.transform = 'translateX(150%)'; 
+                setTimeout(() => toast.style.display = 'none', 400);
+             }, 3500);
+           }
+        };
+      }
+    }, 1000);
+  </script>
+  </body></html>
