@@ -1,6 +1,6 @@
-<!DOCTYPE html><html lang="es"><head>
+<!DOCTYPE html><html lang="es"><head><meta name="viewport" content="width=1200">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#d4af37">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -983,7 +983,94 @@ nav a:hover, nav button:hover {
           vertical-align: top;
         }
       </style>
-    </head>
+    
+  <style id="pm-uniform-css">
+    /* === FORZAR DESKTOP EN MÓVILES === */
+    @viewport { width: 1200px; }
+    html { min-width: 1200px; }
+    body { min-width: 1200px; overflow-x: auto; }
+
+    /* === GALERÍA UNIFORME === */
+    .galeria {
+      display: grid !important;
+      grid-template-columns: repeat(4, 1fr) !important;
+      gap: 20px !important;
+      padding: 20px !important;
+    }
+
+    /* === PRODUCTO UNIFORME === */
+    .producto {
+      width: 100% !important;
+      min-height: 380px !important;
+      max-height: 480px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: center !important;
+      justify-content: space-between !important;
+      text-align: center !important;
+      padding: 15px !important;
+      box-sizing: border-box !important;
+      border-radius: 12px !important;
+      background: rgba(255,255,255,0.05) !important;
+      border: 1px solid rgba(212,175,55,0.2) !important;
+      overflow: hidden !important;
+    }
+
+    .producto img {
+      width: 100% !important;
+      height: 200px !important;
+      object-fit: cover !important;
+      border-radius: 8px !important;
+      margin-bottom: 10px !important;
+    }
+
+    .producto h3 {
+      font-size: 0.95rem !important;
+      margin: 5px 0 !important;
+      min-height: 2.4em !important;
+      display: -webkit-box !important;
+      -webkit-line-clamp: 2 !important;
+      -webkit-box-orient: vertical !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+    }
+
+    .producto p {
+      font-size: 0.85rem !important;
+      margin: 3px 0 !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
+      white-space: nowrap !important;
+      max-width: 100% !important;
+    }
+
+    .producto button {
+      margin-top: auto !important;
+      width: 90% !important;
+      padding: 8px !important;
+      font-size: 0.85rem !important;
+    }
+
+    /* === SECCIONES Y TÍTULOS CENTRADOS === */
+    .seccion-productos h2,
+    .seccion-productos .titulo-seccion,
+    section h2 {
+      text-align: center !important;
+      width: 100% !important;
+    }
+
+    /* === HEADER/BANNER CENTRADO === */
+    header, .hero, h1 {
+      text-align: center !important;
+    }
+
+    /* === ELIMINAR BREAKPOINTS RESPONSIVOS === */
+    @media (max-width: 9999px) {
+      .galeria {
+        grid-template-columns: repeat(4, 1fr) !important;
+      }
+    }
+  </style></head>
 <body>
 
   <header>
@@ -1028,6 +1115,21 @@ nav a:hover, nav button:hover {
   <div id="buscador-primera-mano" style="position:sticky;top:0;z-index:999;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:12px 20px;display:flex;justify-content:center;box-shadow:0 2px 15px rgba(0,0,0,0.4)">
     <input type="text" id="buscar-producto" placeholder="🔍 Buscar producto..." oninput="filtrarProductos()" style="width:100%;max-width:500px;padding:12px 20px;border-radius:25px;border:2px solid #d4af37;background:#0f0f23;color:#fff;font-size:1rem;outline:none">
   </div>
+  <script>
+    function filtrarProductos() {
+      var q = document.getElementById('buscar-producto').value.toLowerCase();
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = (p.querySelector('h3') ? p.querySelector('h3').textContent : '').toLowerCase();
+        var desc = Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' ').toLowerCase();
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
+  
   <script>
     function filtrarProductos() {
       var q = document.getElementById('buscar-producto').value.toLowerCase();
