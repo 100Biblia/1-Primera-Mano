@@ -987,6 +987,7 @@ nav a:hover, nav button:hover {
   
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1000,6 +1001,59 @@ nav a:hover, nav button:hover {
       background-attachment: fixed !important;
       margin: 0;
       font-family: "Poppins", sans-serif;
+    }
+
+    /* === BOTONES FLOTANTES INFERIORES (CARRITO E IA) === */
+    .whatsapp-float, #chat-toggle {
+      width: 90px !important;
+      height: 90px !important;
+      font-size: 45px !important;
+      border-radius: 50% !important;
+      display: flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      background: linear-gradient(135deg, #d4af37, #b8921b) !important;
+      color: #000 !important;
+      box-shadow: 0 8px 30px rgba(212,175,55,0.7) !important;
+      position: fixed !important;
+      bottom: 40px !important;
+      z-index: 9999 !important;
+      transition: all 0.3s ease !important;
+      text-decoration: none !important;
+      border: 3px solid #000 !important;
+      float: none !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+
+    .whatsapp-float:hover, #chat-toggle:hover {
+      transform: scale(1.15) translateY(-5px) !important;
+      box-shadow: 0 12px 40px rgba(212,175,55,0.9) !important;
+      background: linear-gradient(135deg, #fcecae, #d4af37) !important;
+    }
+
+    /* CARRITO a la Izquierda */
+    .whatsapp-float {
+      left: 40px !important;
+      right: auto !important;
+    }
+
+    /* IA a la Derecha */
+    #chat-toggle {
+      right: 40px !important;
+      left: auto !important;
+    }
+
+    /* Ajustar la caja de chat para que no tape el botón nuevo */
+    #chat-box {
+      position: fixed !important;
+      bottom: 140px !important;
+      right: 40px !important;
+      border: 2px solid #d4af37 !important;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.9) !important;
+      border-radius: 20px !important;
+      width: 350px !important;
     }
 
     /* === STICKY HEADER CONTAINER === */
@@ -1297,16 +1351,41 @@ nav a:hover, nav button:hover {
         s.style.display = (visible > 0 || q === '') ? '' : 'none';
       });
     }
-  </script></div><header><h1 class="titulo-animado"><i class="fa-solid fa-gem icon-animado"></i> Primera Mano</h1>
+  </script></div>
+  <div class="top-bar">
+    <div class="brand-container">
+      <i class="fa-solid fa-gem icon-animado"></i>
+      <h1 class="titulo-animado">Primera Mano</h1>
+    </div>
+    
+  </div>
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script><header><h1 class="titulo-animado"><i class="fa-solid fa-gem icon-animado"></i> Primera Mano</h1>
     
     
     <p>Productos de primera mano, ya sean importados o fabricados en Cuba</p>
   </header>
   <div id="buscador-primera-mano" style="padding: 5px 20px 15px 20px; display:flex; justify-content:center;">
-    <div style="position:relative; width:100%; max-width:600px;">
-      <i class="fa-solid fa-search" style="position:absolute; left:20px; top:50%; transform:translateY(-50%); color:#d4af37; font-size:1.2rem;"></i>
-      <input type="text" id="buscar-producto" placeholder="Buscar producto..." oninput="filtrarProductos()" style="width:100%; padding:15px 20px 15px 50px; border-radius:30px; border:2px solid #d4af37; background:rgba(0,0,0,0.6); color:#fff; font-size:1.1rem; outline:none; box-sizing:border-box; box-shadow: 0 4px 15px rgba(212,175,55,0.2);">
-    </div>
+    
   </div>
   <script>
     function filtrarProductos() {
