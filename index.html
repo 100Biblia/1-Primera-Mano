@@ -988,6 +988,7 @@ nav a:hover, nav button:hover {
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1004,10 +1005,10 @@ nav a:hover, nav button:hover {
     }
 
     /* === BOTONES FLOTANTES INFERIORES (CARRITO E IA) === */
-    .whatsapp-float, #chat-toggle {
+    #cart-float, #chat-toggle {
       width: 90px !important;
       height: 90px !important;
-      font-size: 45px !important;
+      font-size: 40px !important;
       border-radius: 50% !important;
       display: flex !important;
       align-items: center !important;
@@ -1021,20 +1022,18 @@ nav a:hover, nav button:hover {
       transition: all 0.3s ease !important;
       text-decoration: none !important;
       border: 3px solid #000 !important;
-      float: none !important;
       margin: 0 !important;
       padding: 0 !important;
-      overflow: hidden !important;
     }
 
-    .whatsapp-float:hover, #chat-toggle:hover {
+    #cart-float:hover, #chat-toggle:hover {
       transform: scale(1.15) translateY(-5px) !important;
       box-shadow: 0 12px 40px rgba(212,175,55,0.9) !important;
       background: linear-gradient(135deg, #fcecae, #d4af37) !important;
     }
 
     /* CARRITO a la Izquierda */
-    .whatsapp-float {
+    #cart-float {
       left: 40px !important;
       right: auto !important;
     }
@@ -1352,6 +1351,34 @@ nav a:hover, nav button:hover {
       });
     }
   </script></div>
+  <div class="top-bar">
+    <div class="brand-container">
+      <i class="fa-solid fa-gem icon-animado"></i>
+      <h1 class="titulo-animado">Primera Mano</h1>
+    </div>
+    
+  </div>
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
   <div class="top-bar">
     <div class="brand-container">
       <i class="fa-solid fa-gem icon-animado"></i>
@@ -4124,4 +4151,21 @@ toggleBtn.onclick = () =&gt; {
           }
         }, 1000); // Esperar a que el script original cargue
       </script>
-    </body></html>
+    
+  <div id="cart-float-container">
+    <a href="#carrito" id="cart-float" style="position:relative;">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cart-badge" style="display:none; position:absolute; top:-8px; right:-8px; background:#ff3b3b; color:#fff; font-size:16px; width:30px; height:30px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:2px solid #000; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.5);">0</span>
+    </a>
+    <script>
+      setInterval(function() {
+        if (typeof carrito !== 'undefined') {
+          var badge = document.getElementById('cart-badge');
+          if (badge) {
+            badge.textContent = carrito.length;
+            badge.style.display = carrito.length > 0 ? 'flex' : 'none';
+          }
+        }
+      }, 500);
+    </script>
+  </div></body></html>
