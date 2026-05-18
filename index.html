@@ -991,6 +991,7 @@ nav a:hover, nav button:hover {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1006,54 +1007,54 @@ nav a:hover, nav button:hover {
       font-family: "Poppins", sans-serif;
     }
 
-    /* === BOTONES FLOTANTES INFERIORES (CARRITO E IA) === */
+    /* === BOTONES FLOTANTES INFERIORES GIGANTES (CARRITO E IA) === */
     #cart-float, #chat-toggle {
-      width: 90px !important;
-      height: 90px !important;
-      font-size: 40px !important;
+      width: 150px !important;
+      height: 150px !important;
+      font-size: 80px !important;
       border-radius: 50% !important;
       display: flex !important;
       align-items: center !important;
       justify-content: center !important;
       background: linear-gradient(135deg, #d4af37, #b8921b) !important;
       color: #000 !important;
-      box-shadow: 0 8px 30px rgba(212,175,55,0.7) !important;
+      box-shadow: 0 10px 40px rgba(212,175,55,0.8) !important;
       position: fixed !important;
-      bottom: 40px !important;
+      bottom: 50px !important;
       z-index: 9999 !important;
       transition: all 0.3s ease !important;
       text-decoration: none !important;
-      border: 3px solid #000 !important;
+      border: 4px solid #000 !important;
       margin: 0 !important;
       padding: 0 !important;
     }
 
     #cart-float:hover, #chat-toggle:hover {
-      transform: scale(1.15) translateY(-5px) !important;
-      box-shadow: 0 12px 40px rgba(212,175,55,0.9) !important;
+      transform: scale(1.10) translateY(-10px) !important;
+      box-shadow: 0 15px 50px rgba(212,175,55,1) !important;
       background: linear-gradient(135deg, #fcecae, #d4af37) !important;
     }
 
     /* CARRITO a la Izquierda */
     #cart-float {
-      left: 40px !important;
+      left: 50px !important;
       right: auto !important;
     }
 
     /* IA a la Derecha */
     #chat-toggle {
-      right: 40px !important;
+      right: 50px !important;
       left: auto !important;
     }
 
     /* === CAJAS MODALES (CHAT Y CARRITO) === */
     #chat-box, #carrito {
       position: fixed !important;
-      bottom: 140px !important;
+      bottom: 230px !important; /* Desplazado más arriba para no tapar el botón de 150px */
       border: 2px solid #d4af37 !important;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.9) !important;
+      box-shadow: 0 15px 50px rgba(0,0,0,0.9) !important;
       border-radius: 20px !important;
-      width: 350px !important;
+      width: 400px !important;
       max-width: 90vw !important;
       background: linear-gradient(to bottom, #0a0a0a, #111) !important;
       z-index: 8000 !important;
@@ -1063,11 +1064,11 @@ nav a:hover, nav button:hover {
     }
 
     /* Posiciones específicas */
-    #chat-box { right: 40px !important; }
+    #chat-box { right: 50px !important; }
     #carrito { 
-      left: 40px !important; 
-      padding: 20px !important;
-      max-height: 450px !important;
+      left: 50px !important; 
+      padding: 25px !important;
+      max-height: 500px !important;
       overflow-y: auto !important;
     }
 
@@ -1433,6 +1434,28 @@ nav a:hover, nav button:hover {
       });
     }
   </script></div>
+  
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
   
   <script>
     function normalizar(t) {
@@ -3848,11 +3871,8 @@ toggleBtn.onclick = () =&gt; {
 
 
   <!-- 🛒 SECCIÓN DEL CARRITO -->
- <div id="carrito-contenedor">
-   <div id="carrito-header" onclick="toggleCarrito()">
-    <span>🛒 Carrito de Compras</span>
-    <span id="toggle-icon">🔽</span>
-   </div>
+ <div id="carrito-contenedor" style="background: transparent !important; box-shadow: none !important; border: none !important; padding: 0 !important; width: 0; height: 0; position: static;">
+   
 
    <div id="carrito" class="cerrado" style="display: none !important;">
     <ul id="lista-carrito"></ul>
@@ -4230,10 +4250,14 @@ toggleBtn.onclick = () =&gt; {
     
   
   
+  
+  
+  
+  
   <div id="cart-float-container">
     <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
       <i class="fa-solid fa-cart-shopping"></i>
-      <span id="cart-badge" style="display:none; position:absolute; top:-8px; right:-8px; background:#ff3b3b; color:#fff; font-size:16px; width:30px; height:30px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:2px solid #000; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.5);">0</span>
+      <span id="cart-badge" style="display:none; position:absolute; top:-10px; right:-10px; background:#ff3b3b; color:#fff; font-size:24px; width:45px; height:45px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:3px solid #000; font-family:sans-serif; box-shadow:0 4px 15px rgba(0,0,0,0.5);">0</span>
     </button>
     <script>
       function toggleCarritoModal() {
