@@ -989,6 +989,7 @@ nav a:hover, nav button:hover {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1044,15 +1045,95 @@ nav a:hover, nav button:hover {
       left: auto !important;
     }
 
-    /* Ajustar la caja de chat para que no tape el botón nuevo */
-    #chat-box {
+    /* === CAJAS MODALES (CHAT Y CARRITO) === */
+    #chat-box, #carrito {
       position: fixed !important;
       bottom: 140px !important;
-      right: 40px !important;
       border: 2px solid #d4af37 !important;
       box-shadow: 0 10px 40px rgba(0,0,0,0.9) !important;
       border-radius: 20px !important;
       width: 350px !important;
+      max-width: 90vw !important;
+      background: linear-gradient(to bottom, #0a0a0a, #111) !important;
+      z-index: 8000 !important;
+      color: #fff !important;
+      margin: 0 !important;
+      padding: 0 !important;
+    }
+
+    /* Posiciones específicas */
+    #chat-box { right: 40px !important; }
+    #carrito { 
+      left: 40px !important; 
+      padding: 20px !important;
+      max-height: 450px !important;
+      overflow-y: auto !important;
+    }
+
+    /* Diseño del modal del carrito */
+    #carrito h2 {
+      background: linear-gradient(to right, #000, #1a0f00) !important;
+      padding: 14px 16px !important;
+      color: #d4af37 !important;
+      font-weight: bold !important;
+      font-size: 1.3rem !important;
+      border-bottom: 1px solid #d4af37 !important;
+      margin: -20px -20px 15px -20px !important;
+      text-align: left !important;
+    }
+
+    #carrito ul#lista-carrito {
+      list-style: none !important;
+      padding: 0 !important;
+      margin-bottom: 15px !important;
+      display: flex !important;
+      flex-direction: column !important;
+      gap: 10px !important;
+    }
+
+    #carrito ul#lista-carrito li {
+      background: #222 !important;
+      padding: 12px 14px !important;
+      border-radius: 10px !important;
+      color: #ddd !important;
+      font-size: 0.95rem !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      border-left: 3px solid #d4af37 !important;
+    }
+
+    #carrito ul#lista-carrito li button {
+      background: transparent !important;
+      color: #ff3b3b !important;
+      border: none !important;
+      font-size: 1.1rem !important;
+      cursor: pointer !important;
+    }
+
+    #carrito p:not(.precio) {
+      font-size: 1.2rem !important;
+      color: #d4af37 !important;
+      font-weight: bold !important;
+      text-align: right !important;
+      margin-top: 15px !important;
+      border-top: 1px dashed #555 !important;
+      padding-top: 15px !important;
+    }
+
+    #carrito button[onclick*="WhatsApp"], #carrito .enviar {
+      width: 100% !important;
+      background: linear-gradient(135deg, #25D366, #128C7E) !important;
+      color: #fff !important;
+      font-size: 1.1rem !important;
+      font-weight: bold !important;
+      border: none !important;
+      padding: 14px !important;
+      border-radius: 12px !important;
+      margin-top: 10px !important;
+      cursor: pointer !important;
+      text-transform: uppercase !important;
+      box-shadow: 0 4px 15px rgba(37,211,102,0.4) !important;
     }
 
     /* === STICKY HEADER CONTAINER === */
@@ -1351,6 +1432,34 @@ nav a:hover, nav button:hover {
       });
     }
   </script></div>
+  <div class="top-bar">
+    <div class="brand-container">
+      <i class="fa-solid fa-gem icon-animado"></i>
+      <h1 class="titulo-animado">Primera Mano</h1>
+    </div>
+    
+  </div>
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
   <div class="top-bar">
     <div class="brand-container">
       <i class="fa-solid fa-gem icon-animado"></i>
@@ -3740,7 +3849,7 @@ toggleBtn.onclick = () =&gt; {
     <span id="toggle-icon">🔽</span>
    </div>
 
-   <div id="carrito" class="cerrado">
+   <div id="carrito" class="cerrado" style="display: none !important;">
     <ul id="lista-carrito"></ul>
     <p id="total">Total: $0</p>
     <div class="botones-carrito">
@@ -4152,12 +4261,22 @@ toggleBtn.onclick = () =&gt; {
         }, 1000); // Esperar a que el script original cargue
       </script>
     
+  
   <div id="cart-float-container">
-    <a href="#carrito" id="cart-float" style="position:relative;">
+    <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
       <i class="fa-solid fa-cart-shopping"></i>
       <span id="cart-badge" style="display:none; position:absolute; top:-8px; right:-8px; background:#ff3b3b; color:#fff; font-size:16px; width:30px; height:30px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:2px solid #000; font-family:sans-serif; box-shadow:0 2px 10px rgba(0,0,0,0.5);">0</span>
-    </a>
+    </button>
     <script>
+      function toggleCarritoModal() {
+        var c = document.getElementById('carrito');
+        if (c) {
+          c.style.setProperty('display', (c.style.display === 'none' || c.style.display === '') ? 'block' : 'none', 'important');
+        } else {
+          // Fallback si no existe (algunas páginas viejas podían no tenerlo)
+          window.location.hash = '#carrito';
+        }
+      }
       setInterval(function() {
         if (typeof carrito !== 'undefined') {
           var badge = document.getElementById('cart-badge');
