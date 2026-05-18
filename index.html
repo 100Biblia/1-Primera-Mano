@@ -984,6 +984,7 @@ nav a:hover, nav button:hover {
         }
       </style>
     
+  
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP EN MÓVILES === */
     @viewport { width: 1200px; }
@@ -1115,6 +1116,21 @@ nav a:hover, nav button:hover {
   <div id="buscador-primera-mano" style="position:sticky;top:0;z-index:999;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:12px 20px;display:flex;justify-content:center;box-shadow:0 2px 15px rgba(0,0,0,0.4)">
     <input type="text" id="buscar-producto" placeholder="🔍 Buscar producto..." oninput="filtrarProductos()" style="width:100%;max-width:500px;padding:12px 20px;border-radius:25px;border:2px solid #d4af37;background:#0f0f23;color:#fff;font-size:1rem;outline:none">
   </div>
+  <script>
+    function filtrarProductos() {
+      var q = document.getElementById('buscar-producto').value.toLowerCase();
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = (p.querySelector('h3') ? p.querySelector('h3').textContent : '').toLowerCase();
+        var desc = Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' ').toLowerCase();
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script>
+  
   <script>
     function filtrarProductos() {
       var q = document.getElementById('buscar-producto').value.toLowerCase();
