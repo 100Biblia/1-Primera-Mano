@@ -9,7 +9,7 @@
   <link rel="apple-touch-icon" href="icons/icon-192.png">
   <meta http-equiv="Cache-Control" content="public, max-age=86400">
   <title> Primera Mano - Catálogo Moderno</title>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+  
   <link rel="stylesheet" href="styles.css">
     <style>
     body {
@@ -985,71 +985,180 @@ nav a:hover, nav button:hover {
       </style>
     
   
+  
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP EN MÓVILES === */
     @viewport { width: 1200px; }
     html { min-width: 1200px; }
-    body { min-width: 1200px; overflow-x: auto; }
+    body { 
+      min-width: 1200px; 
+      overflow-x: auto; 
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.7)), url('fondo1.png') !important;
+      background-size: cover !important;
+      background-position: center top !important;
+      background-attachment: fixed !important;
+      margin: 0;
+    }
 
-    /* === GALERÍA UNIFORME === */
+    /* === STICKY HEADER === */
+    #sticky-header-container {
+      position: sticky !important;
+      top: 0 !important;
+      z-index: 3000 !important;
+      background: linear-gradient(to bottom, rgba(10,10,10,1) 70%, rgba(10,10,10,0.9)) !important;
+      backdrop-filter: blur(10px) !important;
+      border-bottom: 2px solid #d4af37 !important;
+      padding-bottom: 15px !important;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.8) !important;
+    }
+
+    #sticky-header-container header {
+      margin-top: 0 !important;
+      padding: 15px 10px 5px 10px !important;
+      background: transparent !important;
+      border: none !important;
+      box-shadow: none !important;
+      animation: none !important;
+    }
+
+    /* Título Animado Primera Mano */
+    .titulo-animado {
+      font-size: 3.5rem !important;
+      font-weight: 900 !important;
+      color: #d4af37 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 2px !important;
+      margin: 0 0 5px 0 !important;
+      text-shadow: 0 0 20px rgba(212,175,55,0.6), 2px 2px 5px #000 !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+      gap: 15px !important;
+    }
+
+    .icon-animado {
+      animation: floatIcon 2.5s ease-in-out infinite !important;
+      color: #fff !important;
+      text-shadow: 0 0 15px #fff !important;
+    }
+
+    @keyframes floatIcon {
+      0% { transform: translateY(0) scale(1); }
+      50% { transform: translateY(-8px) scale(1.15); color: #d4af37; text-shadow: 0 0 20px #d4af37; }
+      100% { transform: translateY(0) scale(1); }
+    }
+
+    /* Menú más grande y alineado */
+    #sticky-header-container nav {
+      position: static !important;
+      background: transparent !important;
+      border: none !important;
+      padding: 10px 0 15px 0 !important;
+      gap: 40px !important;
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
+    }
+
+    #sticky-header-container nav a, 
+    #sticky-header-container nav button, 
+    #sticky-header-container #combos-toggle {
+      font-size: 1.3rem !important;
+      padding: 10px 25px !important;
+      font-weight: 800 !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      border: 1px solid rgba(212,175,55,0.3) !important;
+      border-radius: 8px !important;
+      background: rgba(0,0,0,0.5) !important;
+    }
+
+    #sticky-header-container nav a:hover, 
+    #sticky-header-container nav button:hover {
+      background: linear-gradient(to right, #d4af37, #b8921b) !important;
+      color: #000 !important;
+      border-color: #d4af37 !important;
+      transform: scale(1.05) !important;
+    }
+
+    /* === GALERÍA UNIFORME 3 COLUMNAS === */
     .galeria {
       display: grid !important;
-      grid-template-columns: repeat(4, 1fr) !important;
-      gap: 20px !important;
-      padding: 20px !important;
+      grid-template-columns: repeat(3, 1fr) !important;
+      gap: 25px !important;
+      padding: 30px !important;
+      max-width: 1200px !important;
+      margin: 0 auto !important;
     }
 
     /* === PRODUCTO UNIFORME === */
     .producto {
       width: 100% !important;
-      min-height: 380px !important;
-      max-height: 480px !important;
+      min-height: 420px !important;
+      max-height: 520px !important;
       display: flex !important;
       flex-direction: column !important;
       align-items: center !important;
       justify-content: space-between !important;
       text-align: center !important;
-      padding: 15px !important;
+      padding: 20px !important;
       box-sizing: border-box !important;
       border-radius: 12px !important;
-      background: rgba(255,255,255,0.05) !important;
-      border: 1px solid rgba(212,175,55,0.2) !important;
+      background: rgba(10,10,10,0.8) !important;
+      border: 1px solid rgba(212,175,55,0.3) !important;
       overflow: hidden !important;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.5) !important;
     }
 
     .producto img {
       width: 100% !important;
-      height: 200px !important;
+      height: 220px !important;
       object-fit: cover !important;
       border-radius: 8px !important;
-      margin-bottom: 10px !important;
+      margin-bottom: 12px !important;
+      border: 1px solid rgba(255,255,255,0.1) !important;
     }
 
     .producto h3 {
-      font-size: 0.95rem !important;
-      margin: 5px 0 !important;
+      font-size: 1.1rem !important;
+      margin: 8px 0 !important;
       min-height: 2.4em !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 2 !important;
       -webkit-box-orient: vertical !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
+      color: #fff !important;
+      text-shadow: none !important;
     }
 
     .producto p {
-      font-size: 0.85rem !important;
-      margin: 3px 0 !important;
+      font-size: 0.9rem !important;
+      color: #ddd !important;
+      margin: 5px 0 !important;
       overflow: hidden !important;
       text-overflow: ellipsis !important;
       white-space: nowrap !important;
       max-width: 100% !important;
     }
+    
+    .producto .precio {
+      font-size: 1.2rem !important;
+      color: #d4af37 !important;
+      font-weight: bold !important;
+    }
 
     .producto button {
       margin-top: auto !important;
-      width: 90% !important;
-      padding: 8px !important;
-      font-size: 0.85rem !important;
+      width: 100% !important;
+      padding: 12px !important;
+      font-size: 1rem !important;
+      font-weight: bold !important;
+      text-transform: uppercase !important;
+      border-radius: 8px !important;
+      background: linear-gradient(to right, #d4af37, #b8921b) !important;
+      color: #000 !important;
+      border: none !important;
     }
 
     /* === SECCIONES Y TÍTULOS CENTRADOS === */
@@ -1058,32 +1167,25 @@ nav a:hover, nav button:hover {
     section h2 {
       text-align: center !important;
       width: 100% !important;
-    }
-
-    /* === HEADER/BANNER CENTRADO === */
-    header, .hero, h1 {
-      text-align: center !important;
+      font-size: 2.5rem !important;
+      color: #d4af37 !important;
+      margin-top: 40px !important;
+      margin-bottom: 20px !important;
+      text-transform: uppercase !important;
     }
 
     /* === ELIMINAR BREAKPOINTS RESPONSIVOS === */
     @media (max-width: 9999px) {
       .galeria {
-        grid-template-columns: repeat(4, 1fr) !important;
+        grid-template-columns: repeat(3, 1fr) !important;
       }
     }
-  </style></head>
-<body>
-
-  <header>
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 100">
-      <text x="10" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#d4af37">Primera</text>
-      <text x="170" y="65" font-family="Arial" font-size="42" font-weight="bold" fill="#ffffff"> Mano</text>
-    </svg>
+  </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
+<body><div id="sticky-header-container"><header><h1 class="titulo-animado"><i class="fa-solid fa-gem icon-animado"></i> Primera Mano</h1>
+    
     
     <p>Productos de primera mano, ya sean importados o fabricados en Cuba</p>
-  </header>
-
- <nav id="main-nav">
+  </header><nav id="main-nav">
   <ul style="list-style:none; margin:0; padding:0; display:flex; gap:20px;">
     <li><a href="#electrodomésticos">⚡ Electrodomésticos</a></li>
 
@@ -1113,9 +1215,31 @@ nav a:hover, nav button:hover {
     </li>
   </ul>
 </nav>
-  <div id="buscador-primera-mano" style="position:sticky;top:0;z-index:999;background:linear-gradient(135deg,#1a1a2e,#16213e);padding:12px 20px;display:flex;justify-content:center;box-shadow:0 2px 15px rgba(0,0,0,0.4)">
-    <input type="text" id="buscar-producto" placeholder="🔍 Buscar producto..." oninput="filtrarProductos()" style="width:100%;max-width:500px;padding:12px 20px;border-radius:25px;border:2px solid #d4af37;background:#0f0f23;color:#fff;font-size:1rem;outline:none">
+  <div id="buscador-primera-mano" style="padding: 5px 20px 15px 20px; display:flex; justify-content:center;">
+    <div style="position:relative; width:100%; max-width:600px;">
+      <i class="fa-solid fa-search" style="position:absolute; left:20px; top:50%; transform:translateY(-50%); color:#d4af37; font-size:1.2rem;"></i>
+      <input type="text" id="buscar-producto" placeholder="Buscar producto..." oninput="filtrarProductos()" style="width:100%; padding:15px 20px 15px 50px; border-radius:30px; border:2px solid #d4af37; background:rgba(0,0,0,0.6); color:#fff; font-size:1.1rem; outline:none; box-sizing:border-box; box-shadow: 0 4px 15px rgba(212,175,55,0.2);">
+    </div>
   </div>
+  <script>
+    function filtrarProductos() {
+      var q = document.getElementById('buscar-producto').value.toLowerCase();
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = (p.querySelector('h3') ? p.querySelector('h3').textContent : '').toLowerCase();
+        var desc = Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' ').toLowerCase();
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+  </script></div>
+
+  
+
+ 
+  
   <script>
     function filtrarProductos() {
       var q = document.getElementById('buscar-producto').value.toLowerCase();
