@@ -1007,6 +1007,7 @@ nav a:hover, nav button:hover {
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style id="pm-uniform-css">
     /* === FORZAR DESKTOP === */
     @viewport { width: 1200px; }
@@ -1434,6 +1435,29 @@ nav a:hover, nav button:hover {
     }
 
   </script></div>
+  
+  <script>
+    function normalizar(t) {
+      return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
+    }
+    function filtrarProductos() {
+      var input = document.getElementById('buscar-producto');
+      if(!input) return;
+      var q = normalizar(input.value);
+      
+      document.querySelectorAll('.producto').forEach(function(p) {
+        var name = normalizar(p.querySelector('h3') ? p.querySelector('h3').textContent : '');
+        var desc = normalizar(Array.from(p.querySelectorAll('p')).map(function(x){return x.textContent}).join(' '));
+        p.style.display = (name.indexOf(q) !== -1 || desc.indexOf(q) !== -1) ? '' : 'none';
+      });
+      
+      document.querySelectorAll('section.seccion-productos').forEach(function(s) {
+        var visible = s.querySelectorAll('.producto:not([style*="display: none"])').length;
+        s.style.display = (visible > 0 || q === '') ? '' : 'none';
+      });
+    }
+
+  </script>
   
   <script>
     function normalizar(t) {
@@ -3958,6 +3982,30 @@ toggleBtn.onclick = () =&gt; {
 
   
   
+  
+  
+  
+  <!-- Estilos para Modal de Confirmación -->
+  
+
+  <!-- Modal de Confirmación Gigante -->
+  <div id="custom-confirm-overlay" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.85); backdrop-filter:blur(8px); z-index:11000; justify-content:center; align-items:center;">
+    <div style="background:linear-gradient(145deg, #111, #1a1a1a); border:4px solid #d4af37; border-radius:40px; box-shadow:0 20px 60px rgba(212,175,55,0.3); padding:60px 50px; text-align:center; max-width:850px; width:90%; color:#fff; font-family:sans-serif; animation: popInConfirm 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
+      <div style="width:160px; height:160px; border-radius:50%; background:linear-gradient(135deg, #d4af37, #b8921b); display:flex; justify-content:center; align-items:center; margin:0 auto 40px; box-shadow:0 8px 25px rgba(212,175,55,0.5);">
+        <i class="fa-solid fa-cart-arrow-down" style="font-size:6rem; color:#000;"></i>
+      </div>
+      <h3 style="margin:0 0 20px 0; color:#d4af37; font-size:4.5rem; text-transform:uppercase; letter-spacing:2px;">Confirmar Pedido</h3>
+      <p style="margin:0 0 50px 0; font-size:2.8rem; color:#ddd; line-height:1.6;">¿Deseas añadir <br><b id="confirm-product-name" style="color:#fff; font-size:3.5rem; display:block; margin-top:20px;"></b><br> a tu carrito?</p>
+      <div style="display:flex; justify-content:space-between; gap:30px;">
+        <button class="btn-confirm-cancel" onclick="cerrarConfirmacion()" style="flex:1; padding:25px; border-radius:20px; border:4px solid #555; background:transparent; color:#ccc; font-size:2.5rem; font-weight:bold; cursor:pointer; transition:0.3s;">Cancelar</button>
+        <button class="btn-confirm-add" onclick="ejecutarAgregarAlCarrito()" style="flex:1; padding:25px; border-radius:20px; border:none; background:linear-gradient(135deg, #d4af37, #b8921b); color:#000; font-size:2.5rem; font-weight:bold; cursor:pointer; box-shadow:0 6px 20px rgba(212,175,55,0.5); transition:0.3s;">Sí, añadir 🛒</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notificación Lateral -->
+  
+
   
   
   
