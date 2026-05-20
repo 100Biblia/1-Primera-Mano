@@ -1373,7 +1373,30 @@ nav a:hover, nav button:hover {
 
     /* Ocultar elementos huérfanos que pudieran haber quedado del header viejo */
     header { display: none !important; }
-  </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
+  </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+      <style id="nav-dropdown-css">
+        .nav-item { position: relative; display: inline-block; }
+        .dropdown { cursor: pointer; }
+        .dropdown-content {
+          display: none; position: absolute; background-color: rgba(30,30,30,0.95); min-width: 180px;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.5); z-index: 1000; top: 100%; left: 50%; transform: translateX(-50%);
+          border-radius: 8px; overflow: hidden; border: 1px solid #d4af37;
+        }
+        .dropdown-content a {
+          color: white; padding: 12px 16px; text-decoration: none; display: block;
+          border-bottom: 1px solid #444; margin: 0; font-size: 0.95rem; text-align: center;
+        }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #d4af37; color: black; font-weight: bold; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-icon { margin-left: 5px; font-size: 0.7em; }
+        nav { display: flex; flex-wrap: wrap; gap: 15px; align-items: center; justify-content: center; overflow: visible !important; }
+        /* Fix para navegadores moviles */
+        @media (max-width: 768px) {
+           .dropdown-content { left: 0; transform: none; min-width: 140px; }
+        }
+      </style>
+    </head>
 <body><div id="sticky-header-container">
   <div class="top-bar">
     <div class="brand-container">
@@ -1384,36 +1407,7 @@ nav a:hover, nav button:hover {
       <i class="fa-solid fa-search"></i>
       <input type="text" id="buscar-producto" placeholder="Escribe para buscar..." oninput="filtrarProductos()" onkeyup="filtrarProductos()">
     </div>
-  </div><nav id="main-nav">
-  <ul style="list-style:none; margin:0; padding:0; display:flex; gap:20px;">
-    <li><a href="#electrodomésticos">⚡ Electrodomésticos</a></li>
-
-    <li style="position:relative;">
-      <button id="muebles-toggle">🛋️ Muebles▾</button>
-
-      <div id="muebles-submenu">
-        <a href="#camas">🛏️ Camas</a>
-        <a href="#muebles-l">🛋️ Muebles en L</a>
-        <a href="#muebles-capitoneados">💎 Muebles Capitoneados</a>
-      </div>
-    </li>
-
-   <li style="position:relative;">
-      <button id="combos-toggle">🧺 Combos ▾</button>
-
-      <div id="combos-submenu" class="submenu" role="menu" aria-label="Combos">
-        <a href="#carnicos">🥩 Cárnicos</a>
-        <a href="#agromercado">🌽 Agro mercado</a>
-        <a href="#confituras">🍯 Confituras</a>
-        <a href="#bebidas">🥤 Bebidas</a>
-        <a href="#aseo">🧴 Aseo y Limpieza</a>
-        <a href="#farmacia">💊 Farmacia</a>
-        <a href="#otros">📦 Otros</a>
-        <a href="#premium">🏆 Combos Premium</a>
-      </div>
-    </li>
-  </ul>
-<a href="#tienda">Tienda</a><a href="#tienda-karel">Tienda Karel</a></nav>
+  </div><nav id="main-nav"><a href="#electrodomésticos" class="nav-item">⚡ Electrodomésticos</a><a href="#tienda-karel" class="nav-item">Tienda Karel</a><a href="#karel" class="nav-item">Karel</a><a href="#camas" class="nav-item">🛏️ Camas moderna</a><a href="#muebles-l" class="nav-item">🛋️ Muebles en L</a><a href="#muebles-capitoneados" class="nav-item">💎 Muebles Capitoneados</a><a href="#carnicos" class="nav-item">🥩 Cárnicos</a><a href="#agromercado" class="nav-item">🌽 Agro y Mercado</a><a href="#confituras" class="nav-item">🍯 Confituras</a><a href="#bebidas" class="nav-item">🥤 Bebidas</a><a href="#aseo" class="nav-item">🧴 Aseo y Limpieza</a><a href="#farmacia" class="nav-item">💊 Farmacia</a><a href="#otros" class="nav-item">📦 Otros</a><a href="#muebles-l" class="nav-item">🛋️ Muebles en L</a><a href="#tienda" class="nav-item">Tienda</a></nav>
   <script>
     function normalizar(t) {
       return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -2175,6 +2169,11 @@ nav a:hover, nav button:hover {
  
     <section class="seccion-productos" id="tienda-karel">
       <h2>Tienda Karel</h2>
+      <div class="galeria"></div>
+    </section>
+    
+    <section class="seccion-productos" id="karel">
+      <h2>Karel</h2>
       <div class="galeria"></div>
     </section>
     </section>
