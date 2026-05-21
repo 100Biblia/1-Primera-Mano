@@ -3794,110 +3794,8 @@ nav a:hover, nav button:hover {
 
   
   
-  <style id="cart-system-css">
-    #carrito-contenedor {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.97);
-      border-top: 3px solid #d4af37;
-      box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.4);
-      font-family: "Poppins", sans-serif;
-      z-index: 10500;
-      color: #d4af37;
-      max-height: 55px;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    #carrito-contenedor.abierto { max-height: 500px; }
-    #carrito-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 14px 20px;
-      cursor: pointer;
-      font-weight: bold;
-      background: rgba(0, 0, 0, 0.95);
-      color: #d4af37;
-      font-size: 1.2rem;
-      border-bottom: 1px solid #d4af37;
-    }
-    #carrito {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-in-out, padding 0.3s ease;
-    }
-    #carrito-contenedor.abierto #carrito {
-      max-height: 400px;
-      padding: 15px 20px;
-      overflow-y: auto;
-    }
-    #lista-carrito {
-      list-style: none;
-      padding: 0;
-      margin: 10px 0;
-    }
-    #lista-carrito li {
-      background: rgba(212, 175, 55, 0.1);
-      border: 1px solid #d4af37;
-      border-radius: 8px;
-      padding: 10px 14px;
-      margin-bottom: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      color: white;
-      font-size: 1rem;
-    }
-    #lista-carrito li .item-remove {
-      background: none;
-      border: none;
-      color: #ff4c4c;
-      font-size: 1.3rem;
-      cursor: pointer;
-      padding: 0 4px;
-    }
-    #total {
-      margin: 12px 0;
-      font-size: 1.3rem;
-      color: #d4af37;
-      font-weight: bold;
-      text-align: center;
-    }
-    .botones-carrito {
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .boton-carrito.vaciar {
-      padding: 10px 20px; border-radius: 8px; border: 1px solid #d4af37;
-      background: #222; color: #d4af37; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s;
-    }
-    .boton-carrito.enviar {
-      padding: 10px 20px; border-radius: 8px; border: none;
-      background: #d4af37; color: #000; font-weight: bold; cursor: pointer; font-size: 1rem; transition: 0.3s;
-    }
-    .boton-carrito.enviar:hover { background: #b8921b; transform: scale(1.03); }
-    .boton-carrito.vaciar:hover { background: #d4af37; color: #000; }
-  </style>
-  <div id="carrito-contenedor">
-    <div id="carrito-header" onclick="toggleCarritoPanel()">
-      <span>🛒 Mi Carrito (<span id="carrito-count">0</span>)</span>
-      <span id="toggle-icon">🔼</span>
-    </div>
-    <div id="carrito">
-      <ul id="lista-carrito"></ul>
-      <p id="total">Total: $0</p>
-      <div class="botones-carrito">
-        <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
-        <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
-      </div>
-    </div>
-  </div>
+  
+  
   
   <!-- Estilos para Modal de Confirmación -->
   <style id="confirm-modal-css">
@@ -3933,6 +3831,23 @@ nav a:hover, nav button:hover {
         <div style="color:#d4af37; font-weight:bold; font-size:1.1rem; margin-bottom:4px;">✅ Agregado</div>
         <div id="toast-name" style="font-size:0.95rem; color:#eee; font-weight:500;"></div>
       </div>
+    </div>
+  </div>
+  
+  <div id="cart-float-container">
+    <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
+      <i class="fa-solid fa-cart-shopping"></i>
+      <span id="cart-badge" style="display:none; position:absolute; top:-10px; right:-10px; background:#ff3b3b; color:#fff; font-size:24px; width:45px; height:45px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:3px solid #000; font-family:sans-serif; box-shadow:0 4px 15px rgba(0,0,0,0.5);">0</span>
+    </button>
+  </div>
+  <div id="carrito" style="display: none !important; width: 700px !important;">
+    <button onclick="toggleCarritoModal()" style="position:absolute; top:15px; right:20px; background:transparent; border:none; color:white; font-size:1.8rem; cursor:pointer;">❌</button>
+    <h2>🛒 Mi Carrito</h2>
+    <ul id="lista-carrito"></ul>
+    <p id="total">Total: $0</p>
+    <div class="botones-carrito">
+      <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
+      <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
     </div>
   </div>
   <script id="cart-system-js">
@@ -3992,10 +3907,10 @@ nav a:hover, nav button:hover {
         toast.style.transform = 'translateX(0)';
 
         // Animate counter
-        var count = document.getElementById('carrito-count');
-        if (count) {
-          count.style.transform = 'scale(1.5)';
-          setTimeout(function() { count.style.transform = 'scale(1)'; }, 300);
+        var badge = document.getElementById('cart-badge');
+        if (badge) {
+          badge.style.transform = 'scale(1.5)';
+          setTimeout(function() { badge.style.transform = 'scale(1)'; }, 300);
         }
 
         if (window.toastTimeout) clearTimeout(window.toastTimeout);
@@ -4053,6 +3968,11 @@ nav a:hover, nav button:hover {
           var btnEliminar = document.createElement("button");
           btnEliminar.className = "item-remove";
           btnEliminar.innerHTML = "❌";
+          btnEliminar.style.background = "none";
+          btnEliminar.style.border = "none";
+          btnEliminar.style.color = "#ff4c4c";
+          btnEliminar.style.fontSize = "1.2rem";
+          btnEliminar.style.cursor = "pointer";
           btnEliminar.onclick = function(e) { e.stopPropagation(); window.eliminarDelCarrito(index); };
           li.appendChild(btnEliminar);
 
@@ -4063,9 +3983,10 @@ nav a:hover, nav button:hover {
 
       totalSpan.textContent = "Total: $" + total;
 
-      var badges = document.querySelectorAll('#carrito-count');
-      for (var b = 0; b < badges.length; b++) {
-        badges[b].textContent = window.carrito.length;
+      var badge = document.getElementById('cart-badge');
+      if (badge) {
+        badge.textContent = window.carrito.length;
+        badge.style.display = window.carrito.length > 0 ? 'flex' : 'none';
       }
     };
 
@@ -4101,12 +4022,17 @@ nav a:hover, nav button:hover {
       window.open(url, "_blank");
     };
 
-    window.toggleCarritoPanel = function() {
-      var contenedor = document.getElementById("carrito-contenedor");
-      var icon = document.getElementById("toggle-icon");
-      if (!contenedor) return;
-      contenedor.classList.toggle("abierto");
-      if (icon) icon.textContent = contenedor.classList.contains("abierto") ? "🔽" : "🔼";
+    window.toggleCarritoModal = function() {
+      var c = document.getElementById('carrito');
+      if (c) {
+        c.style.setProperty('display', (c.style.display === 'none' || c.style.display === '') ? 'block' : 'none', 'important');
+        if (c.style.display === 'block') {
+           // Si se abre el modal, podemos bloquear el scroll
+           document.body.style.overflow = 'hidden';
+        } else {
+           document.body.style.overflow = '';
+        }
+      }
     };
 
     if (document.readyState === 'loading') {
