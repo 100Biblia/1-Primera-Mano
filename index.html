@@ -1423,7 +1423,7 @@ nav a:hover, nav button:hover {
   background: linear-gradient(145deg, #111, #1a1a1a);
   border: 3px solid #d4af37;
   border-radius: 20px;
-  max-width: 1400px; width: 95%; height: 90vh;
+  max-width: 1200px; width: 95%; height: 75vh;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
@@ -1455,26 +1455,26 @@ nav a:hover, nav button:hover {
 }
 #product-detail-img {
   max-width: 100%;
-  max-height: 80vh;
+  max-height: 65vh;
   border-radius: 10px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.8);
   object-fit: contain;
 }
 #product-detail-info {
   flex: 1;
-  padding: 30px;
+  padding: 25px;
   display: flex;
   flex-direction: column;
 }
 #product-detail-title {
   color: #d4af37;
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-top: 0;
   margin-bottom: 15px;
 }
 #product-detail-price {
   color: #fff;
-  font-size: 4rem;
+  font-size: 3.2rem;
   font-weight: bold;
   margin-bottom: 20px;
   text-shadow: 0 2px 5px rgba(0,0,0,0.5);
@@ -4310,10 +4310,24 @@ function abrirFoto(fullSrc, titulo, evt) {
   document.getElementById('product-detail-price').textContent = priceText;
   
   var addBtn = document.getElementById('product-detail-add-btn');
-  addBtn.onclick = function() {
-    agregarAlCarrito(titulo, numericPrice);
-    cerrarDetalle();
-  };
+  var isAgotado = container && container.getAttribute('data-agotado') === 'true';
+  
+  if (isAgotado) {
+    addBtn.textContent = "Agotado";
+    addBtn.style.background = "#555";
+    addBtn.style.color = "#ccc";
+    addBtn.style.cursor = "not-allowed";
+    addBtn.onclick = function() {}; // Do nothing
+  } else {
+    addBtn.textContent = "Añadir al Carrito 🛒";
+    addBtn.style.background = "linear-gradient(135deg, #d4af37, #b8921b)";
+    addBtn.style.color = "#000";
+    addBtn.style.cursor = "pointer";
+    addBtn.onclick = function() {
+      agregarAlCarrito(titulo, numericPrice);
+      cerrarDetalle();
+    };
+  }
 
   modal.style.display = 'flex';
   document.body.style.overflow = 'hidden';
