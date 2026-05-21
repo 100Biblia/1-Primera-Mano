@@ -4110,4 +4110,240 @@ nav a:hover, nav button:hover {
       }
     }, 1000);
   </script>
-  </body></html>
+  
+  <!-- ================= CARRITO RESTAURADO ================= -->
+  <div id="carrito-contenedor">
+    <div id="carrito-header" onclick="toggleCarrito()">
+      <span>🛒 Mi Carrito</span>
+      <span id="toggle-icon">🔼</span>
+    </div>
+    <div id="carrito">
+      <ul id="lista-carrito"></ul>
+      <p id="total">Total: $0</p>
+      <div class="botones-carrito">
+        <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
+        <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #carrito-contenedor {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(0, 0, 0, 0.95);
+      border-top: 3px solid #d4af37;
+      box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.4);
+      font-family: "Poppins", sans-serif;
+      z-index: 10500;
+      color: #d4af37;
+      max-height: 55px; 
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+    }
+
+    #carrito-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-weight: bold;
+      background: rgba(0, 0, 0, 0.9);
+      color: #d4af37;
+      font-size: 1.2rem;
+      border-bottom: 1px solid #d4af37;
+    }
+
+    #carrito {
+      padding: 0 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease-in-out;
+    }
+
+    #carrito-contenedor.abierto {
+      max-height: 450px; 
+    }
+    #carrito-contenedor.abierto #carrito {
+      max-height: 400px;
+      padding: 15px 20px;
+      overflow-y: auto;
+    }
+
+    #lista-carrito {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    #lista-carrito li {
+      background: rgba(212, 175, 55, 0.1);
+      border: 1px solid #d4af37;
+      border-radius: 8px;
+      padding: 10px;
+      margin-bottom: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: white;
+    }
+
+    #lista-carrito li button {
+      background: none;
+      border: none;
+      color: #ff4c4c;
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+
+    #total {
+      margin: 10px 0;
+      font-size: 1.3rem;
+      color: #d4af37;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .botones-carrito {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .boton-carrito {
+      padding: 10px 20px;
+      border-radius: 8px;
+      border: none;
+      font-weight: bold;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: 0.3s;
+    }
+
+    .boton-carrito.vaciar {
+      background-color: #222;
+      color: #d4af37;
+      border: 1px solid #d4af37;
+    }
+
+    .boton-carrito.enviar {
+      background-color: #d4af37;
+      color: #000;
+    }
+  </style>
+
+  <script>
+    if (typeof window.carrito === 'undefined') {
+       window.carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    }
+
+    function guardarCarrito() {
+      localStorage.setItem("carrito", JSON.stringify(window.carrito));
+    }
+
+    // Definición original
+    window.agregarAlCarritoOriginalReal = function(nombre, precio) {
+      window.carrito.push({ nombre, precio: parseFloat(precio) || 0 });
+      guardarCarrito();
+      actualizarCarrito();
+    };
+    
+    // Si no está ya sobreescrita por el override, asignamos
+    if (typeof window.originalAgregarAlCarrito === 'undefined') {
+        window.agregarAlCarrito = window.agregarAlCarritoOriginalReal;
+    } else {
+        // En caso de que el script override haya corrido antes, el original debería apuntar aquí
+        window.originalAgregarAlCarrito = window.agregarAlCarritoOriginalReal;
+    }
+
+    function actualizarCarrito() {
+      const lista = document.getElementById("lista-carrito");
+      const totalSpan = document.getElementById("total");
+      if (!lista || !totalSpan) return;
+
+      lista.innerHTML = "";
+      let total = 0;
+
+      window.carrito.forEach((item, index) => {
+        const li = document.createElement("li");
+        li.textContent = `${item.nombre}`;
+        
+        const precioSpan = document.createElement("span");
+        precioSpan.textContent = ` ${item.precio.toLocaleString()}`;
+        li.appendChild(precioSpan);
+
+        const btnEliminar = document.createElement("button");
+        btnEliminar.innerHTML = "❌";
+        btnEliminar.onclick = (e) => { e.stopPropagation(); eliminarDelCarrito(index); };
+        li.appendChild(btnEliminar);
+
+        lista.appendChild(li);
+        total += item.precio;
+      });
+
+      totalSpan.textContent = `Total: ${total.toLocaleString()}`;
+      
+      // Actualizar badges
+      var badges = document.querySelectorAll('#contador-carrito, #cart-badge');
+      badges.forEach(b => {
+          b.textContent = window.carrito.length;
+          b.style.display = window.carrito.length > 0 ? 'inline-block' : 'none';
+      });
+    }
+
+    function eliminarDelCarrito(index) {
+      window.carrito.splice(index, 1);
+      guardarCarrito();
+      actualizarCarrito();
+    }
+
+    function vaciarCarrito() {
+      if(confirm('¿Estás seguro de vaciar el carrito?')) {
+          window.carrito = [];
+          guardarCarrito();
+          actualizarCarrito();
+      }
+    }
+
+    function enviarWhatsApp() {
+      if (window.carrito.length === 0) {
+        alert("Tu carrito está vacío.");
+        return;
+      }
+
+      let mensaje = "🛋️ *Pedido desde el Catálogo Mueble Primera Mano:*\n\n";
+      window.carrito.forEach(item => {
+        mensaje += `• ${item.nombre} - ${item.precio.toLocaleString()}\n`;
+      });
+      const total = window.carrito.reduce((acc, item) => acc + item.precio, 0);
+      mensaje += `\n💰 *Total:* ${total.toLocaleString()}\n\n📞 Enviado desde el catálogo web.`;
+
+      const numeroWhatsApp = "54449370";
+      const url = `https://wa.me/${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, "_blank");
+    }
+
+    function toggleCarrito() {
+      const contenedor = document.getElementById("carrito-contenedor");
+      const icon = document.getElementById("toggle-icon");
+      if (!contenedor) return;
+      
+      contenedor.classList.toggle("abierto");
+      if (contenedor.classList.contains("abierto")) {
+        icon.textContent = "🔽";
+      } else {
+        icon.textContent = "🔼";
+      }
+    }
+
+    document.addEventListener("DOMContentLoaded", actualizarCarrito);
+    setTimeout(actualizarCarrito, 1500); // safety fallback
+  </script>
+  <!-- ======================================================== -->
+  \n</body></html>
