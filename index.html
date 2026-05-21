@@ -1405,7 +1405,128 @@ nav a:hover, nav button:hover {
     #carrito-contenedor.abierto #carrito {
       display: block !important;
     }
-    </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
+    </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style id="product-detail-css">
+/* Product Details Modal (Amazon Style) */
+#product-detail-modal {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(8px);
+  z-index: 12000;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+#product-detail-content {
+  background: linear-gradient(145deg, #111, #1a1a1a);
+  border: 3px solid #d4af37;
+  border-radius: 20px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 60px rgba(212,175,55,0.3);
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  animation: popInDetail 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+@media (max-width: 768px) {
+  #product-detail-content {
+    flex-direction: column;
+  }
+}
+#product-detail-img-container {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #0a0a0a;
+  border-radius: 17px 0 0 17px;
+}
+@media (max-width: 768px) {
+  #product-detail-img-container {
+    border-radius: 17px 17px 0 0;
+    border-bottom: 2px solid #333;
+  }
+}
+#product-detail-img {
+  max-width: 100%;
+  max-height: 50vh;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+  object-fit: contain;
+}
+#product-detail-info {
+  flex: 1;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+}
+#product-detail-title {
+  color: #d4af37;
+  font-size: 2.2rem;
+  margin-top: 0;
+  margin-bottom: 15px;
+}
+#product-detail-price {
+  color: #fff;
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  text-shadow: 0 2px 5px rgba(0,0,0,0.5);
+}
+#product-detail-desc {
+  color: #ccc;
+  font-size: 1.1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+#product-detail-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  background: transparent;
+  border: none;
+  color: #d4af37;
+  font-size: 2.5rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: 0.3s;
+}
+#product-detail-close:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+.btn-detail-add {
+  margin-top: 20px;
+  padding: 15px;
+  border-radius: 15px;
+  border: none;
+  background: linear-gradient(135deg, #d4af37, #b8921b);
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(212,175,55,0.4);
+  transition: 0.3s;
+  width: 100%;
+  text-transform: uppercase;
+}
+.btn-detail-add:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(212,175,55,0.7);
+}
+@keyframes popInDetail {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+</style>
+
+</head>
 <body><div id="sticky-header-container">
   <div class="top-bar">
     <div class="brand-container">
@@ -4118,4 +4239,115 @@ nav a:hover, nav button:hover {
       actualizarCarrito();
     }
   })();
-  </script></body></html>
+  </script>
+<!-- Product Details Modal -->
+<div id="product-detail-modal" onclick="if(event.target===this) cerrarDetalle()">
+  <div id="product-detail-content">
+    <button id="product-detail-close" onclick="cerrarDetalle()">×</button>
+    <div id="product-detail-img-container">
+      <img id="product-detail-img" src="" alt="Product Image">
+    </div>
+    <div id="product-detail-info">
+      <h2 id="product-detail-title">Nombre</h2>
+      <div id="product-detail-price">Precio</div>
+      <div id="product-detail-desc">
+        <ul style="list-style: none; padding: 0; color: #eee; margin-bottom: 20px;">
+          <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-check-circle" style="color:#25D366; font-size: 1.5rem;"></i> 
+            <span>Disponible ahora</span>
+          </li>
+          <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-truck-fast" style="color:#d4af37; font-size: 1.5rem;"></i> 
+            <span>Envío a domicilio</span>
+          </li>
+          <li style="margin-bottom: 15px; display: flex; align-items: center; gap: 10px;">
+            <i class="fa-solid fa-shield-halved" style="color:#1da1f2; font-size: 1.5rem;"></i> 
+            <span>Garantía Primera Mano</span>
+          </li>
+        </ul>
+        <p style="font-size: 0.95rem; color: #999; border-top: 1px solid #444; padding-top: 15px; margin-top: 15px;">
+          * Las propiedades específicas del artículo se pueden confirmar al contactar vía WhatsApp.
+        </p>
+      </div>
+      <button class="btn-detail-add" id="product-detail-add-btn">Añadir al Carrito 🛒</button>
+    </div>
+  </div>
+</div>
+
+
+<script id="product-detail-js">
+function abrirFoto(fullSrc, titulo, evt) {
+  if (evt) evt.stopPropagation();
+  var modal = document.getElementById('product-detail-modal');
+  if (!modal) return;
+  
+  var container = null;
+  var productos = document.querySelectorAll('.producto');
+  for (var i = 0; i < productos.length; i++) {
+    var h3 = productos[i].querySelector('h3');
+    if (h3 && h3.textContent.trim() === titulo) {
+      container = productos[i];
+      break;
+    }
+  }
+
+  var priceText = "Consultar precio";
+  var numericPrice = 0;
+  if (container) {
+    var priceEl = container.querySelector('.precio');
+    if (priceEl) {
+      priceText = priceEl.textContent;
+    }
+    var btn = container.querySelector('button[onclick^="agregarAlCarrito"]');
+    if (btn) {
+      var match = btn.getAttribute('onclick').match(/,\s*(\d+(\.\d+)?)/);
+      if (match) numericPrice = parseFloat(match[1]);
+    }
+  }
+
+  document.getElementById('product-detail-img').src = fullSrc;
+  document.getElementById('product-detail-title').textContent = titulo;
+  document.getElementById('product-detail-price').textContent = priceText;
+  
+  var addBtn = document.getElementById('product-detail-add-btn');
+  addBtn.onclick = function() {
+    agregarAlCarrito(titulo, numericPrice);
+    cerrarDetalle();
+  };
+
+  modal.style.display = 'flex';
+  document.body.style.overflow = 'hidden';
+}
+
+function cerrarDetalle() {
+  var modal = document.getElementById('product-detail-modal');
+  if (modal) {
+    modal.style.display = 'none';
+    document.body.style.overflow = '';
+  }
+}
+
+// Make the whole product card clickable
+document.addEventListener("DOMContentLoaded", function() {
+  document.querySelectorAll('.producto').forEach(function(p) {
+    p.style.cursor = 'pointer';
+    p.addEventListener('click', function(e) {
+      // Ignore if clicking a button
+      if (e.target.tagName.toLowerCase() === 'button' || e.target.closest('button')) return;
+      
+      var img = p.querySelector('img');
+      var fullSrc = img ? img.getAttribute('src') : '';
+      if (img && img.getAttribute('onclick')) {
+        var match = img.getAttribute('onclick').match(/abrirFoto\('([^']+)'/);
+        if (match) fullSrc = match[1];
+      }
+      var title = p.querySelector('h3') ? p.querySelector('h3').textContent.trim() : '';
+      if (title && fullSrc) {
+        abrirFoto(fullSrc, title);
+      }
+    });
+  });
+});
+</script>
+
+</body></html>
