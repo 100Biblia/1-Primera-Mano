@@ -4364,4 +4364,49 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 </script>
 
+<!-- PWA Auto-Install Modal & Service Worker -->
+<div id="pwa-install-modal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background:rgba(0,0,0,0.9); z-index:99999; justify-content:center; align-items:center; flex-direction:column; text-align:center;">
+  <div style="background:linear-gradient(135deg, #111, #222); border:3px solid #d4af37; padding:40px; border-radius:20px; box-shadow:0 10px 40px rgba(212,175,55,0.4); max-width:90%; width:400px;">
+    <img src="icons/icon-192.png" style="width:100px; height:100px; border-radius:20px; margin-bottom:20px; border:2px solid #d4af37;">
+    <h2 style="color:#d4af37; margin:0 0 15px 0;">Instalar Aplicación</h2>
+    <p style="color:#ddd; font-size:1.1rem; margin-bottom:30px;">Instala Primera Mano en tu pantalla de inicio para un acceso rápido y directo como una app nativa.</p>
+    <button onclick="installPWA()" style="background:linear-gradient(to right, #d4af37, #b8921b); color:#000; font-weight:bold; font-size:1.2rem; padding:15px 30px; border:none; border-radius:10px; cursor:pointer; width:100%; margin-bottom:15px; box-shadow:0 5px 15px rgba(212,175,55,0.4);">Instalar Ahora</button>
+    <button onclick="closePWA()" style="background:transparent; color:#888; border:none; font-size:1rem; cursor:pointer; text-decoration:underline;">Quizás más tarde</button>
+  </div>
+</div>
+
+<script>
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function() {
+      navigator.serviceWorker.register('sw.js').then(function(registration) {
+        console.log('SW registrado:', registration.scope);
+      }, function(err) {
+        console.log('Error SW:', err);
+      });
+    });
+  }
+
+  let deferredPrompt;
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    setTimeout(() => {
+      document.getElementById('pwa-install-modal').style.display = 'flex';
+    }, 2000);
+  });
+
+  function installPWA() {
+    if (deferredPrompt) {
+      document.getElementById('pwa-install-modal').style.display = 'none';
+      deferredPrompt.prompt();
+      deferredPrompt.userChoice.then((choiceResult) => {
+        deferredPrompt = null;
+      });
+    }
+  }
+
+  function closePWA() {
+    document.getElementById('pwa-install-modal').style.display = 'none';
+  }
+</script>
 </body></html>
