@@ -1083,6 +1083,7 @@ nav a:hover, nav button:hover {
 
     /* === CAJA MODAL DEL CARRITO === */
     #carrito {
+      display: none !important;
       position: fixed !important;
       bottom: 230px !important;
       border: 3px solid #d4af37 !important;
@@ -1400,7 +1401,11 @@ nav a:hover, nav button:hover {
 
     /* Ocultar elementos huérfanos que pudieran haber quedado del header viejo */
     header { display: none !important; }
-  </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
+  
+    #carrito-contenedor.abierto #carrito {
+      display: block !important;
+    }
+    </style><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></head>
 <body><div id="sticky-header-container">
   <div class="top-bar">
     <div class="brand-container">
@@ -3838,22 +3843,8 @@ nav a:hover, nav button:hover {
   
   
   <style id="cart-system-css">
-    #carrito-contenedor {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: rgba(0, 0, 0, 0.97);
-      border-top: 3px solid #d4af37;
-      box-shadow: 0 -4px 20px rgba(212, 175, 55, 0.4);
-      font-family: "Poppins", sans-serif;
-      z-index: 10500;
-      color: #d4af37;
-      max-height: 55px;
-      overflow: hidden;
-      transition: max-height 0.4s ease;
-    }
-    #carrito-contenedor.abierto { max-height: 500px; }
+    #carrito-contenedor { position: static; }
+    
     #carrito-header {
       display: flex;
       justify-content: space-between;
@@ -3866,17 +3857,8 @@ nav a:hover, nav button:hover {
       font-size: 1.2rem;
       border-bottom: 1px solid #d4af37;
     }
-    #carrito {
-      padding: 0 20px;
-      max-height: 0;
-      overflow: hidden;
-      transition: max-height 0.4s ease-in-out, padding 0.3s ease;
-    }
-    #carrito-contenedor.abierto #carrito {
-      max-height: 400px;
-      padding: 15px 20px;
-      overflow-y: auto;
-    }
+    
+    
     #lista-carrito {
       list-style: none;
       padding: 0;
@@ -3928,11 +3910,8 @@ nav a:hover, nav button:hover {
     .boton-carrito.vaciar:hover { background: #d4af37; color: #000; }
   </style>
   <div id="carrito-contenedor">
-    <div id="carrito-header" onclick="toggleCarritoPanel()">
-      <span>🛒 Mi Carrito (<span id="carrito-count">0</span>)</span>
-      <span id="toggle-icon">🔼</span>
-    </div>
-    <div id="carrito">
+    
+    <div id="carrito"><div style="text-align: right; margin-bottom: 10px;"><button id="carrito-close-btn" onclick="toggleCarritoModal()" style="background: transparent; border: none; font-size: 2rem; color: #d4af37; cursor: pointer;">×</button></div>
       <ul id="lista-carrito"></ul>
       <p id="total">Total: $0</p>
       <div class="botones-carrito">
@@ -4121,12 +4100,10 @@ nav a:hover, nav button:hover {
     // === Toggle cart panel ===
     function toggleCarritoPanel() {
       var contenedor = document.getElementById("carrito-contenedor");
-      var icon = document.getElementById("toggle-icon");
       if (!contenedor) return;
       contenedor.classList.toggle("abierto");
-      if (icon) icon.textContent = contenedor.classList.contains("abierto") ? "\ud83d\udd3d" : "\ud83d\udd3c";
     }
-    window.toggleCarritoPanel = toggleCarritoPanel;
+    window.toggleCarritoPanel = toggleCarritoPanel; // Fixed toggle logic
 
     // === Toggle floating cart button ===
     function toggleCarritoModal() {
