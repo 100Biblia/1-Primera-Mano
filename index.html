@@ -1415,7 +1415,12 @@ nav a:hover, nav button:hover {
             <a href="#electrodomésticos">⚡ Electrodomésticos <span class="dropdown-icon">▼</span></a>
             <div class="dropdown-content"><a href="#electrodomésticos-productos">⚡ Electrodomésticos</a><a href="#tienda-karel">Tienda Karel</a><a href="#karel">Karel</a></div>
           </div>
-        <a href="#camas" class="nav-item">🛏️ Camas moderna</a><a href="#muebles-l" class="nav-item">🛋️ Muebles en L</a><a href="#muebles-capitoneados" class="nav-item">💎 Muebles Capitoneados</a><a href="#carnicos" class="nav-item">🥩 Cárnicos</a><a href="#agromercado" class="nav-item">🌽 Agro y Mercado</a><a href="#confituras" class="nav-item">🍯 Confituras</a><a href="#bebidas" class="nav-item">🥤 Bebidas</a><a href="#aseo" class="nav-item">🧴 Aseo y Limpieza</a><a href="#farmacia" class="nav-item">💊 Farmacia</a><a href="#otros" class="nav-item">📦 Otros</a></nav>
+        <a href="#camas" class="nav-item">🛏️ Camas moderna</a><a href="#muebles-l" class="nav-item">🛋️ Muebles en L</a><a href="#muebles-capitoneados" class="nav-item">💎 Muebles Capitoneados</a>
+          <div class="nav-item dropdown">
+            <a href="#combos">🛒 Combos y Tienda <span class="dropdown-icon">▼</span></a>
+            <div class="dropdown-content"><a href="#carnicos">🥩 Cárnicos</a><a href="#agromercado">🌽 Agro y Mercado</a><a href="#confituras">🍯 Confituras</a><a href="#bebidas">🥤 Bebidas</a><a href="#aseo">🧴 Aseo y Limpieza</a><a href="#farmacia">💊 Farmacia</a><a href="#otros">📦 Otros</a></div>
+          </div>
+        </nav>
   <script>
     function normalizar(t) {
       return t ? t.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "") : "";
@@ -2581,9 +2586,9 @@ nav a:hover, nav button:hover {
    </div>
 
 </section>
-
-<!-- 🥩 CÁRNICOS -->
-<section id="carnicos" class="seccion-productos">
+    <section class="seccion-padre" id="combos" style="margin-top:40px; border-top:2px solid gold; padding-top:20px;">
+      <h2 class="titulo-padre" style="text-align:center; color:gold; font-size:2.5rem; text-transform:uppercase; margin-bottom:10px; text-shadow:0 0 15px rgba(212,175,55,0.7);">🛒 Combos y Tienda</h2>
+    <section id="carnicos" class="seccion-productos">
   <h2 class="titulo-oro">🥩 Cárnicos</h2>
 
   <div class="galeria">
@@ -2715,9 +2720,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<!-- 🌽 AGRO Y MERCADO -->
-<section id="agromercado" class="seccion-productos">
+</section><section id="agromercado" class="seccion-productos">
   <h2 class="titulo-oro">🌽 Agro y Mercado</h2>
 
   <div class="galeria">
@@ -2872,9 +2875,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<!-- 🍯 CONFITURAS -->
-<section id="confituras" class="seccion-productos">
+</section><section id="confituras" class="seccion-productos">
   <h2 class="titulo-oro">🍯 Confituras</h2>
 
   <div class="galeria">
@@ -2997,8 +2998,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<section id="bebidas" class="seccion-productos">
+</section><section id="bebidas" class="seccion-productos">
   <h2 class="titulo-oro">🥤 Bebidas</h2>
 
   <div class="galeria">
@@ -3067,8 +3067,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<section id="aseo" class="seccion-productos">
+</section><section id="aseo" class="seccion-productos">
   <h2 class="titulo-oro">🧴 Aseo y Limpieza</h2>
 
   <div class="galeria">
@@ -3197,8 +3196,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<section id="farmacia" class="seccion-productos">
+</section><section id="farmacia" class="seccion-productos">
   <h2 class="titulo-oro">💊 Farmacia</h2>
 
   <div class="galeria">
@@ -3356,8 +3354,7 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
-<section id="otros" class="seccion-productos">
+</section><section id="otros" class="seccion-productos">
   <h2 class="titulo-oro">📦 Otros</h2>
 
   <div class="galeria">
@@ -3458,7 +3455,19 @@ nav a:hover, nav button:hover {
     </div>
 
   </div>
-</section>
+</section></section>
+  
+
+<!-- 🥩 CÁRNICOS -->
+
+<!-- 🌽 AGRO Y MERCADO -->
+
+<!-- 🍯 CONFITURAS -->
+
+
+
+
+
 
 
 
