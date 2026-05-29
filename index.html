@@ -69,11 +69,6 @@
         </div>
       
         <div class="nav-item dropdown">
-          <a href="#muebles">🪑 Muebles <span class="dropdown-icon">▼</span></a>
-          <div class="dropdown-content"><a href="#camas">🛏️ Camas moderna</a><a href="#muebles-l">🛋️ Muebles en L</a><a href="#muebles-capitoneados">💎 Muebles Capitoneados</a></div>
-        </div>
-      
-        <div class="nav-item dropdown">
           <a href="#combos">🛒 Combos y Tienda <span class="dropdown-icon">▼</span></a>
           <div class="dropdown-content"><a href="#carnicos">🥩 Cárnicos</a><a href="#agromercado">🌽 Agro y Mercado</a><a href="#confituras">🍯 Confituras</a><a href="#bebidas">🥤 Bebidas</a><a href="#aseo">🧴 Aseo y Limpieza</a><a href="#farmacia">💊 Farmacia</a><a href="#otros">📦 Otros</a></div>
         </div>
@@ -558,13 +553,7 @@
   
   <!-- ======================================================== -->
   \n
-  <div id="cart-float-container">
-    <button id="cart-float" onclick="toggleCarritoModal()" style="position:relative; outline:none; cursor:pointer;">
-      <i class="fa-solid fa-cart-shopping"></i>
-      <span id="cart-badge" style="display:none; position:absolute; top:-10px; right:-10px; background:#ff3b3b; color:#fff; font-size:24px; width:45px; height:45px; border-radius:50%; justify-content:center; align-items:center; font-weight:bold; border:3px solid #000; font-family:sans-serif; box-shadow:0 4px 15px rgba(0,0,0,0.5);">0</span>
-    </button>
-    
-  </div>
+  
   <!-- Estilos para Modal de Confirmación -->
   
 
@@ -572,29 +561,29 @@
   
 
   <!-- Toast Notificación Lateral -->
-  <div id="custom-toast" style="display:none; position:fixed; top:30px; right:30px; background:linear-gradient(135deg, #0a0a0a, #1a1a1a); border:2px solid #d4af37; border-radius:12px; padding:15px 20px; z-index:10000; box-shadow:0 10px 40px rgba(0,0,0,0.9); color:#fff; font-family:sans-serif; min-width:320px; transform:translateX(150%); transition:transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);">
-    <div style="display:flex; align-items:center; gap:15px;">
-      <img id="toast-img" src="" style="width:65px; height:65px; object-fit:cover; border-radius:8px; border:1px solid #d4af37; box-shadow: 0 0 10px rgba(212,175,55,0.4);">
-      <div>
-        <div style="color:#d4af37; font-weight:bold; font-size:1.1rem; margin-bottom:4px; text-shadow:0 0 5px rgba(212,175,55,0.5);">✅ Agregado al Pedido</div>
-        <div id="toast-name" style="font-size:0.95rem; color:#eee; font-weight:500;"></div>
-      </div>
-    </div>
-  </div>
+  
 
   
   
   
   <div id="carrito-contenedor">
     
-    <div id="carrito"><div style="text-align: right; margin-bottom: 10px;"><button id="carrito-close-btn" onclick="toggleCarritoModal()" style="background: transparent; border: none; font-size: 2rem; color: #d4af37; cursor: pointer;">×</button></div>
-      <ul id="lista-carrito"></ul>
-      <p id="total">Total: $0</p>
-      <div class="botones-carrito">
-        <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
-        <button class="boton-carrito enviar" onclick="enviarWhatsApp()">📲 Enviar por WhatsApp</button>
+    <div id="carrito" style="display: none !important; width: 700px !important;"><div style="text-align: right; margin-bottom: 10px;"><button id="carrito-close-btn" onclick="toggleCarritoModal()" style="background: transparent; border: none; font-size: 2rem; color: #d4af37; cursor: pointer;">×</button></div>
+        
+        <ul id="lista-carrito"></ul>
+        <p id="total">Total: $0</p>
+        
+        <div style="margin-top: 15px; margin-bottom: 15px; text-align: left;">
+          <label for="checkout-direccion" style="color: #d4af37; font-weight: bold; display: block; margin-bottom: 5px;">📍 Dirección de Envío (Opcional):</label>
+          <input type="text" id="checkout-direccion" placeholder="Ej: Calle 23 #104 e/ M y N, Vedado" style="width: 100%; padding: 12px; border-radius: 8px; border: 1px solid #d4af37; background: #000; color: #fff; box-sizing: border-box; font-family: inherit;">
+        </div>
+        
+        <div class="botones-carrito">
+          <button class="boton-carrito vaciar" onclick="vaciarCarrito()">🗑️ Vaciar</button>
+          <button class="boton-carrito enviar" onclick="enviarWhatsApp()" style="background: #25d366; color: #fff;">📲 WhatsApp</button>
+          <button class="boton-carrito enviar" onclick="llamarTelefono()" style="background: #007bff; color: #fff;">📞 Llamar</button>
+        </div>
       </div>
-    </div>
   </div>
   
 <!-- Product Details Modal -->
