@@ -1,79 +1,75 @@
+const CACHE_NAME = 'pm-cache-v2';
+const DYNAMIC_CACHE = 'pm-dynamic-v2';
 
-// Fuerza actualización agresiva del SW para quitar el viejo
-const SW_VERSION = 'pm-sw-robusto-' + Date.now(); 
+const ASSETS_TO_CACHE = [
+  '/',
+  '/index.html',
+  '/styles.css',
+  '/app.js',
+  '/manifest.json'
+];
 
-// Nombres fijos de caché para mantener los datos entre actualizaciones
-const SHELL_CACHE = 'pm-shell-cache';
-const IMG_CACHE = 'pm-image-cache';
-
-self.addEventListener('install', (event) => {
-  self.skipWaiting(); // Obliga al navegador a usar este nuevo SW inmediatamente
-});
-
-self.addEventListener('activate', (event) => {
+self.addEventListener('install', event => {
   event.waitUntil(
-    caches.keys().then((keys) => {
-      return Promise.all(
-        // Solo borramos cachés que no sean los nuestros fijos
-        keys.filter(k => k !== SHELL_CACHE && k !== IMG_CACHE && k.startsWith('pm-')).map(k => caches.delete(k))
-      );
-    })
+    caches.open(CACHE_NAME)
+      .then(cache => cache.addAll(ASSETS_TO_CACHE))
+      .then(() => self.skipWaiting())
   );
-  self.clients.claim(); // Toma control de las pestañas abiertas
 });
 
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return;
+self.addEventListener('activate', event => {
+  event.waitUntil(
+    caches.keys().then(keys => {
+      return Promise.all(
+        keys.map(key => {
+          if (key !== CACHE_NAME && key !== DYNAMIC_CACHE) {
+            return caches.delete(key);
+          }
+        })
+      );
+    }).then(() => self.clients.claim())
+  );
+});
+
+self.addEventListener('fetch', event => {
   const url = new URL(event.request.url);
 
-  // Ignorar peticiones externas de analíticas o whatsapp
-  if (url.hostname.includes('goatcounter') || url.hostname.includes('gc.zgo.at') || url.hostname.includes('wa.me')) return;
-
-  // 1. IMÁGENES: Cache-First
-  // Las fotos no cambian, si están en memoria, se cargan instantáneo. Si no, se descargan.
-  if (url.pathname.match(/\.(webp|jpg|jpeg|png|gif|svg)$/i)) {
+  // For products.json, index.html, JS, CSS -> Network First
+  if (url.pathname.endsWith('json') || url.pathname.endsWith('html') || url.pathname.endsWith('js') || url.pathname.endsWith('css')) {
     event.respondWith(
-      caches.match(event.request).then(cached => {
-        return cached || fetch(event.request).then(response => {
-          if (response.ok) {
-            const clone = response.clone();
-            caches.open(IMG_CACHE).then(cache => cache.put(event.request, clone));
-          }
+      fetch(event.request)
+        .then(response => {
+          const resClone = response.clone();
+          caches.open(CACHE_NAME).then(cache => cache.put(event.request, resClone));
+          return response;
+        })
+        .catch(() => caches.match(event.request))
+    );
+  } 
+  // For images -> Cache First, fallback to Network
+  else if (event.request.destination === 'image') {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        if (cachedResponse) return cachedResponse;
+        
+        return fetch(event.request).then(response => {
+          const resClone = response.clone();
+          caches.open(DYNAMIC_CACHE).then(cache => cache.put(event.request, resClone));
           return response;
         });
       })
     );
-    return;
-  }
-
-  // 2. HTML Y RESTO: Stale-While-Revalidate (El algoritmo más robusto)
-  // Devuelve la memoria INMEDIATAMENTE (cero pantalla blanca). 
-  // En segundo plano, descarga la versión nueva silenciosamente.
-  event.respondWith(
-    caches.match(event.request).then(cachedResponse => {
-      // Lanzar petición de red silenciosa
-      const fetchPromise = fetch(event.request).then(networkResponse => {
-        if (networkResponse.ok) {
-          const clone = networkResponse.clone();
-          caches.open(SHELL_CACHE).then(cache => {
-             cache.put(event.request, clone);
-          });
-        }
-        return networkResponse;
-      }).catch(() => {
-        // Falla en background porque el usuario no tiene internet. 
-        // No pasa nada, igual estamos mostrando la caché.
-      });
-
-      // Lo importante: si hay caché, devuélvelo AL INSTANTE.
-      // Si el cliente es 100% nuevo y no tiene caché, espera a la red.
-      return cachedResponse || fetchPromise.then(res => {
-        if (res) return res;
-        // Si no hay red ni caché (caso extremo primerizo sin internet)
-        return new Response('<h1 style="color:#d4af37;text-align:center;margin-top:40vh;font-family:sans-serif">📡 Sin conexión a internet</h1>', {
-          headers: { 'Content-Type': 'text/html; charset=utf-8' }
+  } 
+  // Default -> Stale while revalidate
+  else {
+    event.respondWith(
+      caches.match(event.request).then(cachedResponse => {
+        const fetchPromise = fetch(event.request).then(networkResponse => {
+          caches.open(DYNAMIC_CACHE).then(cache => cache.put(event.request, networkResponse.clone()));
+          return networkResponse;
         });
-      });
-    })
-  );
+        return cachedResponse || fetchPromise;
+      })
+    );
+  }
 });

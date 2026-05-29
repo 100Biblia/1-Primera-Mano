@@ -1,0 +1,839 @@
+{
+  "combos": [
+    {
+      "id": "prod_i7z4jt2tf",
+      "name": "Paquete de pollo 10 lb",
+      "description": "💵 $10.90 USD",
+      "image": "combos/carnicos/carnicos1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_j0mha4o0w",
+      "name": "Pechuga de pollo sin hueso 2 kg",
+      "description": "💵 $17.99 USD",
+      "image": "combos/carnicos/carnicos2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_hc8c5led7",
+      "name": "Pierna de cerdo deshuesada / lb",
+      "description": "💵 $4.10 USD",
+      "image": "combos/carnicos/carnicos3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_fesuhdp64",
+      "name": "Lomo de cerdo deshuesado / lb",
+      "description": "💵 $3.95 USD",
+      "image": "combos/carnicos/carnicos4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_r9fr5vjic",
+      "name": "Picadillo de pollo condimentado 400 g",
+      "description": "💵 $1.69 USD",
+      "image": "combos/carnicos/carnicos5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_xafyndqdr",
+      "name": "Salchicha de pollo (10 unidades)",
+      "description": "💵 $1.89 USD",
+      "image": "combos/carnicos/carnicos6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_v14yxvzhp",
+      "name": "Croquetas de Pollo (10 unidades)",
+      "description": "💵 $1.59 USD",
+      "image": "combos/carnicos/carnicos7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_8j660e7r9",
+      "name": "Varitas de Merluza 1 kg",
+      "description": "💵 $5.89 USD",
+      "image": "combos/carnicos/carnicos8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_dqcaakz2x",
+      "name": "Atún 140 g",
+      "description": "💵 $3.59 USD",
+      "image": "combos/carnicos/carnicos9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_blivx3w85",
+      "name": "Jamón García bloque de 5 lb",
+      "description": "💵 $21.00 USD",
+      "image": "combos/carnicos/carnicos10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_lh01g9aj5",
+      "name": "Queso Gouda bloque de 3 kg",
+      "description": "💵 $34.99 USD",
+      "image": "combos/carnicos/carnicos11.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_6qrxnghpb",
+      "name": "Medio bloque de Queso Gouda 1.5 kg",
+      "description": "💵 $19.50 USD",
+      "image": "combos/carnicos/carnicos12.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_45kjkcdv2",
+      "name": "Hamburguesas de pollo (5 unidades)",
+      "description": "💵 $2.70 USD",
+      "image": "combos/carnicos/carnicos13.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_a8pous35g",
+      "name": "Huevos (30 unidades)",
+      "description": "💵 $8.99 USD",
+      "image": "combos/carnicos/carnicos14.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_u4xk6fj7q",
+      "name": "Pesas 200 kg con batería",
+      "description": "💰 $100",
+      "image": "productos_nuevos/thumb_1779124523573_ht64.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_xd5316ft7",
+      "name": "Pesas 200 kg con batería",
+      "description": "💰 $100",
+      "image": "productos_nuevos/thumb_1779112960976_5fb4.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_mrnznf96a",
+      "name": "Arroz / kg",
+      "description": "💵 $2.75 USD",
+      "image": "combos/agromercado/agromercado1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_38oxfzth4",
+      "name": "Frijol negro / lb",
+      "description": "💵 $2.09 USD",
+      "image": "combos/agromercado/agromercado2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_2b7c5gcbx",
+      "name": "Frijol colorado / lb",
+      "description": "💵 $2.20 USD",
+      "image": "combos/agromercado/agromercado3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_kydzfb9ys",
+      "name": "Garbanzos pkt 500 g",
+      "description": "💵 $2.99 USD",
+      "image": "combos/agromercado/agromercado4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_qw9jdw1ts",
+      "name": "Maíz en grano (lata 425 g)",
+      "description": "💵 $2.29 USD",
+      "image": "combos/agromercado/agromercado5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_3c72jjn60",
+      "name": "Espagueti 500 g",
+      "description": "💵 $1.70 USD",
+      "image": "combos/agromercado/agromercado6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_4gn3cv6m5",
+      "name": "Fideos 350 g",
+      "description": "💵 $0.95 USD",
+      "image": "combos/agromercado/agromercado7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_t6tgd78t8",
+      "name": "Sal 1 kg",
+      "description": "💵 $1.05 USD",
+      "image": "combos/agromercado/agromercado8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_5socf7ofw",
+      "name": "Azúcar blanca 1 kg",
+      "description": "💵 $2.40 USD",
+      "image": "combos/agromercado/agromercado9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_swnolccju",
+      "name": "Aceite 1 L",
+      "description": "💵 $3.45 USD",
+      "image": "combos/agromercado/agromercado10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_lqpwf6p19",
+      "name": "Vinagre 1 L",
+      "description": "💵 $2.25 USD",
+      "image": "combos/agromercado/agromercado11.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ydmqepr72",
+      "name": "Zumo de Limón 295 g",
+      "description": "💵 $2.87 USD",
+      "image": "combos/agromercado/agromercado12.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_s52frdc8h",
+      "name": "Sazon Iberia 10 u",
+      "description": "💵 $2.20 USD",
+      "image": "combos/agromercado/agromercado13.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_yywcbke2b",
+      "name": "Caldito de pollo",
+      "description": "💵 $0.25 USD",
+      "image": "combos/agromercado/agromercado14.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_upyzm3pdx",
+      "name": "Pasta de tomate 400 g",
+      "description": "💵 $2.49 USD",
+      "image": "combos/agromercado/agromercado15.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_i30wcjl1w",
+      "name": "Galletas Renata",
+      "description": "💵 $1.39 USD",
+      "image": "combos/confituras/confituras1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_l0czk0rts",
+      "name": "Galletas Florbu con chispas de chocolate",
+      "description": "💵 $1.79 USD",
+      "image": "combos/confituras/confituras2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_229vzo17i",
+      "name": "Bocadito de helado Sandy Nestle",
+      "description": "💵 $1.25 USD",
+      "image": "combos/confituras/confituras3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_npad45abs",
+      "name": "Pote de helado Nestle 450 ml",
+      "description": "💵 $3.99 USD",
+      "image": "combos/confituras/confituras4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_k686s2c1o",
+      "name": "Sorbetos 175 g",
+      "description": "💵 $1.95 USD",
+      "image": "combos/confituras/confituras5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_knww5308s",
+      "name": "Paquete de 20 Bombones",
+      "description": "💵 $3.90 USD",
+      "image": "combos/confituras/confituras6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_rvxgn6mc5",
+      "name": "M&M 43.8 g",
+      "description": "💵 $2.27 USD",
+      "image": "combos/confituras/confituras7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_je2mkdjix",
+      "name": "Snickers 48 g",
+      "description": "💵 $2.49 USD",
+      "image": "combos/confituras/confituras8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_3g6ksf6qw",
+      "name": "Milky Way 48 g",
+      "description": "💵 $2.49 USD",
+      "image": "combos/confituras/confituras9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ibgbctx8b",
+      "name": "Peter Hersheys chocolate blanco 20 g",
+      "description": "💵 $1.59 USD",
+      "image": "combos/confituras/confituras10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_wqm3i345w",
+      "name": "Barrita de chocolate Nuvix 22 g",
+      "description": "💵 $0.33 USD",
+      "image": "combos/confituras/confituras11.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_pb6yoql26",
+      "name": "Barrita de chocolate Erdem 20 g",
+      "description": "💵 $0.31 USD",
+      "image": "combos/confituras/confituras12.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_2gfyjdhc6",
+      "name": "Sorbeto Greedy 30 g",
+      "description": "💵 $0.41 USD",
+      "image": "combos/confituras/confituras13.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_y3jrlu6pa",
+      "name": "Refresco en polvo 1L (10u)",
+      "description": "💵 $1.80 USD",
+      "image": "combos/bebidas/bebidas1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_4kwx0gkxb",
+      "name": "Refresco gaseado 330 ml",
+      "description": "💵 $0.79 USD",
+      "image": "combos/bebidas/bebidas2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_5boldqvsy",
+      "name": "Malta",
+      "description": "💵 $0.91 USD",
+      "image": "combos/bebidas/bebidas3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ek8z6qsqg",
+      "name": "Jugo 1 Litro",
+      "description": "💵 $2.40 USD",
+      "image": "combos/bebidas/bebidas4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_wqay3dkd6",
+      "name": "Yogurt Natural / Fresa 1.5 L",
+      "description": "💵 $6.59 USD",
+      "image": "combos/bebidas/bebidas5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ai14xmlbw",
+      "name": "Vino Tinto 750 ml",
+      "description": "💵 $9.17 USD",
+      "image": "combos/bebidas/bebidas6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_b06r3pol4",
+      "name": "Sidra sin alcohol",
+      "description": "💵 $2.99 USD",
+      "image": "combos/bebidas/bebidas7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ta7iqef9o",
+      "name": "Detergente líquido lavavajillas",
+      "description": "💵 $4.51 USD",
+      "image": "combos/aseo-limpieza/limpieza1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_nxk27btyj",
+      "name": "Detergente en polvo 500 g",
+      "description": "💵 $1.89 USD",
+      "image": "combos/aseo-limpieza/limpieza2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_cmw75rery",
+      "name": "Esponja de fregar",
+      "description": "💵 $0.39 USD",
+      "image": "combos/aseo-limpieza/limpieza3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_92806sm3r",
+      "name": "Jabón de lavar 250 g",
+      "description": "💵 $1.89 USD",
+      "image": "combos/aseo-limpieza/limpieza4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_cszhacx8e",
+      "name": "Jabón de baño",
+      "description": "💵 $1.10 USD",
+      "image": "combos/aseo-limpieza/limpieza5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_kp7t0ecyx",
+      "name": "Juego shampoo + acondicionador",
+      "description": "💵 $8.25 USD",
+      "image": "combos/aseo-limpieza/limpieza6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_r2j9b9j21",
+      "name": "Juego shampoo + acond. sin sal",
+      "description": "💵 $12.65 USD",
+      "image": "combos/aseo-limpieza/limpieza7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_fvjf2iwvg",
+      "name": "Desodorante (pasta / spray)",
+      "description": "💵 $8.36 USD",
+      "image": "combos/aseo-limpieza/limpieza8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_1e34yijdp",
+      "name": "Colonia 300 ml",
+      "description": "💵 $7.65 USD",
+      "image": "combos/aseo-limpieza/limpieza9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_opfjviypv",
+      "name": "Perfume Mariposa / Camerata",
+      "description": "💵 $16.50 USD",
+      "image": "combos/aseo-limpieza/limpieza10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_eto6ufknz",
+      "name": "Crema corporal",
+      "description": "💵 $5.50 USD",
+      "image": "combos/aseo-limpieza/limpieza11.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_ftajhsgo1",
+      "name": "Pasta dental Royal Fresh 115 g",
+      "description": "💵 $4.99 USD",
+      "image": "combos/aseo-limpieza/limpieza12.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_h2e3cjvnu",
+      "name": "Toallitas húmedas",
+      "description": "💵 $4.40 USD",
+      "image": "combos/aseo-limpieza/limpieza13.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_lu3l6fgp3",
+      "name": "Papel higiénico (4 rollos)",
+      "description": "💵 $4.18 USD",
+      "image": "combos/aseo-limpieza/limpieza14.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_mna7rxhnn",
+      "name": "Íntimas 10 u",
+      "description": "💵 $2.53 USD",
+      "image": "combos/aseo-limpieza/limpieza15.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_tm5letcpu",
+      "name": "Cefalexina 12 tab de 500 mg",
+      "description": "💵 $3.90 USD",
+      "image": "combos/farmacia/farmacia1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_5iwo0jbix",
+      "name": "Azitromicina 3 tab de 500 mg",
+      "description": "💵 $2.95 USD",
+      "image": "combos/farmacia/farmacia2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_rksbtnicg",
+      "name": "Vitaminas A, C, D (infantil 30 ml)",
+      "description": "💵 $50 USD",
+      "image": "combos/farmacia/farmacia3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_n4c1avvpp",
+      "name": "Vitamina C 80 tab",
+      "description": "💵 $4.10 USD",
+      "image": "combos/farmacia/farmacia4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_v3lowhyv3",
+      "name": "Metronidazol 10 tab",
+      "description": "💵 $2.90 USD",
+      "image": "combos/farmacia/farmacia5.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_a9q8hb1y7",
+      "name": "Aspirina 20 tab",
+      "description": "💵 $2.00 USD",
+      "image": "combos/farmacia/farmacia6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_6gls5f7c9",
+      "name": "Captopril 25 mg 30 tabletas",
+      "description": "💵 $1.90 USD",
+      "image": "combos/farmacia/farmacia7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_cymqxlt21",
+      "name": "Diclofenaco en gel 60 g",
+      "description": "💵 $5.90 USD",
+      "image": "combos/farmacia/farmacia8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_zdx619kr3",
+      "name": "Metamizol (Dipirona) 10 tab de 500 mg",
+      "description": "💵 $1.80 USD",
+      "image": "combos/farmacia/farmacia9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_wgrpvicuz",
+      "name": "Amoxicilina 12 tab de 500 mg",
+      "description": "💵 $3.00 USD",
+      "image": "combos/farmacia/farmacia10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_4z1trsnmy",
+      "name": "Ciprofloxacino 10 tab de 500 mg",
+      "description": "💵 $3.50 USD",
+      "image": "combos/farmacia/farmacia11.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_4lfklh312",
+      "name": "Paracetamol 10 tab de 500 mg",
+      "description": "💵 $1.80 USD",
+      "image": "combos/farmacia/farmacia12.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_noikoid12",
+      "name": "Loratadina 10 tab de 10 mg",
+      "description": "💵 $2.00 USD",
+      "image": "combos/farmacia/farmacia13.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_xgdpcu02s",
+      "name": "Ibuprofeno en suspensión 120 ml",
+      "description": "💵 $5.99 USD",
+      "image": "combos/farmacia/farmacia14.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_kk3zeqf5j",
+      "name": "Alkaseltzer 2 cápsulas",
+      "description": "💵 $0.97 USD",
+      "image": "combos/farmacia/farmacia15.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_dmfd3f3jo",
+      "name": "Hidroclorotiazida",
+      "description": "💵 $2.00 USD",
+      "image": "combos/farmacia/farmacia16.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_t5x4y2vfi",
+      "name": "Omeprazol 14 cápsulas de 20 mg",
+      "description": "💵 $1.89 USD",
+      "image": "combos/farmacia/farmacia17.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_g1gd1z2tr",
+      "name": "Termómetro digital",
+      "description": "💵 $4.89 USD",
+      "image": "combos/farmacia/farmacia18.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_1sq7ycket",
+      "name": "Ungüento mentol",
+      "description": "💵 $3.00 USD",
+      "image": "combos/farmacia/farmacia19.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_i7pooa6t0",
+      "name": "Cajitas HD marca HH",
+      "description": "💰 $35",
+      "image": "productos_nuevos/thumb_1779280195230_2sh7.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_8bt06dgai",
+      "name": "Leche en polvo 1 kg",
+      "description": "💵 $7.39 USD",
+      "image": "combos/otros/otros1.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_1phfm6anl",
+      "name": "Café Aroma 250 g",
+      "description": "💵 $5.79 USD",
+      "image": "combos/otros/otros2.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_jj2lg5rem",
+      "name": "Chocolate en polvo 500 g",
+      "description": "💵 $3.99 USD",
+      "image": "combos/otros/otros3.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_r0p6oepdx",
+      "name": "Leche condensada 385 g",
+      "description": "💵 $1.88 USD",
+      "image": "combos/otros/otros4.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_h5ynj4zhl",
+      "name": "Gelatina de Mandarina 40 g",
+      "description": "💵 $0.69 USD",
+      "image": "combos/otros/otros5-40g.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_lef0rmlba",
+      "name": "Mayonesa 500 g",
+      "description": "💵 $3.23 USD",
+      "image": "combos/otros/otros6.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_hs24iiwyo",
+      "name": "Mantequilla 250 g",
+      "description": "💵 $2.60 USD",
+      "image": "combos/otros/otros7.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_gukwkin4h",
+      "name": "Queso Crema 226 g",
+      "description": "💵 $3.69 USD",
+      "image": "combos/otros/otros8.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_rom2qkuhl",
+      "name": "Galletas Crokantinas (7 pkt)",
+      "description": "💵 $3.90 USD",
+      "image": "combos/otros/otros9.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_tik3nd584",
+      "name": "Papas prefritas 2.5 kg",
+      "description": "💵 $9.90 USD",
+      "image": "combos/otros/otros10.webp",
+      "options": [],
+      "isAgotado": true
+    },
+    {
+      "id": "prod_pbgpfsrgq",
+      "name": "Papas prefritas 1 kg",
+      "description": "💵 $5.29 USD",
+      "image": "combos/otros/otros11.webp",
+      "options": [],
+      "isAgotado": true
+    }
+  ],
+  "electrodomesticos": [
+    {
+      "id": "prod_9i8cx1lhg",
+      "name": "Calentador de agua Saco",
+      "description": "💰 $110",
+      "image": "productos_nuevos/thumb_1779126603647_or8r.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_6hrgpjtlx",
+      "name": "Arrocera",
+      "description": "💰 $27",
+      "image": "productos_nuevos/thumb_1779126344754_q222.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_6lcfscbqa",
+      "name": "Power Bank 20000 mAH",
+      "description": "💰 $20",
+      "image": "productos_nuevos/thumb_1779126169363_u0hy.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_omnv74ff2",
+      "name": "Inversor 3000w. 72 V",
+      "description": "💰 $120",
+      "image": "productos_nuevos/thumb_1779126080281_8nid.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_dsl8ggw8a",
+      "name": "Pesas 200 kg con batería",
+      "description": "💰 $100",
+      "image": "productos_nuevos/thumb_1779125394815_n41c.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_adipad7hq",
+      "name": "Cocina infrarroja 3500W",
+      "description": "💰 $32",
+      "image": "productos_nuevos/thumb_1779112309593_ru8f.webp",
+      "options": [],
+      "isAgotado": false
+    },
+    {
+      "id": "prod_qowx42nl9",
+      "name": "olla de presión",
+      "description": "✨ Trae una junta de repuesto",
+      "image": "productos_nuevos/thumb_1779059323881_ihm6.webp",
+      "options": [],
+      "isAgotado": false
+    }
+  ],
+  "muebles": []
+}
